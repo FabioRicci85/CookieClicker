@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Cookie Clicker" Height="450" Width="800">
     <Grid>
-        
+        <Rectangle Width="800" Height="450" Stroke="Black" StrokeThickness="1">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="Media/qchtergrond.jpg"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
     </Grid>
 </Window>

@@ -1,0 +1,15 @@
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\bin\Debug\CookieCliker.exe.config
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\bin\Debug\CookieCliker.exe
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\bin\Debug\CookieCliker.pdb
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.csproj.AssemblyReference.cache
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\MainWindow.g.cs
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\App.g.cs
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker_MarkupCompile.cache
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker_MarkupCompile.lref
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\MainWindow.baml
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.g.resources
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.Properties.Resources.resources
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.csproj.GenerateResource.cache
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.csproj.CoreCompileInputs.cache
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.exe
+C:\Users\12300113\OneDrive - PXL\Documenten\School Semester 1\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.pdb
