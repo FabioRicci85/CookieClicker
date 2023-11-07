@@ -5,17 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
-        Title="Cookie Clicker" Height="450" Width="800">
-    <Grid>
-        <Rectangle Width="800" Height="450" Stroke="Black" StrokeThickness="1">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="Media/qchtergrond.jpg"/>
-            </Rectangle.Fill>
-        </Rectangle>
+        Title="Cookie Clicker" Height="430" Width="800">
+    <Grid>        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Image Source="Media/Cookie.png" Grid.Row="1"/>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Column="0" Grid.RowSpan="3">
+            <TextBlock Text=""/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Column="1" Grid.RowSpan="3">
+            <TextBlock Text=""/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Column="2" Grid.RowSpan="3">
+            <TextBlock Text=""/>
+        </Border>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
+            <Label Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
+        </WrapPanel>
+        <StackPanel Grid.Column="2">
+            
+        </StackPanel>
     </Grid>
 </Window>
