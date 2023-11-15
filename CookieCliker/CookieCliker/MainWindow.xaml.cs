@@ -20,9 +20,10 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private bool isMousePressed = false;
         
+        int teller = 0; 
+           
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,15 +31,25 @@ namespace CookieCliker
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            isMousePressed = true;            
+
+            ImgCookie.Width = ImgCookie.ActualWidth - 10;
+            
         }
 
         private void ImgCookie_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            isMousePressed = false;
+            ImgCookie.Width = ImgCookie.ActualWidth + 10;
+
+            teller++;
+            UpdateScore();
+            
+
         }
 
-      
+        private void UpdateScore()
+        {
+            LblScore.Content = teller.ToString();
+        }
               
     }
 }
