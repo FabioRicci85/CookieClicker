@@ -8,7 +8,7 @@
         Title="Cookie Clicker" Height="430" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="./Media/Achtergrond2.jpg" Opacity="1"/>
+            <ImageBrush ImageSource="./Media/Achtergrond3.jpg" Opacity="1"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Image Source="Media/Cookie.png" Grid.Row="1"/>
+        <Image Source="Media/Cookie.png" Name="ImgCookie" Grid.Row="1" MouseDown="ImgCookie_MouseDown" MouseUp="ImgCookie_MouseUp"/>
         <Border BorderBrush="Black" BorderThickness="2" Grid.Column="0" Grid.RowSpan="3">
             <TextBlock Text=""/>
         </Border>
@@ -31,8 +31,8 @@
             <TextBlock Text=""/>
         </Border>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Foreground="LightBlue" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
-            <Label Foreground="LightBlue" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
+            <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
+            <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
         </WrapPanel>
         
     </Grid>

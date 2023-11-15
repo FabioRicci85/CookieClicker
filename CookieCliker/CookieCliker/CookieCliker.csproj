@@ -106,5 +106,13 @@
   <ItemGroup>
     <Resource Include="Media\Achtergrond2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\achtergrond3.jpg" />
+    <Resource Include="Media\achtergrondBakerij.jpg" />
+    <Resource Include="Media\achtergrondFactory.jpg" />
+    <Resource Include="Media\achtergrondFarm.jpg" />
+    <Resource Include="Media\achtergrondKeuken.jpg" />
+    <Resource Include="Media\achtergrondMijn.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

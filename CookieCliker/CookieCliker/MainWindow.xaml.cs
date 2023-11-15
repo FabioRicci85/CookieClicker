@@ -20,9 +20,25 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private bool isMousePressed = false;
+        
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            isMousePressed = true;            
+        }
+
+        private void ImgCookie_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            isMousePressed = false;
+        }
+
+      
+              
     }
 }
