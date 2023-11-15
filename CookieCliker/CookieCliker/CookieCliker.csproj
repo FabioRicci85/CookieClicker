@@ -103,5 +103,8 @@
     <Resource Include="Media\Grandma.png" />
     <Resource Include="Media\Mine.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Achtergrond2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

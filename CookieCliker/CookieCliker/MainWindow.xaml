@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
         Title="Cookie Clicker" Height="430" Width="800">
-    <Grid>        
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="./Media/Achtergrond2.jpg" Opacity="1"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -28,11 +31,9 @@
             <TextBlock Text=""/>
         </Border>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
-            <Label Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
+            <Label Foreground="LightBlue" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
+            <Label Foreground="LightBlue" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
         </WrapPanel>
-        <StackPanel Grid.Column="2">
-            
-        </StackPanel>
+        
     </Grid>
 </Window>

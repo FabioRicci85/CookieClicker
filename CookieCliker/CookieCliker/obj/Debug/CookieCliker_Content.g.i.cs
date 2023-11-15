@@ -8,12 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/achtergrond.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/cookie.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/cursor.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/factory.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/farm.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/grandma.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/mine.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/achtergrond2.jpg")]
 
 
