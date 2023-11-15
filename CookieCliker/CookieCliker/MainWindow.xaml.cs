@@ -20,9 +20,9 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-        int teller = 0; 
-           
+
+        int teller = 0;
+        float totaleTeller = 0;
 
         public MainWindow()
         {
@@ -33,7 +33,7 @@ namespace CookieCliker
         {
 
             ImgCookie.Width = ImgCookie.ActualWidth - 10;
-            
+
         }
 
         private void ImgCookie_MouseUp(object sender, MouseButtonEventArgs e)
@@ -41,14 +41,20 @@ namespace CookieCliker
             ImgCookie.Width = ImgCookie.ActualWidth + 10;
 
             teller++;
+            totaleTeller++;
             UpdateScore();
-            
+            TotaleScore();
 
         }
 
         private void UpdateScore()
         {
             LblScore.Content = teller.ToString();
+        }
+
+        private void TotaleScore()
+        {
+            LblTotaleScore.Content = totaleTeller.ToString();
         }
               
     }

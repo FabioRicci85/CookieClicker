@@ -35,6 +35,11 @@
             <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
             <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
         </WrapPanel>
-        
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <Label Foreground="LightCyan" Name="LblTotaleScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" HorizontalAlignment="Center" />            
+            <TextBlock Width="260" Foreground="LightCyan" TextWrapping="Wrap" Name="LblTotaleCookie" Grid.Column="0" Grid.Row="0" FontSize="30">Totaal aantal Cookies verzameld tot nu toe</TextBlock>            
+        </StackPanel>
+
+
     </Grid>
 </Window>
