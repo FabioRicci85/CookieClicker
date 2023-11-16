@@ -27,7 +27,9 @@ namespace CookieCliker
         public MainWindow()
         {
             InitializeComponent();
+            BtnStore5.Visibility = Visibility.Collapsed;
             UpdateTitle();
+            
         }
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
@@ -45,7 +47,8 @@ namespace CookieCliker
 
             UpdateScore();
             UpdateTitle();
-           
+            VisibleButton();
+
 
         }
 
@@ -62,6 +65,15 @@ namespace CookieCliker
             string titleScore = Convert.ToString(UpdateScore());
             Title = $"{titleScore} cookies  -  Cookie Clicker";
         }
-              
+       
+        private void VisibleButton()
+        {
+            if (UpdateScore() == 60000)
+            {
+                BtnStore5.Visibility = Visibility.Visible;
+            }
+            
+        }
+
     }
 }
