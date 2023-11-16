@@ -60,7 +60,7 @@ namespace CookieCliker
         private void UpdateTitle()
         {
             string titleScore = Convert.ToString(UpdateScore());
-            Title = $"{titleScore} cookies";
+            Title = $"{titleScore} cookies  -  Cookie Clicker";
         }
               
     }

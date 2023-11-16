@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
-        Title="Cookie Clicker" Height="430" Width="800">
+        Title="Cookie Clicker" Height="430" Width="800"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="./Media/Achtergrond3.jpg"/>
@@ -19,23 +20,156 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.RowSpan="3">
-            <TextBlock Text=""/>
-        </Border>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.RowSpan="3">
-            <TextBlock Text=""/>
-        </Border>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2" Grid.RowSpan="3">
-            <TextBlock Text=""/>
-        </Border>
+        </Grid.RowDefinitions>      
         <Image Source="Media/Cookie.png" Name="ImgCookie" Grid.Row="1" MouseDown="ImgCookie_MouseDown" MouseUp="ImgCookie_MouseUp" Width="250"/>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,20,0,0">
-            <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40" />
-            <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40" />
+            <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40"/>
+            <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40"/>
         </WrapPanel>
-     
+        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3">
+            <Label Content="Store" HorizontalAlignment="Center" FontSize="40" Foreground="LightCyan"/>
+            <Button Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec.">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/Cursor.png" Margin="4" Width="60"/>
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="Cursor" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs1" Content="15" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>
+            </Button>
+            <Button Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1 Cookies per sec.">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/Grandma.png" Margin="4" Width="60"/>
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="Grandma" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs2" Content="100" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>
+            </Button>
+            <Button Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="8 Cookies per sec.">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/Farm.png" Margin="4" Width="60"/>
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="Farm" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs3" Content="1100" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>
+            </Button>
+            <Button Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="47 Cookies per sec.">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/Mine.png" Margin="4" Width="60"/>
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="Mine" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs4" Content="12000" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>                
+            </Button>
+            <Button Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="260 Cookies per sec.">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/Factory.png" Margin="4" Width="60"/>
+                        
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="Factory" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs5" Content="130000" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label FontWeight="DemiBold" Foreground="DarkSlateGray" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>                
+            </Button>
+        </StackPanel>
         
 
 
