@@ -75,5 +75,9 @@ namespace CookieCliker
             
         }
 
+        private void BtnStore1_Click()
+        {
+
+        }
     }
 }
