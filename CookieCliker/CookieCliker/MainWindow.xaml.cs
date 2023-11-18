@@ -68,7 +68,7 @@ namespace CookieCliker
        
         private void VisibleButton()
         {
-            if (UpdateScore() == 60000)
+            if (UpdateScore() == 6)
             {
                 BtnStore5.Visibility = Visibility.Visible;
             }
