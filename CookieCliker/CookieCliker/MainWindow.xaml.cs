@@ -49,7 +49,7 @@ namespace CookieCliker
             UpdateTitle();
             VisibleButton();
             ButtonEnable();
-
+            
         }
 
         private int UpdateScore()
@@ -81,18 +81,25 @@ namespace CookieCliker
             {
                 BtnStore1.IsEnabled = true;
             }
+
+            //do
+            //{
+            //    BtnStore1.IsEnabled = true;
+            //} while (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content));
         }
 
         private void BtnStore1_Click(object sender, RoutedEventArgs e)
         {
+            double aankoopprijs = AankoopCursor();
+            AftrekAankoop(aankoopprijs);
             clicker++;
-            LblAantalKlik1.Content = clicker.ToString();
-            AankoopCursor();
+            LblAantalKlik1.Content = clicker.ToString();           
+            
         }
 
         private double AankoopCursor()
         {            
-            double basisCursor = 15;
+            double basisCursor = Convert.ToDouble(LblPrijs1.Content);
             double aankoopprijs = basisCursor * Math.Pow(1.15, Convert.ToDouble(LblAantalKlik1.Content));
             aankoopprijs = Math.Round(aankoopprijs);
 
@@ -101,10 +108,11 @@ namespace CookieCliker
             return aankoopprijs;
         }
 
-
-        private void AftrekAankoop()
+        private void AftrekAankoop(double aankoopprijs)
         {
-            
+            teller -= aankoopprijs;
+            UpdateScore();
+            UpdateTitle();
         }
     }
 }
