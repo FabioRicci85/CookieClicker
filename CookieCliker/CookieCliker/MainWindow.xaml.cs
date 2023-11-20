@@ -22,14 +22,14 @@ namespace CookieCliker
     {
 
         double teller = 0;
-        
+        double clicker = 0;
 
         public MainWindow()
         {
             InitializeComponent();
             BtnStore5.Visibility = Visibility.Collapsed;
             UpdateTitle();
-            
+
         }
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,7 +48,7 @@ namespace CookieCliker
             UpdateScore();
             UpdateTitle();
             VisibleButton();
-
+            ButtonEnable();
 
         }
 
@@ -65,18 +65,44 @@ namespace CookieCliker
             string titleScore = Convert.ToString(UpdateScore());
             Title = $"{titleScore} cookies  -  Cookie Clicker";
         }
-       
+
         private void VisibleButton()
         {
-            if (UpdateScore() == 6)
+            if (UpdateScore() == 60000)
             {
                 BtnStore5.Visibility = Visibility.Visible;
             }
-            
+
         }
 
-        private void BtnStore1_Click()
+        private void ButtonEnable()
         {
+            if (UpdateScore() >= Convert.ToDouble(LblAantalKlik1.Content))
+            {
+                BtnStore1.IsEnabled = true;
+            }
+        }
+
+        private void BtnStore1_Click(object sender, RoutedEventArgs e)
+        {
+            clicker++;
+            LblAantalKlik1.Content = clicker.ToString();
+        }
+
+        private void AankoopCursor()
+        {
+            double aankoopprijs;
+
+
+            double basisCursor = 15;
+            //double basisGrandma = 100;
+            //double basisFarm = 1100;
+            //double basisMine = 12000;
+            //double basisFactory = 130000;
+            //double basisBank = 1400000;
+            //double basisTemple = 20000000;
+
+            aankoopprijs = basisCursor * Math.Pow(1.15, Convert.ToDouble(LblAantalKlik1.Content));
 
         }
     }
