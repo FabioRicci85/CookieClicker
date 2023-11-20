@@ -77,7 +77,7 @@ namespace CookieCliker
 
         private void ButtonEnable()
         {
-            if (UpdateScore() >= Convert.ToDouble(LblAantalKlik1.Content))
+            if (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content))
             {
                 BtnStore1.IsEnabled = true;
             }
@@ -87,23 +87,24 @@ namespace CookieCliker
         {
             clicker++;
             LblAantalKlik1.Content = clicker.ToString();
+            AankoopCursor();
         }
 
-        private void AankoopCursor()
-        {
-            double aankoopprijs;
-
-
+        private double AankoopCursor()
+        {            
             double basisCursor = 15;
-            //double basisGrandma = 100;
-            //double basisFarm = 1100;
-            //double basisMine = 12000;
-            //double basisFactory = 130000;
-            //double basisBank = 1400000;
-            //double basisTemple = 20000000;
+            double aankoopprijs = basisCursor * Math.Pow(1.15, Convert.ToDouble(LblAantalKlik1.Content));
+            aankoopprijs = Math.Round(aankoopprijs);
 
-            aankoopprijs = basisCursor * Math.Pow(1.15, Convert.ToDouble(LblAantalKlik1.Content));
+            LblPrijs1.Content = aankoopprijs.ToString();
 
+            return aankoopprijs;
+        }
+
+
+        private void AftrekAankoop()
+        {
+            
         }
     }
 }
