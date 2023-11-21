@@ -48,7 +48,7 @@ namespace CookieCliker
             UpdateScore();
             UpdateTitle();
             VisibleButton();
-            ButtonEnable();
+           
             
         }
 
@@ -56,6 +56,12 @@ namespace CookieCliker
         {
             LblScore.Content = Math.Round(teller).ToString();
             int score = Convert.ToInt32(LblScore.Content);
+            if (score >= Convert.ToDouble(LblPrijs1.Content))
+            {
+                BtnStore1.IsEnabled = true;
+            }
+            else
+                BtnStore1.IsEnabled = false;
 
             return score;
         }
@@ -75,18 +81,20 @@ namespace CookieCliker
 
         }
 
-        private void ButtonEnable()
-        {
-            if (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content))
-            {
-                BtnStore1.IsEnabled = true;
-            }
-
-            //do
-            //{
-            //    BtnStore1.IsEnabled = true;
-            //} while (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content));
-        }
+        //private void ButtonEnable()
+        //{
+        //    if (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content))
+        //    {
+        //        BtnStore1.IsEnabled = true;
+        //    }
+        //    else
+        //        BtnStore1.IsEnabled = false;
+               
+        //    //do
+        //    //{
+        //    //    BtnStore1.IsEnabled = true;
+        //    //} while (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content));
+        //}
 
         private void BtnStore1_Click(object sender, RoutedEventArgs e)
         {
