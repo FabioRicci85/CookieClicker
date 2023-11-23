@@ -32,7 +32,7 @@ namespace CookieCliker
         public MainWindow()
         {
             InitializeComponent();
-            BtnStore5.Visibility = Visibility.Collapsed;
+            //BtnStore5.Visibility = Visibility.Collapsed;
             UpdateTitle();
 
         }
@@ -54,8 +54,8 @@ namespace CookieCliker
             UpdateScore();
             UpdateTitle();
             //VisibleButton();
-            
-            
+            ShopButtonEnable();
+
         }
 
         /// <summary>
@@ -78,17 +78,17 @@ namespace CookieCliker
             string titleScore = Convert.ToString(UpdateScore());
             Title = $"{titleScore} cookies  -  Cookie Clicker";
 
-            ShopButtonVisible();
+            //ShopButtonVisible();
         }
 
-        private void VisibleButton()
-        {
-            if (UpdateScore() >= 60000)
-            {
-                BtnStore5.Visibility = Visibility.Visible;
-            }
+        //private void VisibleButton()
+        //{
+        //    if (UpdateScore() >= 60000)
+        //    {
+        //        BtnStore5.Visibility = Visibility.Visible;
+        //    }
 
-        }     
+        //}     
        
         /// <summary>
         /// Per aankoop wordt gekeken hoeveel maal het al aangekocht is geweest.
@@ -103,7 +103,7 @@ namespace CookieCliker
             double aankoopprijs = (Convert.ToDouble(labelPrijs.Content));
             if (Convert.ToDouble(LblAantalKlik1.Content) == 0)
             {
-                aankoopprijs = (Convert.ToDouble(labelPrijs.Content));
+                aankoopprijs = basisPrijs;
                 teller -= aankoopprijs;
                 UpdateScore();
                 UpdateTitle();
@@ -129,11 +129,13 @@ namespace CookieCliker
             string buttonName = ((Button)sender).Name;
             string aankoop = buttonName.Substring(buttonName.Length - 1, 1);
 
+            clicker = Convert.ToDouble(labelAantKlik.Content);
             StoreButton(aankoop);
             AankoopStore();
             //clicker.Equals(labelAantKlik);
             clicker++;
             labelAantKlik.Content = clicker.ToString();
+            ShopButtonEnable();
             
         }
        
@@ -171,7 +173,7 @@ namespace CookieCliker
             }
         }
         
-        private void ShopButtonVisible()
+        private void ShopButtonEnable()
         {
             if (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content))
             {
