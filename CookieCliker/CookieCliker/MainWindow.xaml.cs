@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CookieCliker
 {
@@ -22,73 +23,77 @@ namespace CookieCliker
     public partial class MainWindow : Window
     {
 
-        double teller = 0;
-        double clicker = 0;
-        Button winkelButton = new Button();
+        private double teller = 0;
+        private double totaleTeller = 0;
+        private double clicker = 0;
         Label labelPrijs = new Label();
-        Label labelAantKlik = new Label();
-
+        Label labelAantKlik = new Label();        
+        bool isMouseDown = false;
+        readonly DispatcherTimer timer = new DispatcherTimer();
 
         public MainWindow()
         {
             InitializeComponent();
-            //BtnStore5.Visibility = Visibility.Collapsed;
-            UpdateTitle();
 
+            
+            timer.Interval = TimeSpan.FromMilliseconds(10);
+            timer.Tick += new EventHandler(PassiveIncome);            
+            timer.Start();
         }
 
         private void ImgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            isMouseDown = true;
             ImgCookie.Width = ImgCookie.ActualWidth - 10;
-
         }
 
         private void ImgCookie_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
             ImgCookie.Width = ImgCookie.ActualWidth + 10;
 
             teller++;            
-            
-            UpdateScore();
-            UpdateTitle();
-            //VisibleButton();
-            ShopButtonEnable();
+            totaleTeller++;
 
+            UpdateScore();          
+            ShopButtonEnable();
+        }
+
+        /// <summary>
+        /// Als de linkermuisknop ingedrukt is en de cursor op het koekje komt, registreert het een mouse down event en update het de score naar boven.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImgCookie_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (isMouseDown == true)
+            {
+                teller++;
+                totaleTeller++;
+                UpdateScore();
+            }
+        }
+
+        /// <summary>
+        /// Als de linker muis knop is ingedrukt, dan registreert het niet als een mouse up event wordt uitgevoerd en wordt de score niet verhoogd.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImgCookie_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ImgCookie.Width = ImgCookie.ActualWidth + 10;
+            isMouseDown = false;
         }
 
         /// <summary>
         /// Zorgt voor de update van de score boven het koekje. 
         /// </summary>
         /// <returns></returns>
-        private int UpdateScore()
+        private void UpdateScore()
         {
-            LblScore.Content = Math.Round(teller).ToString();
-            int score = Convert.ToInt32(LblScore.Content);
+            LblScore.Content = Math.Floor(teller).ToString();
             
-
-            return score;
-        }
-        /// <summary>
-        /// Update de score in titelbalk en zorgt voor de zichtbaarheid van de aankoopknoppen.
-        /// </summary>
-        private void UpdateTitle()
-        {
-            string titleScore = Convert.ToString(UpdateScore());
-            Title = $"{titleScore} cookies  -  Cookie Clicker";
-
-            //ShopButtonVisible();
-        }
-
-        //private void VisibleButton()
-        //{
-        //    if (UpdateScore() >= 60000)
-        //    {
-        //        BtnStore5.Visibility = Visibility.Visible;
-        //    }
-
-        //}     
+            Title = $"{Math.Floor(teller)} cookies  -  Cookie Clicker";       
+        }   
        
         /// <summary>
         /// Per aankoop wordt gekeken hoeveel maal het al aangekocht is geweest.
@@ -100,20 +105,20 @@ namespace CookieCliker
         private double AankoopStore()
         {            
             double basisPrijs = Convert.ToDouble(labelPrijs.Content);
-            double aankoopprijs = (Convert.ToDouble(labelPrijs.Content));
-            if (Convert.ToDouble(LblAantalKlik1.Content) == 0)
+            double aankoopprijs = Convert.ToDouble(labelPrijs.Content);
+            if (Convert.ToDouble(labelAantKlik.Content) == 0)
             {
                 aankoopprijs = basisPrijs;
                 teller -= aankoopprijs;
                 UpdateScore();
-                UpdateTitle();
+                
                 aankoopprijs = basisPrijs * 1.15;
             }
-            else if (UpdateScore() >= (Convert.ToDouble(labelPrijs.Content)))
+            else if (teller >= (Convert.ToDouble(labelPrijs.Content)))
             {               
                 teller -= aankoopprijs;
                 UpdateScore();
-                UpdateTitle();
+                
                 aankoopprijs = basisPrijs * Math.Pow(1.15, Convert.ToDouble(labelAantKlik.Content));
             }
             
@@ -129,14 +134,13 @@ namespace CookieCliker
             string buttonName = ((Button)sender).Name;
             string aankoop = buttonName.Substring(buttonName.Length - 1, 1);
 
-            clicker = Convert.ToDouble(labelAantKlik.Content);
             StoreButton(aankoop);
+            clicker = Convert.ToDouble(labelAantKlik.Content);
             AankoopStore();
-            //clicker.Equals(labelAantKlik);
             clicker++;
             labelAantKlik.Content = clicker.ToString();
             ShopButtonEnable();
-            
+            UpdateScore();
         }
        
 
@@ -145,77 +149,73 @@ namespace CookieCliker
             switch(button)
             {
                 case "1":
-                    winkelButton = BtnStore1;
                     labelPrijs = LblPrijs1;
                     labelAantKlik = LblAantalKlik1;
                 break;
                 case "2":
-                    winkelButton = BtnStore2;
                     labelPrijs = LblPrijs2;
                     labelAantKlik = LblAantalKlik2;
                     break;
                 case "3":
-                    winkelButton = BtnStore3;
                     labelPrijs = LblPrijs3;
                     labelAantKlik = LblAantalKlik3;
                     break;
                 case "4":
-                    winkelButton = BtnStore4;
                     labelPrijs = LblPrijs4;
                     labelAantKlik = LblAantalKlik4;
                     break;
                 case "5":
-                    winkelButton = BtnStore5;
                     labelPrijs = LblPrijs5;
                     labelAantKlik = LblAantalKlik5;
                     break;
-                
+                    
             }
         }
         
         private void ShopButtonEnable()
         {
-            if (UpdateScore() >= Convert.ToDouble(LblPrijs1.Content))
+            BtnStore1.IsEnabled = (teller >= Convert.ToDouble(LblPrijs1.Content));
+            BtnStore2.IsEnabled = (teller >= Convert.ToDouble(LblPrijs2.Content));
+            BtnStore3.IsEnabled = (teller >= Convert.ToDouble(LblPrijs3.Content));
+            BtnStore4.IsEnabled = (teller >= Convert.ToDouble(LblPrijs4.Content));
+            BtnStore5.IsEnabled = (teller >= Convert.ToDouble(LblPrijs5.Content));
+            BtnStore5.IsEnabled = (teller >= Convert.ToDouble(LblPrijs5.Content));
+            BtnStore5.IsEnabled = (teller >= Convert.ToDouble(LblPrijs5.Content));
+
+        }
+
+
+
+        private void PassiveIncome(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(LblAantalKlik1.Content) > 0)
             {
-                BtnStore1.IsEnabled = true; 
+                teller += (Convert.ToDouble(LblAantalKlik1.Content)) * 0.001;
+                totaleTeller += (Convert.ToDouble(LblAantalKlik1.Content)) * 0.001;
             }
-            else
+            if (Convert.ToDouble(LblAantalKlik2.Content) > 0)
             {
-                BtnStore1.IsEnabled = false;
+                teller += (Convert.ToDouble(LblAantalKlik2.Content)) * 0.01;
+                totaleTeller += (Convert.ToDouble(LblAantalKlik2.Content)) * 0.01;
             }
-            if (UpdateScore() >= Convert.ToDouble(LblPrijs2.Content))
+            if (Convert.ToDouble(LblAantalKlik3.Content) > 0)
             {
-                BtnStore2.IsEnabled = true;
+                teller += (Convert.ToDouble(LblAantalKlik3.Content)) * 0.08;
+                totaleTeller += (Convert.ToDouble(LblAantalKlik3.Content)) * 0.08;
             }
-            else
+            if (Convert.ToDouble(LblAantalKlik4.Content) > 0)
             {
-                BtnStore2.IsEnabled = false;
+                teller += (Convert.ToDouble(LblAantalKlik4.Content)) * 0.47;
+                totaleTeller += (Convert.ToDouble(LblAantalKlik4.Content)) * 0.47;
             }
-            if (UpdateScore() >= Convert.ToDouble(LblPrijs3.Content))
+            if (Convert.ToDouble(LblAantalKlik5.Content) > 0)
             {
-                BtnStore3.IsEnabled = true;
-            }
-            else
-            {
-                BtnStore3.IsEnabled = false;
-            }
-            if (UpdateScore() >= Convert.ToDouble(LblPrijs4.Content))
-            {
-                BtnStore4.IsEnabled = true;
-            }
-            else
-            {
-                BtnStore4.IsEnabled = false;
-            }
-            if (UpdateScore() >= Convert.ToDouble(LblPrijs5.Content))
-            {
-                BtnStore5.IsEnabled = true;
-            }
-            else
-            {
-                BtnStore5.IsEnabled = false;
+                teller += (Convert.ToDouble(LblAantalKlik5.Content)) * 2.60;
+                totaleTeller += (Convert.ToDouble(LblAantalKlik5.Content)) * 2.60;
             }
 
+            UpdateScore();
+            ShopButtonEnable();
         }
     }
 }

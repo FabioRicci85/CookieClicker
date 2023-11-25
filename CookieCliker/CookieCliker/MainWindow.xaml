@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
-        Title="Cookie Clicker" Height="430" Width="800"
-        ResizeMode="NoResize">
+        Title="Cookie Clicker" Height="430" Width="800">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="./Media/Achtergrond3.jpg"/>
@@ -21,7 +20,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>      
-        <Image Source="Media/Cookie.png" Name="ImgCookie" Grid.Row="1" MouseDown="ImgCookie_MouseDown" MouseUp="ImgCookie_MouseUp" Width="250"/>
+        <Image Source="Media/Cookie.png" 
+               Name="ImgCookie" Grid.Row="1" 
+               MouseDown="ImgCookie_MouseDown" 
+               MouseUp="ImgCookie_MouseUp" 
+               MouseEnter="ImgCookie_MouseEnter" 
+               MouseLeave="ImgCookie_MouseLeave" 
+               Width="250"/>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,20,0,0">         
             <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40"/>
             <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40"/>
@@ -35,7 +40,7 @@
                             <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                         </Border>
                     </ControlTemplate>
-                </Button.Template>
+                </Button.Template>                
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -84,7 +89,7 @@
                         <Image Source="./Media/Grandma.png" Margin="4" Width="60"/>
                         <StackPanel Width="100">
                             <Label FontWeight="DemiBold" Content="Grandma" Margin="4,0,0,-5" FontSize="16"/>
-                            <Label Name="LblPrijs2" Content="30" Margin="4,-5"/>
+                            <Label Name="LblPrijs2" Content="100" Margin="4,-5"/>
                         </StackPanel>
                     </StackPanel>
                     <Label Name="LblAantalKlik2" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
