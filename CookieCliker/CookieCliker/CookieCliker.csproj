@@ -116,5 +116,17 @@
   <ItemGroup>
     <Resource Include="Media\Farm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sound\bonus1.mp3" />
+    <Content Include="Sound\click1.mp3" />
+    <Content Include="Sound\factory1.MP3" />
+    <Content Include="Sound\grandma1.MP3" />
+    <Content Include="Sound\mine1.MP3" />
+    <Content Include="Sound\moo1.mp3" />
+    <Content Include="Sound\motivation1.mp3" />
+    <Content Include="Sound\ping1.mp3" />
+    <Content Include="Sound\pop1.mp3" />
+    <Content Include="Sound\succes1.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

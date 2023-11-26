@@ -28,3 +28,4 @@ C:\Users\Fabio\Documents\GitHub\CookieClicker\CookieCliker\CookieCliker\obj\Debu
 C:\Users\Fabio\Documents\GitHub\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.Properties.Resources.resources
 C:\Users\Fabio\Documents\GitHub\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.csproj.GenerateResource.cache
 C:\Users\Fabio\Documents\GitHub\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker.csproj.CoreCompileInputs.cache
+C:\Users\Fabio\Documents\GitHub\CookieClicker\CookieCliker\CookieCliker\obj\Debug\CookieCliker_Content.g.cs

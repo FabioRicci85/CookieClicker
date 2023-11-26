@@ -8,6 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("media/farm.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/bonus1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/click1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/factory1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/grandma1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/mine1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/moo1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/motivation1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/ping1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/pop1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/succes1.mp3")]
 
 
