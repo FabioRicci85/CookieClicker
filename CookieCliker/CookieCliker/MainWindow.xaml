@@ -8,7 +8,7 @@
         Title="Cookie Clicker" Height="430" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="./Media/Achtergrond3.jpg"/>
+            <ImageBrush x:Name="ImgBrAchtergrond" ImageSource="./Media/Achtergrond3.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

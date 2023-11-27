@@ -23,7 +23,7 @@ namespace CookieCliker
     public partial class MainWindow : Window
     {
 
-        private double teller = 0;
+        private double teller = 1000000;
         private double clicker = 0;
         Label labelPrijs = new Label();
         Label labelAantKlik = new Label();
@@ -176,6 +176,7 @@ namespace CookieCliker
             clicker = Convert.ToDouble(labelAantKlik.Content);
             AankoopStore();
             clicker++;
+            //hier achtergrond Method plaatsen
             labelAantKlik.Content = clicker.ToString();
             ShopButtonEnable();
             UpdateScore();
@@ -284,15 +285,15 @@ namespace CookieCliker
         {
             var player = new MediaPlayer();
             player.Open(ping);
-            player.Play();
+            
         }
-
+        MediaPlayer playerTest = new MediaPlayer();
         private void MotivationSound()
         {
-            var player = new MediaPlayer();
-            player.Open(motivation);
-            player.Volume = 0.2;
-            player.Play();
+
+            playerTest.Open(motivation);
+            playerTest.Volume = 0.2;
+            playerTest.Play();
         }
 
         private void ClickSound()
