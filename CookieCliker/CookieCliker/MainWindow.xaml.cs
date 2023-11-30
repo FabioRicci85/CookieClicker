@@ -332,8 +332,10 @@ namespace CookieCliker
             labelBakeryName.Width = 250;
             labelBakeryName.FontSize = 35;
             labelBakeryName.Foreground = Brushes.LightCyan;
+            labelBakeryName.HorizontalContentAlignment = HorizontalAlignment.Center;
+            labelBakeryName.VerticalContentAlignment = VerticalAlignment.Top;
             labelBakeryName.HorizontalAlignment = HorizontalAlignment.Center;
-            labelBakeryName.VerticalAlignment = VerticalAlignment.Center;
+            labelBakeryName.VerticalAlignment = VerticalAlignment.Top;
             GrdWindow.Children.Add(labelBakeryName);
             Grid.SetColumn(labelBakeryName, 1);
             Grid.SetRow(labelBakeryName, 0);
