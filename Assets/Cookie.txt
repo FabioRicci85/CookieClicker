@@ -1,0 +1,25 @@
+In het midden visualisatie van de aangekochte upgrade's/passieve inkomen
+========================================================================
+<stackpanel>
+	<viewscroller>
+		<imagebrush>
+		
+		
+		
+Voeg Bank en Tempel button nog toe. (Code behind?)
+		
+		
+Label voorzien om je bakkerij een naam te geven. (Code behind?)			<== aparte Methode voor iedere label en Imagebrush gaan maken dan?
+
+	- label kunnen aanpassen (dialoogvenster "Inputbox")  				--Check
+		
+Aanpassen van getallen in samenwerking van woorden (substring)
+Welke is de syntax hier voor? Opzoeken in documentation.
+
+
+Schaalbare UI ==> Viewbox, zoek uit hoe dit werkt!!
+
+
+
+
+

@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace CookieCliker
@@ -28,6 +18,8 @@ namespace CookieCliker
         private Label labelPrijs = new Label();
         private Label labelAantKlik = new Label();
         private double _basePrice = new double();
+
+        private Label labelBakeryName = new Label();                                                               //nieuwe labels en buttons voor UI
 
         private bool isMouseDown = false;
 
@@ -57,6 +49,8 @@ namespace CookieCliker
             };
             timer.Tick += new EventHandler(PassiveIncome);
             timer.Start();
+
+            LabelBakery();
         }
 
         /// <summary>
@@ -80,13 +74,13 @@ namespace CookieCliker
         private void ImgCookie_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ImgCookie.Width = ImgCookie.ActualWidth + 10;
+            ImgCookie.Width = double.NaN;
 
             cookieCounter++;
             UpdateScore();
             ShopButtonEnable();
 
             //roep sound effect op
-
             PopSound();
         }
 
@@ -112,6 +106,8 @@ namespace CookieCliker
         private void ImgCookie_MouseLeave(object sender, MouseEventArgs e)
         {
             ImgCookie.Width = ImgCookie.ActualWidth + 10;
+            ImgCookie.Width = double.NaN;
+
             isMouseDown = false;
         }
 
@@ -151,7 +147,7 @@ namespace CookieCliker
                 _price = _basePrice * Math.Pow(1.15, Convert.ToDouble(labelAantKlik.Content));
             }
 
-            _price = Math.Round(_price);
+            _price = Math.Ceiling(_price);
 
             labelPrijs.Content = _price.ToString();
         }
@@ -269,6 +265,9 @@ namespace CookieCliker
 
         // Players die specifieke geluiden afspelen bij bepaalde acties
 
+        private readonly MediaPlayer backgroundPlayer = new MediaPlayer();
+        private readonly MediaPlayer soundPlayer = new MediaPlayer();
+
         private void PopSound()
         {
             soundPlayer.Open(pop);
@@ -281,9 +280,6 @@ namespace CookieCliker
             soundPlayer.Open(ping);
             soundPlayer.Play();
         }
-
-        private readonly MediaPlayer backgroundPlayer = new MediaPlayer();
-        private readonly MediaPlayer soundPlayer = new MediaPlayer();
 
         private void MotivationSound()
         {
@@ -328,6 +324,37 @@ namespace CookieCliker
         {
             soundPlayer.Open(mine);
             soundPlayer.Play();
+        }
+
+        private void LabelBakery()
+        {
+            labelBakeryName.Content = "PXL-Bakery";
+            labelBakeryName.Width = 250;
+            labelBakeryName.FontSize = 35;
+            labelBakeryName.Foreground = Brushes.LightCyan;
+            labelBakeryName.HorizontalAlignment = HorizontalAlignment.Center;
+            labelBakeryName.VerticalAlignment = VerticalAlignment.Center;
+            GrdWindow.Children.Add(labelBakeryName);
+            Grid.SetColumn(labelBakeryName, 1);
+            Grid.SetRow(labelBakeryName, 0);
+
+            labelBakeryName.MouseUp += labelBakeryName_MouseUp;
+        }
+
+        private void labelBakeryName_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            string newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL-Bakery");
+
+            bool hasAllWhitespace = newBakeryName.Trim().Length == 0;
+
+            while (string.IsNullOrEmpty(newBakeryName) || hasAllWhitespace)
+            {
+                MessageBox.Show("Gelieve een naam in te geven");
+                newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL-Bakery");
+                hasAllWhitespace = newBakeryName.Trim().Length == 0;
+            }
+
+            labelBakeryName.Content = newBakeryName;
         }
     }
 }
