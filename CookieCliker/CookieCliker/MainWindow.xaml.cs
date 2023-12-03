@@ -13,7 +13,7 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 100000000;
+        private double cookieCounter = 100000000000;
         private double clicker = 0;
         private Label labelPrijs = new Label();
         private Label labelAantKlik = new Label();
@@ -122,9 +122,9 @@ namespace CookieCliker
         /// <returns></returns>
         private void UpdateScore()
         {
-            LblScore.Content = Math.Floor(cookieCounter).ToString();
+            LblScore.Content = DoubleToWordAmount(cookieCounter);
 
-            Title = $"{Math.Floor(cookieCounter)} cookies  -  Cookie Clicker";
+            Title = $"{DoubleToWordAmount(cookieCounter)} cookies  -  Cookie Clicker";
         }
 
         /// <summary>
@@ -153,12 +153,12 @@ namespace CookieCliker
                     price = basePrice * Math.Pow(1.15, 2);
                 }
             }
-            else if(cookieCounter >= (Convert.ToDouble(labelPrijs.Content)))
+            else if (cookieCounter >= (Convert.ToDouble(labelPrijs.Content)))
             {
                 cookieCounter -= price;
                 UpdateScore();
 
-                price = basePrice * Math.Pow(1.15, (Convert.ToDouble(labelAantKlik.Content)+1));
+                price = basePrice * Math.Pow(1.15, (Convert.ToDouble(labelAantKlik.Content) + 1));
             }
 
             price = Math.Ceiling(price);
@@ -226,12 +226,14 @@ namespace CookieCliker
                     basePrice = basisPrijs5;
                     FactorySound();
                     break;
+
                 case "6":
                     labelPrijs = LblPrijs6;
                     labelAantKlik = LblAantalKlik6;
                     basePrice = basisPrijs6;
                     BankSound();
                     break;
+
                 case "7":
                     labelPrijs = LblPrijs7;
                     labelAantKlik = LblAantalKlik7;
@@ -297,7 +299,7 @@ namespace CookieCliker
             ShopButtonEnable();
         }
 
-                                                                                        // Players die specifieke geluiden afspelen bij bepaalde acties
+        // Players die specifieke geluiden afspelen bij bepaalde acties
 
         private readonly MediaPlayer backgroundPlayer = new MediaPlayer();
         private readonly MediaPlayer soundPlayer = new MediaPlayer();
@@ -334,6 +336,7 @@ namespace CookieCliker
             soundPlayer.Open(clickCursor);
             soundPlayer.Play();
         }
+
         private void GrandmaSound()
         {
             soundPlayer.Open(grandma);
@@ -346,12 +349,12 @@ namespace CookieCliker
             soundPlayer.Open(mooFarm);
             soundPlayer.Play();
         }
+
         private void MineSound()
         {
             soundPlayer.Open(mine);
             soundPlayer.Play();
         }
-
 
         private void FactorySound()
         {
@@ -364,6 +367,7 @@ namespace CookieCliker
             soundPlayer.Open(bank);
             soundPlayer.Play();
         }
+
         private void TempleSound()
         {
             soundPlayer.Open(temple);
@@ -401,6 +405,43 @@ namespace CookieCliker
             }
 
             labelBakeryName.Content = newBakeryName;
+        }
+
+        private string DoubleToWordAmount(double value)
+        {
+            double miljoen = 1000000;
+            double miljard = 1000000000;
+            double biljoen = 1000000000000;
+            double biljard = 1000000000000000;
+            double triljoen = 1000000000000000000;
+
+            if (value >= triljoen)
+            {
+                return $"{Math.Round(value / triljoen, 3)} triljoen";
+            }
+            if (value >= biljard)
+            {
+                return $"{Math.Round(value / biljard, 3)} biljard";
+            }
+            if (value >= biljoen)
+            {
+                return $"{Math.Round(value / biljoen, 3)} biljoen";
+            }
+            if (value >= miljard)
+            {
+                return $"{Math.Round(value / miljard, 3)} miljard";
+            }
+            if (value >= miljoen)
+            {
+                return $"{Math.Round(value / miljoen, 3)} miljoen";
+            }
+
+            if (value >= 1000)
+            {
+                return $"{value:#,0}".Replace(".", " ");
+            }
+
+            return $"{Math.Floor(value)}";
         }
     }
 }

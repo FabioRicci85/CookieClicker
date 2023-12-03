@@ -29,8 +29,8 @@
                Width="180"
                Height="180"/>
         <Label Content="" Grid.Row="2" Grid.Column="0" Foreground="LightCyan" FontSize="35" Name="LblTijd"/>
-        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,20,0,0">         
-            <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40"/>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,20,0,0">            
+            <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40"/>            
             <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40"/>
         </WrapPanel>
         <Label Content="Store" HorizontalAlignment="Center" FontSize="40" Foreground="LightCyan" Grid.Column="2" Grid.Row="0"/>

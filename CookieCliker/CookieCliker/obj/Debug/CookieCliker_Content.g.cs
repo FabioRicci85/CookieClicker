@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/ping1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/succes1.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/temple.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/bank.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/bonus1.mp3")]
@@ -17,8 +19,6 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/mine1.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/moo1.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/motivation1.mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/ping1.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/pop1.mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/succes1.mp3")]
 
 
