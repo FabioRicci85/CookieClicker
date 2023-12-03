@@ -13,11 +13,11 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 1000000;
+        private double cookieCounter = 100000000;
         private double clicker = 0;
         private Label labelPrijs = new Label();
         private Label labelAantKlik = new Label();
-        private double _basePrice = new double();
+        private double basePrice = new double();
 
         private Label labelBakeryName = new Label();                                                               //nieuwe labels en buttons voor UI
 
@@ -25,18 +25,23 @@ namespace CookieCliker
 
         private Uri pop = new Uri(@"../../Sound/pop1.mp3", UriKind.RelativeOrAbsolute);                             //Audio om af te spelen
         private Uri ping = new Uri(@"../../Sound/ping1.mp3", UriKind.RelativeOrAbsolute);
+        private Uri succes = new Uri(@"../../Sound/succes1.mp3", UriKind.RelativeOrAbsolute);
         private Uri motivation = new Uri(@"../../Sound/motivation1.mp3", UriKind.RelativeOrAbsolute);
         private Uri mooFarm = new Uri(@"../../Sound/moo1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri clickCursor = new Uri(@"../../Sound/click1.mp3", UriKind.RelativeOrAbsolute);
+        private Uri clickCursor = new Uri(@"../../Sound/click1.MP3", UriKind.RelativeOrAbsolute);
         private Uri grandma = new Uri(@"../../Sound/grandma1.mp3", UriKind.RelativeOrAbsolute);
         private Uri factory = new Uri(@"../../Sound/factory1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri mine = new Uri(@"../../Sound/mine1.mp3", UriKind.RelativeOrAbsolute);
+        private Uri mine = new Uri(@"../../Sound/mine1.MP3", UriKind.RelativeOrAbsolute);
+        private Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
+        private Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
 
         private const double basisPrijs1 = 15;
         private const double basisPrijs2 = 100;
         private const double basisPrijs3 = 1100;
         private const double basisPrijs4 = 12000;
         private const double basisPrijs5 = 130000;
+        private const double basisPrijs6 = 1400000;
+        private const double basisPrijs7 = 20000000;
 
         public MainWindow()
         {
@@ -131,25 +136,34 @@ namespace CookieCliker
         /// <returns></returns>
         private void AankoopStore()
         {
-            double _price = Convert.ToDouble(labelPrijs.Content);
+            double price = Convert.ToDouble(labelPrijs.Content);
             if (Convert.ToDouble(labelAantKlik.Content) == 0)
             {
-                cookieCounter -= _price;
+                cookieCounter -= price;
                 UpdateScore();
 
-                _price = _basePrice * 1.15;
+                price = basePrice * 1.15;
             }
-            else if (cookieCounter >= (Convert.ToDouble(labelPrijs.Content)))
+            else if (Convert.ToDouble(labelAantKlik.Content) == 1)
             {
-                cookieCounter -= _price;
+                {
+                    cookieCounter -= price;
+                    UpdateScore();
+
+                    price = basePrice * Math.Pow(1.15, 2);
+                }
+            }
+            else if(cookieCounter >= (Convert.ToDouble(labelPrijs.Content)))
+            {
+                cookieCounter -= price;
                 UpdateScore();
 
-                _price = _basePrice * Math.Pow(1.15, Convert.ToDouble(labelAantKlik.Content));
+                price = basePrice * Math.Pow(1.15, (Convert.ToDouble(labelAantKlik.Content)+1));
             }
 
-            _price = Math.Ceiling(_price);
+            price = Math.Ceiling(price);
 
-            labelPrijs.Content = _price.ToString();
+            labelPrijs.Content = price.ToString();
         }
 
         /// <summary>
@@ -181,36 +195,48 @@ namespace CookieCliker
                 case "1":
                     labelPrijs = LblPrijs1;
                     labelAantKlik = LblAantalKlik1;
-                    _basePrice = basisPrijs1;
+                    basePrice = basisPrijs1;
                     ClickSound();
                     break;
 
                 case "2":
                     labelPrijs = LblPrijs2;
                     labelAantKlik = LblAantalKlik2;
-                    _basePrice = basisPrijs2;
+                    basePrice = basisPrijs2;
                     GrandmaSound();
                     break;
 
                 case "3":
                     labelPrijs = LblPrijs3;
                     labelAantKlik = LblAantalKlik3;
-                    _basePrice = basisPrijs3;
+                    basePrice = basisPrijs3;
                     FarmSound();
                     break;
 
                 case "4":
                     labelPrijs = LblPrijs4;
                     labelAantKlik = LblAantalKlik4;
-                    _basePrice = basisPrijs4;
+                    basePrice = basisPrijs4;
                     MineSound();
                     break;
 
                 case "5":
                     labelPrijs = LblPrijs5;
                     labelAantKlik = LblAantalKlik5;
-                    _basePrice = basisPrijs5;
+                    basePrice = basisPrijs5;
                     FactorySound();
+                    break;
+                case "6":
+                    labelPrijs = LblPrijs6;
+                    labelAantKlik = LblAantalKlik6;
+                    basePrice = basisPrijs6;
+                    BankSound();
+                    break;
+                case "7":
+                    labelPrijs = LblPrijs7;
+                    labelAantKlik = LblAantalKlik7;
+                    basePrice = basisPrijs7;
+                    TempleSound();
                     break;
             }
         }
@@ -225,8 +251,8 @@ namespace CookieCliker
             BtnStore3.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs3.Content));
             BtnStore4.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs4.Content));
             BtnStore5.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs5.Content));
-            BtnStore5.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs5.Content));
-            BtnStore5.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs5.Content));
+            BtnStore6.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs6.Content));
+            BtnStore7.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs7.Content));
         }
 
         /// <summary>
@@ -256,6 +282,14 @@ namespace CookieCliker
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik5.Content) * 2.60;
             }
+            if (Convert.ToDouble(LblAantalKlik6.Content) >= 1)
+            {
+                cookieCounter += Convert.ToDouble(LblAantalKlik6.Content) * 14;
+            }
+            if (Convert.ToDouble(LblAantalKlik7.Content) >= 1)
+            {
+                cookieCounter += Convert.ToDouble(LblAantalKlik7.Content) * 78;
+            }
 
             LblTijd.Content = DateTime.Now.ToString("HH:mm:ss.fff");
 
@@ -263,7 +297,7 @@ namespace CookieCliker
             ShopButtonEnable();
         }
 
-        // Players die specifieke geluiden afspelen bij bepaalde acties
+                                                                                        // Players die specifieke geluiden afspelen bij bepaalde acties
 
         private readonly MediaPlayer backgroundPlayer = new MediaPlayer();
         private readonly MediaPlayer soundPlayer = new MediaPlayer();
@@ -300,13 +334,6 @@ namespace CookieCliker
             soundPlayer.Open(clickCursor);
             soundPlayer.Play();
         }
-
-        private void FarmSound()
-        {
-            soundPlayer.Open(mooFarm);
-            soundPlayer.Play();
-        }
-
         private void GrandmaSound()
         {
             soundPlayer.Open(grandma);
@@ -314,15 +341,32 @@ namespace CookieCliker
             soundPlayer.Play();
         }
 
+        private void FarmSound()
+        {
+            soundPlayer.Open(mooFarm);
+            soundPlayer.Play();
+        }
+        private void MineSound()
+        {
+            soundPlayer.Open(mine);
+            soundPlayer.Play();
+        }
+
+
         private void FactorySound()
         {
             soundPlayer.Open(factory);
             soundPlayer.Play();
         }
 
-        private void MineSound()
+        private void BankSound()
         {
-            soundPlayer.Open(mine);
+            soundPlayer.Open(bank);
+            soundPlayer.Play();
+        }
+        private void TempleSound()
+        {
+            soundPlayer.Open(temple);
             soundPlayer.Play();
         }
 
@@ -340,10 +384,10 @@ namespace CookieCliker
             Grid.SetColumn(labelBakeryName, 1);
             Grid.SetRow(labelBakeryName, 0);
 
-            labelBakeryName.MouseUp += labelBakeryName_MouseUp;
+            labelBakeryName.MouseUp += LabelBakeryName_MouseUp;
         }
 
-        private void labelBakeryName_MouseUp(object sender, MouseButtonEventArgs e)
+        private void LabelBakeryName_MouseUp(object sender, MouseButtonEventArgs e)
         {
             string newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL-Bakery");
 

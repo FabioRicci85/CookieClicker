@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
-        Title="Cookie Clicker" Height="430" Width="800">
+        Title="Cookie Clicker" Height="400" Width="800">
     <Grid Name="GrdWindow">
         <Grid.Background>
             <ImageBrush x:Name="ImgBrAchtergrond" ImageSource="./Media/Achtergrond3.jpg"/>
@@ -16,9 +16,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>      
         <Image Source="Media/Cookie.png" 
                Name="ImgCookie" Grid.Row="1" 
@@ -26,14 +26,17 @@
                MouseUp="ImgCookie_MouseUp" 
                MouseEnter="ImgCookie_MouseEnter" 
                MouseLeave="ImgCookie_MouseLeave" 
-               />
+               Width="180"
+               Height="180"/>
         <Label Content="" Grid.Row="2" Grid.Column="0" Foreground="LightCyan" FontSize="35" Name="LblTijd"/>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,20,0,0">         
             <Label Foreground="LightCyan" Name="LblScore" Content="0" Grid.Column="0" Grid.Row="0" FontSize="40"/>
             <Label Foreground="LightCyan" Name="LblCookie" Content="Cookies" Grid.Column="0" Grid.Row="0" FontSize="40"/>
         </WrapPanel>
-        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3">
-            <Label Content="Store" HorizontalAlignment="Center" FontSize="40" Foreground="LightCyan"/>
+        <Label Content="Store" HorizontalAlignment="Center" FontSize="40" Foreground="LightCyan" Grid.Column="2" Grid.Row="0"/>
+        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+                        
             <Button x:Name="BtnStore1" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -55,11 +58,11 @@
                     </Style>
                 </Button.Style>
                 <DockPanel>
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                        <Image Source="./Media/Cursor.png" Margin="4" Width="60"/>
-                        <StackPanel Width="100">
-                            <Label FontWeight="DemiBold" Content="Cursor" Margin="4,0,0,-5" FontSize="16"/>
-                            <Label Name="LblPrijs1" Content="15" Margin="4,-5"/>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">                        
+                            <Image Source="./Media/Cursor.png" Margin="4" Width="60"/>
+                            <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Content="Cursor" Margin="4,0,0,-5" FontSize="16"/>                            
+                            <Label Name="LblPrijs1" Content="15" Margin="4,-5"/>                            
                         </StackPanel>
                     </StackPanel>
                     <Label Name="LblAantalKlik1" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
@@ -189,7 +192,70 @@
                     <Label Name="LblAantalKlik5" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
                 </DockPanel>                
             </Button>
+            <Button x:Name="BtnStore6" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1400 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.3"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/bank.png" Margin="4" Width="60"/>
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Content="Bank" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs6" Content="1400000" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label Name="LblAantalKlik6" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>
+            </Button>
+            <Button x:Name="BtnStore7" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="7800 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.3"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Image Source="./Media/temple.png" Margin="4" Width="60"/>
+                        <StackPanel Width="100">
+                            <Label FontWeight="DemiBold" Content="Temple" Margin="4,0,0,-5" FontSize="16"/>
+                            <Label Name="LblPrijs7" Content="20000000" Margin="4,-5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label Name="LblAantalKlik7" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+                </DockPanel>
+            </Button>
         </StackPanel>
+        </ScrollViewer>
         
 
 
