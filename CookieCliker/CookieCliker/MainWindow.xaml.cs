@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace CookieCliker
 {
@@ -13,28 +14,29 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 2000;
+        private double cookieCounter = 0;
+        private double cookieTotal = 0;
         private double clicker = 0;
         private double passiveCounter = 0;
         private Label labelPrijs = new Label();
         private Label labelAantKlik = new Label();
         private double basePrice = new double();
 
-        private Label labelBakeryName = new Label();                                                               //nieuwe labels en buttons voor UI
+        private readonly Label labelBakeryName = new Label();                                                               //nieuwe labels en buttons voor UI
 
         private bool isMouseDown = false;
 
-        private Uri pop = new Uri(@"../../Sound/pop1.mp3", UriKind.RelativeOrAbsolute);                             //Audio om af te spelen
-        private Uri ping = new Uri(@"../../Sound/ping1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri succes = new Uri(@"../../Sound/succes1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri motivation = new Uri(@"../../Sound/motivation1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri mooFarm = new Uri(@"../../Sound/moo1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri clickCursor = new Uri(@"../../Sound/click1.MP3", UriKind.RelativeOrAbsolute);
-        private Uri grandma = new Uri(@"../../Sound/grandma1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri factory = new Uri(@"../../Sound/factory1.mp3", UriKind.RelativeOrAbsolute);
-        private Uri mine = new Uri(@"../../Sound/mine1.MP3", UriKind.RelativeOrAbsolute);
-        private Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
-        private Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
+        private readonly Uri pop = new Uri(@"../../Sound/pop1.mp3", UriKind.RelativeOrAbsolute);                             //Audio om af te spelen
+        private readonly Uri ping = new Uri(@"../../Sound/ping1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri succes = new Uri(@"../../Sound/succes1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri motivation = new Uri(@"../../Sound/motivation1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri mooFarm = new Uri(@"../../Sound/moo1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri clickCursor = new Uri(@"../../Sound/click1.MP3", UriKind.RelativeOrAbsolute);
+        private readonly Uri grandma = new Uri(@"../../Sound/grandma1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri factory = new Uri(@"../../Sound/factory1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri mine = new Uri(@"../../Sound/mine1.MP3", UriKind.RelativeOrAbsolute);
+        private readonly Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
+        private readonly Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
 
         private const double basisPrijs1 = 15;
         private const double basisPrijs2 = 100;
@@ -49,13 +51,14 @@ namespace CookieCliker
             InitializeComponent();
             MotivationSound();
 
-            //DispatcherTimer timer = new DispatcherTimer
-            //{
-            //    Interval = TimeSpan.FromMilliseconds(10)
-            //};
-            //timer.Tick += new EventHandler(PassiveIncome);
-            //timer.Start();
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(10)
+            };
+            timer.Tick += new EventHandler(PassiveIncome);
+            timer.Start();
 
+            ButtonVisibility();
             LabelBakery();
         }
 
@@ -83,8 +86,10 @@ namespace CookieCliker
             ImgCookie.Width = double.NaN;
 
             cookieCounter++;
+            cookieTotal++;
             UpdateScore();
             ShopButtonEnable();
+            ButtonVisibility();
 
             //roep sound effect pop op
             PopSound();
@@ -100,7 +105,9 @@ namespace CookieCliker
             if (isMouseDown == true)
             {
                 cookieCounter++;
+                cookieTotal++;
                 UpdateScore();
+                ButtonVisibility();
             }
         }
 
@@ -268,36 +275,42 @@ namespace CookieCliker
             if (Convert.ToDouble(LblAantalKlik1.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik1.Content) * 0.001;
+                cookieTotal += Convert.ToDouble(LblAantalKlik1.Content) * 0.001;
             }
             if (Convert.ToDouble(LblAantalKlik2.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik2.Content) * 0.01;
+                cookieTotal += Convert.ToDouble(LblAantalKlik2.Content) * 0.01;
             }
             if (Convert.ToDouble(LblAantalKlik3.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik3.Content) * 0.08;
+                cookieTotal += Convert.ToDouble(LblAantalKlik3.Content) * 0.08;
             }
             if (Convert.ToDouble(LblAantalKlik4.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik4.Content) * 0.47;
+                cookieTotal += Convert.ToDouble(LblAantalKlik4.Content) * 0.47;
             }
             if (Convert.ToDouble(LblAantalKlik5.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik5.Content) * 2.60;
+                cookieTotal += Convert.ToDouble(LblAantalKlik5.Content) * 2.60;
             }
             if (Convert.ToDouble(LblAantalKlik6.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik6.Content) * 14;
+                cookieTotal += Convert.ToDouble(LblAantalKlik6.Content) * 14;
             }
             if (Convert.ToDouble(LblAantalKlik7.Content) >= 1)
             {
                 cookieCounter += Convert.ToDouble(LblAantalKlik7.Content) * 78;
+                cookieTotal += Convert.ToDouble(LblAantalKlik7.Content) * 78;
             }
-
-            LblTijd.Content = DateTime.Now.ToString("HH:mm:ss.fff");
 
             UpdateScore();
             ShopButtonEnable();
+            ButtonVisibility();
         }
 
         private void PassiveCounter()
@@ -331,6 +344,7 @@ namespace CookieCliker
                 passiveCounter += 7800;
             }
 
+            LblPassive.Visibility = Visibility.Visible;
             LblPassive.Content = $"+{passiveCounter}";
         }
 
@@ -451,8 +465,8 @@ namespace CookieCliker
 
         private void ImgMusic_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            string musicOnMediaPath = "./Media/MusicOn.png";
-            string musicOffMediaPath = "./Media/MusicOff.png";
+            string musicOnMediaPath = "./Media/MusicOn1.png";
+            string musicOffMediaPath = "./Media/MusicOff1.png";
 
             if (ImgMusic.Tag != null)
             {
@@ -473,8 +487,8 @@ namespace CookieCliker
 
         private void ImgSound_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            string soundOnMediaPath = "./Media/SoundOn.png";
-            string soundOffMediaPath = "./Media/SoundOff.png";
+            string soundOnMediaPath = "./Media/SoundOn1.png";
+            string soundOffMediaPath = "./Media/SoundOff1.png";
 
             if (ImgSound.Tag != null && ImgCookie.Tag != null)
             {
@@ -602,6 +616,46 @@ namespace CookieCliker
             }
 
             return $"{Math.Ceiling(value)}";
+        }
+
+        private void ButtonVisibility()
+        {
+            BtnStore1.Visibility = Visibility.Collapsed;
+            BtnStore2.Visibility = Visibility.Collapsed;
+            BtnStore3.Visibility = Visibility.Collapsed;
+            BtnStore4.Visibility = Visibility.Collapsed;
+            BtnStore5.Visibility = Visibility.Collapsed;
+            BtnStore6.Visibility = Visibility.Collapsed;
+            BtnStore7.Visibility = Visibility.Collapsed;
+
+            if (cookieTotal >= 15)
+            {
+                BtnStore1.Visibility = Visibility.Visible;
+            }
+            if (cookieTotal >= 100)
+            {
+                BtnStore2.Visibility = Visibility.Visible;
+            }
+            if (cookieTotal >= 1100)
+            {
+                BtnStore3.Visibility = Visibility.Visible;
+            }
+            if (cookieTotal >= 12000)
+            {
+                BtnStore4.Visibility = Visibility.Visible;
+            }
+            if (cookieTotal >= 130000)
+            {
+                BtnStore5.Visibility = Visibility.Visible;
+            }
+            if (cookieTotal >= 1400000)
+            {
+                BtnStore6.Visibility = Visibility.Visible;
+            }
+            if (cookieTotal >= 20000000)
+            {
+                BtnStore7.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -118,10 +118,10 @@
     <Resource Include="Media\Farm.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Media\MusicOff.png" />
-    <Resource Include="Media\MusicOn.png" />
-    <Resource Include="Media\SoundOff.png" />
-    <Resource Include="Media\SoundOn.png" />
+    <Resource Include="Media\MusicOff1.png" />
+    <Resource Include="Media\MusicOn1.png" />
+    <Resource Include="Media\SoundOff1.png" />
+    <Resource Include="Media\SoundOn1.png" />
     <Content Include="Sound\ping1.MP3" />
     <Content Include="Sound\succes1.MP3" />
     <Content Include="Sound\temple.MP3" />
