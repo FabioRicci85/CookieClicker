@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
+using System.Windows.Media.Imaging;
 
 namespace CookieCliker
 {
@@ -13,8 +13,9 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 100000000000;
+        private double cookieCounter = 2000;
         private double clicker = 0;
+        private double passiveCounter = 0;
         private Label labelPrijs = new Label();
         private Label labelAantKlik = new Label();
         private double basePrice = new double();
@@ -48,12 +49,12 @@ namespace CookieCliker
             InitializeComponent();
             MotivationSound();
 
-            DispatcherTimer timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMilliseconds(10)
-            };
-            timer.Tick += new EventHandler(PassiveIncome);
-            timer.Start();
+            //DispatcherTimer timer = new DispatcherTimer
+            //{
+            //    Interval = TimeSpan.FromMilliseconds(10)
+            //};
+            //timer.Tick += new EventHandler(PassiveIncome);
+            //timer.Start();
 
             LabelBakery();
         }
@@ -85,7 +86,7 @@ namespace CookieCliker
             UpdateScore();
             ShopButtonEnable();
 
-            //roep sound effect op
+            //roep sound effect pop op
             PopSound();
         }
 
@@ -134,7 +135,7 @@ namespace CookieCliker
         /// de aankoopprijs wordt afgerond weergegeven in het spel.
         /// </summary>
         /// <returns></returns>
-        private void AankoopStore()
+        private void BuyStore()
         {
             double price = Convert.ToDouble(labelPrijs.Content);
             if (Convert.ToDouble(labelAantKlik.Content) == 0)
@@ -180,10 +181,10 @@ namespace CookieCliker
             StoreButton(aankoop);
 
             clicker = Convert.ToDouble(labelAantKlik.Content);
-            AankoopStore();
+            BuyStore();
             clicker++;
-            //hier achtergrond Method plaatsen
             labelAantKlik.Content = clicker.ToString();
+            PassiveCounter();
             ShopButtonEnable();
             UpdateScore();
         }
@@ -299,16 +300,51 @@ namespace CookieCliker
             ShopButtonEnable();
         }
 
+        private void PassiveCounter()
+        {
+            if (Convert.ToDouble(LblAantalKlik1.Content) >= 1)
+            {
+                passiveCounter += 0.1;
+            }
+            if (Convert.ToDouble(LblAantalKlik2.Content) >= 1)
+            {
+                passiveCounter += 1;
+            }
+            if (Convert.ToDouble(LblAantalKlik3.Content) >= 1)
+            {
+                passiveCounter += 8;
+            }
+            if (Convert.ToDouble(LblAantalKlik4.Content) >= 1)
+            {
+                passiveCounter += 47;
+            }
+            if (Convert.ToDouble(LblAantalKlik5.Content) >= 1)
+            {
+                passiveCounter += 260;
+            }
+            if (Convert.ToDouble(LblAantalKlik6.Content) >= 1)
+            {
+                passiveCounter += 1400;
+            }
+            if (Convert.ToDouble(LblAantalKlik7.Content) >= 1)
+            {
+                passiveCounter += 7800;
+            }
+
+            LblPassive.Content = $"+{passiveCounter}";
+        }
+
         // Players die specifieke geluiden afspelen bij bepaalde acties
 
         private readonly MediaPlayer backgroundPlayer = new MediaPlayer();
         private readonly MediaPlayer soundPlayer = new MediaPlayer();
+        private readonly MediaPlayer popPlayer = new MediaPlayer();
 
         private void PopSound()
         {
-            soundPlayer.Open(pop);
-            soundPlayer.Volume = 0.2;
-            soundPlayer.Play();
+            popPlayer.Open(pop);
+            popPlayer.Volume = 0.2;
+            popPlayer.Play();
         }
 
         private void PingSound()
@@ -340,7 +376,6 @@ namespace CookieCliker
         private void GrandmaSound()
         {
             soundPlayer.Open(grandma);
-            soundPlayer.Volume = 0.2;
             soundPlayer.Play();
         }
 
@@ -374,9 +409,97 @@ namespace CookieCliker
             soundPlayer.Play();
         }
 
+        private void MusicOffImage(string newImagePath)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(newImagePath, UriKind.RelativeOrAbsolute);
+            bitmapImage.EndInit();
+
+            ImgMusic.Source = bitmapImage;
+        }
+
+        private void MusicOnImage(string newImagePath)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(newImagePath, UriKind.RelativeOrAbsolute);
+            bitmapImage.EndInit();
+
+            ImgMusic.Source = bitmapImage;
+        }
+
+        private void SoundOffImage(string newImagePath)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(newImagePath, UriKind.RelativeOrAbsolute);
+            bitmapImage.EndInit();
+
+            ImgSound.Source = bitmapImage;
+        }
+
+        private void SoundOnImage(string newImagePath)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(newImagePath, UriKind.RelativeOrAbsolute);
+            bitmapImage.EndInit();
+
+            ImgSound.Source = bitmapImage;
+        }
+
+        private void ImgMusic_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            string musicOnMediaPath = "./Media/MusicOn.png";
+            string musicOffMediaPath = "./Media/MusicOff.png";
+
+            if (ImgMusic.Tag != null)
+            {
+                if (ImgMusic.Tag.ToString() == "On")
+                {
+                    backgroundPlayer.Volume = 0;
+                    MusicOffImage(musicOffMediaPath);
+                    ImgMusic.Tag = "Off";
+                }
+                else if (ImgMusic.Tag.ToString() == "Off")
+                {
+                    backgroundPlayer.Volume = 0.2;
+                    MusicOnImage(musicOnMediaPath);
+                    ImgMusic.Tag = "On";
+                }
+            }
+        }
+
+        private void ImgSound_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            string soundOnMediaPath = "./Media/SoundOn.png";
+            string soundOffMediaPath = "./Media/SoundOff.png";
+
+            if (ImgSound.Tag != null && ImgCookie.Tag != null)
+            {
+                if (ImgSound.Tag.ToString() == "On")
+                {
+                    soundPlayer.Volume = 0;
+                    SoundOffImage(soundOffMediaPath);
+                    ImgSound.Tag = "Off";
+                    popPlayer.Volume = 0;
+                    ImgCookie.Tag = "Off";
+                }
+                else if (ImgSound.Tag.ToString() == "Off")
+                {
+                    soundPlayer.Volume = 1;
+                    SoundOnImage(soundOnMediaPath);
+                    ImgSound.Tag = "On";
+                    popPlayer.Volume = 0.2;
+                    ImgCookie.Tag = "On";
+                }
+            }
+        }
+
         private void LabelBakery()
         {
-            labelBakeryName.Content = "PXL-Bakery";
+            labelBakeryName.Content = "PXL's Bakery";
             labelBakeryName.Width = 250;
             labelBakeryName.FontSize = 35;
             labelBakeryName.Foreground = Brushes.LightCyan;
@@ -393,18 +516,18 @@ namespace CookieCliker
 
         private void LabelBakeryName_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            string newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL-Bakery");
+            string newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL");
 
             bool hasAllWhitespace = newBakeryName.Trim().Length == 0;
 
             while (string.IsNullOrEmpty(newBakeryName) || hasAllWhitespace)
             {
                 MessageBox.Show("Gelieve een naam in te geven");
-                newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL-Bakery");
+                newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL");
                 hasAllWhitespace = newBakeryName.Trim().Length == 0;
             }
 
-            labelBakeryName.Content = newBakeryName;
+            labelBakeryName.Content = $"{newBakeryName}'s Bakery";
         }
 
         private string DoubleToWordAmount(double value)
@@ -442,6 +565,43 @@ namespace CookieCliker
             }
 
             return $"{Math.Floor(value)}";
+        }
+
+        private string InvestmentWordAmount(double value)
+        {
+            double duizend = 1000;
+            double miljoen = 1000000;
+            double miljard = 1000000000;
+            double biljoen = 1000000000000;
+            double biljard = 1000000000000000;
+            double triljoen = 1000000000000000000;
+
+            if (value >= triljoen)
+            {
+                return $"{Math.Round(value / triljoen, 3)} triljoen";
+            }
+            if (value >= biljard)
+            {
+                return $"{Math.Round(value / biljard, 3)} biljard";
+            }
+            if (value >= biljoen)
+            {
+                return $"{Math.Round(value / biljoen, 3)} biljoen";
+            }
+            if (value >= miljard)
+            {
+                return $"{Math.Round(value / miljard, 3)} miljard";
+            }
+            if (value >= miljoen)
+            {
+                return $"{Math.Round(value / miljoen, 3)} miljoen";
+            }
+            if (value >= duizend)
+            {
+                return $"{Math.Round(value / duizend, 1)} duizend";
+            }
+
+            return $"{Math.Ceiling(value)}";
         }
     }
 }
