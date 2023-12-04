@@ -14,8 +14,8 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 0;
-        private double cookieTotal = 0;
+        private double cookieCounter = 1000000000;
+        private double cookieTotal = 1000000000;
         private double clicker = 0;
         private double passiveCounter = 0;
         private Label labelPrijs = new Label();
@@ -205,6 +205,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik1;
                     basePrice = basisPrijs1;
                     ClickSound();
+                    passiveCounter += 0.1;
                     break;
 
                 case "2":
@@ -212,6 +213,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik2;
                     basePrice = basisPrijs2;
                     GrandmaSound();
+                    passiveCounter += 1;
                     break;
 
                 case "3":
@@ -219,6 +221,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik3;
                     basePrice = basisPrijs3;
                     FarmSound();
+                    passiveCounter += 8;
                     break;
 
                 case "4":
@@ -226,6 +229,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik4;
                     basePrice = basisPrijs4;
                     MineSound();
+                    passiveCounter += 47;
                     break;
 
                 case "5":
@@ -233,6 +237,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik5;
                     basePrice = basisPrijs5;
                     FactorySound();
+                    passiveCounter += 260;
                     break;
 
                 case "6":
@@ -240,6 +245,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik6;
                     basePrice = basisPrijs6;
                     BankSound();
+                    passiveCounter += 1400;
                     break;
 
                 case "7":
@@ -247,6 +253,7 @@ namespace CookieCliker
                     labelAantKlik = LblAantalKlik7;
                     basePrice = basisPrijs7;
                     TempleSound();
+                    passiveCounter += 7800;
                     break;
             }
         }
@@ -315,35 +322,6 @@ namespace CookieCliker
 
         private void PassiveCounter()
         {
-            if (Convert.ToDouble(LblAantalKlik1.Content) >= 1)
-            {
-                passiveCounter += 0.1;
-            }
-            if (Convert.ToDouble(LblAantalKlik2.Content) >= 1)
-            {
-                passiveCounter += 1;
-            }
-            if (Convert.ToDouble(LblAantalKlik3.Content) >= 1)
-            {
-                passiveCounter += 8;
-            }
-            if (Convert.ToDouble(LblAantalKlik4.Content) >= 1)
-            {
-                passiveCounter += 47;
-            }
-            if (Convert.ToDouble(LblAantalKlik5.Content) >= 1)
-            {
-                passiveCounter += 260;
-            }
-            if (Convert.ToDouble(LblAantalKlik6.Content) >= 1)
-            {
-                passiveCounter += 1400;
-            }
-            if (Convert.ToDouble(LblAantalKlik7.Content) >= 1)
-            {
-                passiveCounter += 7800;
-            }
-
             LblPassive.Visibility = Visibility.Visible;
             LblPassive.Content = $"+{passiveCounter}";
         }
@@ -357,7 +335,7 @@ namespace CookieCliker
         private void PopSound()
         {
             popPlayer.Open(pop);
-            popPlayer.Volume = 0.2;
+            //popPlayer.Volume = 0.2;
             popPlayer.Play();
         }
 
