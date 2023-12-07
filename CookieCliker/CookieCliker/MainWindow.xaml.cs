@@ -14,8 +14,8 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 1000000000;
-        private double cookieTotal = 1000000000;
+        private double cookieCounter = 0;
+        private double cookieTotal = 0;
         private double clicker = 0;
         private double passiveCounter = 0;
         private Label labelPrijs = new Label();
@@ -23,6 +23,7 @@ namespace CookieCliker
         private double basePrice = new double();
 
         private readonly Label labelBakeryName = new Label();                                                               //nieuwe labels en buttons voor UI
+        private StackPanel imageStack = new StackPanel();
 
         private bool isMouseDown = false;
 
@@ -634,6 +635,11 @@ namespace CookieCliker
             {
                 BtnStore7.Visibility = Visibility.Visible;
             }
+        }
+
+        private void Stackpanel()
+        {
+            imageStack.Width = 270;
         }
     }
 }

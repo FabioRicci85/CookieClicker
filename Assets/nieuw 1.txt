@@ -1,0 +1,138 @@
+
+
+Stackpanel en achtergronden in XAML maken!!!
+
+
+
+
+
+
+
+Cookie-27: button bonus =  button.visibility = visibility.collapsed
+								==> cookieCounter >= buttonPrice
+								==> button.visibility = visibility.visible 
+								==> button click => passieve inkomst example verdubbelen ==> button.visibility.collapsed
+								
+Plaats deze boven de store, mouse in vergroot de hoogte van het kader? (Is dit mogelijk?)
+
+COOKIE-28:
+
+
+COOKIE-29:
+kans berekenen van 30% met Random, if else statement gebruiken 
+
+Je kunt de `System.Threading.Timer` klasse gebruiken om een timer in te stellen die elke minuut een kansberekening uitvoert. 
+Hier is een aangepaste versie van het vorige voorbeeld met een timer:
+
+```csharp
+using System;
+using System.Threading;
+
+class Program
+{
+    static void Main()
+    {
+        // Creëer een timer die elke minuut wordt geactiveerd
+        Timer timer = new Timer(CalculateChance, null, 0, 60000);
+
+        // Houd het programma actief
+        Console.WriteLine("Druk op Enter om het programma te beëindigen.");
+        Console.ReadLine();
+    }
+
+    static void CalculateChance(object state)
+    {
+        // Genereer een willekeurig getal tussen 0 en 1
+        double randomValue = new Random().NextDouble();
+
+        // Definieer de kans als 30%
+        double kans = 0.3;
+
+        // Controleer of het willekeurige getal kleiner is dan de kans
+        if (randomValue < kans)
+        {
+            Console.WriteLine($"Gebeurtenis met 30% kans is gebeurd op {DateTime.Now}");
+        }
+        else
+        {
+            Console.WriteLine($"Gebeurtenis met 30% kans is niet gebeurd op {DateTime.Now}");
+        }
+    }
+}
+```
+
+Dit programma maakt gebruik van de `System.Threading.Timer` klasse om de `CalculateChance` methode elke 60000 milliseconden (1 minuut) aan te roepen. 
+Het hoofdprogramma blijft actief met behulp van `Console.ReadLine()` 
+om ervoor te zorgen dat het programma niet onmiddellijk wordt afgesloten. Je kunt dit aanpassen aan je behoeften.
+
+
+
+hoe deze random tonen binnen de app
+
+
+Om willekeurig een afbeelding op verschillende plekken in je WPF-app te tonen, kun je een combinatie van een `Image`-element en willekeurige coördinaten gebruiken. Hier is een eenvoudig voorbeeld van hoe je dit kunt doen:
+
+1. **Voeg een Image toe aan je XAML:**
+
+   In je XAML-bestand kun je een `Image`-element toevoegen binnen het betreffende container-element (bijvoorbeeld een `Grid` of een `Canvas`). Zorg ervoor dat je de `Name`-eigenschap instelt zodat je er later naar kunt verwijzen in de code-behind.
+
+   ```xaml
+   <Grid>
+       <!-- ... Andere elementen in je Grid ... -->
+       <Image Name="randomImage" Width="50" Height="50" Visibility="Collapsed" />
+   </Grid>
+   ```
+
+   Stel de `Visibility` in op `Collapsed` zodat de afbeelding aanvankelijk niet zichtbaar is.
+
+2. **Gebruik willekeurige coördinaten:**
+
+   In de code-behind van je WPF-venster kun je willekeurige coördinaten genereren en de `Margin`-eigenschap van de `Image` instellen om het op die coördinaten te positioneren.
+
+   ```csharp
+   using System;
+
+   // ... Andere using-directives ...
+
+   public partial class MainWindow : Window
+   {
+       public MainWindow()
+       {
+           InitializeComponent();
+
+           // Roep de methode aan om een willekeurige afbeelding te tonen
+           ShowRandomImage();
+       }
+
+       private void ShowRandomImage()
+       {
+           // Genereer willekeurige coördinaten
+           Random random = new Random();
+           double x = random.Next(0, (int)(ActualWidth - randomImage.Width));
+           double y = random.Next(0, (int)(ActualHeight - randomImage.Height));
+
+           // Stel de Margin in op basis van willekeurige coördinaten
+           randomImage.Margin = new Thickness(x, y, 0, 0);
+
+           // Maak de afbeelding zichtbaar
+           randomImage.Visibility = Visibility.Visible;
+       }
+   }
+   ```
+
+   In dit voorbeeld worden willekeurige coördinaten gegenereerd binnen de grenzen van het WPF-venster, en de `Margin`-eigenschap wordt gebruikt om 
+   de positie van de afbeelding in te stellen. De afbeelding wordt vervolgens zichtbaar gemaakt door de `Visibility`-eigenschap in te stellen op `Visible`.
+
+
+
+
+COOKIE-30: Quest
+
+20 quests verzinnen en deze per achievement tonen in een messagebox.
+
+voorbeeld: 50 cursors gekocht (if (lblAantalKlik1 = 50) 
+								{
+									MessageBox.Show("Klik er maar op los, de laatste keer dat ik zo veel cursors zag was tijdens een FAZE LAN-Party")
+								})
+								
+			
