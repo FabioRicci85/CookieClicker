@@ -122,7 +122,9 @@
     <Resource Include="Media\MusicOn1.png" />
     <Resource Include="Media\SoundOff1.png" />
     <Resource Include="Media\SoundOn1.png" />
+    <Resource Include="Media\AchtergrondKeuken1.jpg" />
     <Content Include="Sound\ping1.MP3" />
+    <Content Include="Sound\pop2.MP3" />
     <Content Include="Sound\succes1.MP3" />
     <Content Include="Sound\temple.MP3" />
     <Resource Include="Media\achtergrondBank.jpg" />

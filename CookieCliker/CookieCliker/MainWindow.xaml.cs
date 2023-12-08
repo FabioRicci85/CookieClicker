@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace CookieCliker
@@ -14,22 +15,30 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 0;
-        private double cookieTotal = 0;
+        private double cookieCounter = 10000000;
+        private double cookieTotal = 10000000;
         private double clicker = 0;
         private double passiveCounter = 0;
-        private Label labelPrijs = new Label();
-        private Label labelAantKlik = new Label();
+        private Label labelPrice = new Label();
+        private Label labelClick = new Label();
         private double basePrice = new double();
 
-        private readonly Label labelBakeryName = new Label();                                                               //nieuwe labels en buttons voor UI
-        private StackPanel imageStack = new StackPanel();
+        private double _cursorPrice = 15;
+        private double _grandmaPrice = 100;
+        private double _farmPrice = 1100;
+        private double _minePrice = 12000;
+        private double _factoryPrice = 130000;
+        private double _bankPrice = 1400000;
+        private double _templePrice = 20000000;
 
         private bool isMouseDown = false;
 
-        private readonly Uri pop = new Uri(@"../../Sound/pop1.mp3", UriKind.RelativeOrAbsolute);                             //Audio om af te spelen
+        private readonly Label labelBakeryName = new Label();                                                               //nieuwe labels voor UI
+
+        private readonly Uri pop = new Uri(@"../../Sound/pop2.mp3", UriKind.RelativeOrAbsolute);                             //Audio om af te spelen
         private readonly Uri ping = new Uri(@"../../Sound/ping1.mp3", UriKind.RelativeOrAbsolute);
         private readonly Uri succes = new Uri(@"../../Sound/succes1.mp3", UriKind.RelativeOrAbsolute);
+        private readonly Uri bonus = new Uri(@"../../Sound/bonus1.mp3", UriKind.RelativeOrAbsolute);
         private readonly Uri motivation = new Uri(@"../../Sound/motivation1.mp3", UriKind.RelativeOrAbsolute);
         private readonly Uri mooFarm = new Uri(@"../../Sound/moo1.mp3", UriKind.RelativeOrAbsolute);
         private readonly Uri clickCursor = new Uri(@"../../Sound/click1.MP3", UriKind.RelativeOrAbsolute);
@@ -39,13 +48,13 @@ namespace CookieCliker
         private readonly Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
         private readonly Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
 
-        private const double basisPrijs1 = 15;
-        private const double basisPrijs2 = 100;
-        private const double basisPrijs3 = 1100;
-        private const double basisPrijs4 = 12000;
-        private const double basisPrijs5 = 130000;
-        private const double basisPrijs6 = 1400000;
-        private const double basisPrijs7 = 20000000;
+        private const double basePriceCursor = 15;
+        private const double basePriceGrandma = 100;
+        private const double basePriceFarm = 1100;
+        private const double basePriceMine = 12000;
+        private const double basePriceFactory = 130000;
+        private const double basePriceBank = 1400000;
+        private const double basePriceTemple = 20000000;
 
         public MainWindow()
         {
@@ -61,6 +70,7 @@ namespace CookieCliker
 
             ButtonVisibility();
             LabelBakery();
+            PriceLabelWord();
         }
 
         /// <summary>
@@ -143,17 +153,16 @@ namespace CookieCliker
         /// de aankoopprijs wordt afgerond weergegeven in het spel.
         /// </summary>
         /// <returns></returns>
-        private void BuyStore()
+        private void BuyStore(ref double price)
         {
-            double price = Convert.ToDouble(labelPrijs.Content);
-            if (Convert.ToDouble(labelAantKlik.Content) == 0)
+            if (Convert.ToDouble(labelClick.Content) == 0)
             {
                 cookieCounter -= price;
                 UpdateScore();
 
                 price = basePrice * 1.15;
             }
-            else if (Convert.ToDouble(labelAantKlik.Content) == 1)
+            else if (Convert.ToDouble(labelClick.Content) == 1)
             {
                 {
                     cookieCounter -= price;
@@ -162,17 +171,26 @@ namespace CookieCliker
                     price = basePrice * Math.Pow(1.15, 2);
                 }
             }
-            else if (cookieCounter >= (Convert.ToDouble(labelPrijs.Content)))
+            else if (cookieCounter >= price)
             {
                 cookieCounter -= price;
                 UpdateScore();
 
-                price = basePrice * Math.Pow(1.15, (Convert.ToDouble(labelAantKlik.Content) + 1));
+                price = basePrice * Math.Pow(1.15, (Convert.ToDouble(labelClick.Content) + 1));
             }
 
-            price = Math.Ceiling(price);
+            labelPrice.Content = InvestmentWordAmount(price);
+        }
 
-            labelPrijs.Content = price.ToString();
+        private void PriceLabelWord()
+        {
+            LblPriceCursor.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceCursor.Content));
+            LblPriceGrandma.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceGrandma.Content));
+            LblPriceFarm.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceFarm.Content));
+            LblPriceMine.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceMine.Content));
+            LblPriceFactory.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceFactory.Content));
+            LblPriceBank.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceBank.Content));
+            LblPriceTemple.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceTemple.Content));
         }
 
         /// <summary>
@@ -184,79 +202,145 @@ namespace CookieCliker
         private void Btn_Click(object sender, EventArgs e)
         {
             string buttonName = ((Button)sender).Name;
-            string aankoop = buttonName.Substring(buttonName.Length - 1, 1);
 
-            StoreButton(aankoop);
+            StoreButton(buttonName);
 
-            clicker = Convert.ToDouble(labelAantKlik.Content);
-            BuyStore();
+            clicker = Convert.ToDouble(labelClick.Content);
+            BuyStore(buttonName);
             clicker++;
-            labelAantKlik.Content = clicker.ToString();
+            labelClick.Content = clicker.ToString();
             PassiveCounter();
             ShopButtonEnable();
             UpdateScore();
+        }
+
+        private void BuyStore(string button)
+        {
+            switch (button)
+            {
+                case "Btn_Cursor":
+                    BuyStore(ref _cursorPrice);
+                    break;
+
+                case "Btn_Grandma":
+                    BuyStore(ref _grandmaPrice);
+                    break;
+
+                case "Btn_Farm":
+                    BuyStore(ref _farmPrice);
+                    break;
+
+                case "Btn_Mine":
+                    BuyStore(ref _minePrice);
+                    break;
+
+                case "Btn_Factory":
+                    BuyStore(ref _factoryPrice);
+                    break;
+
+                case "Btn_Bank":
+                    BuyStore(ref _bankPrice);
+                    break;
+
+                case "Btn_Temple":
+                    BuyStore(ref _templePrice);
+                    break;
+            }
         }
 
         private void StoreButton(string button)
         {
             switch (button)
             {
-                case "1":
-                    labelPrijs = LblPrijs1;
-                    labelAantKlik = LblAantalKlik1;
-                    basePrice = basisPrijs1;
+                case "Btn_Cursor":
+                    labelPrice = LblPriceCursor;
+                    labelClick = LblClickCursor;
+                    basePrice = basePriceCursor;
                     ClickSound();
                     passiveCounter += 0.1;
                     break;
 
-                case "2":
-                    labelPrijs = LblPrijs2;
-                    labelAantKlik = LblAantalKlik2;
-                    basePrice = basisPrijs2;
+                case "Btn_Grandma":
+                    labelPrice = LblPriceGrandma;
+                    labelClick = LblClickGrandma;
+                    basePrice = basePriceGrandma;
                     GrandmaSound();
                     passiveCounter += 1;
+                    AddGrandmaInvestment();
                     break;
 
-                case "3":
-                    labelPrijs = LblPrijs3;
-                    labelAantKlik = LblAantalKlik3;
-                    basePrice = basisPrijs3;
+                case "Btn_Farm":
+                    labelPrice = LblPriceFarm;
+                    labelClick = LblClickFarm;
+                    basePrice = basePriceFarm;
                     FarmSound();
                     passiveCounter += 8;
+                    AddFarmInvestment();
                     break;
 
-                case "4":
-                    labelPrijs = LblPrijs4;
-                    labelAantKlik = LblAantalKlik4;
-                    basePrice = basisPrijs4;
+                case "Btn_Mine":
+                    labelPrice = LblPriceMine;
+                    labelClick = LblClickMine;
+                    basePrice = basePriceMine;
                     MineSound();
                     passiveCounter += 47;
                     break;
 
-                case "5":
-                    labelPrijs = LblPrijs5;
-                    labelAantKlik = LblAantalKlik5;
-                    basePrice = basisPrijs5;
+                case "Btn_Factory":
+                    labelPrice = LblPriceFactory;
+                    labelClick = LblClickFactory;
+                    basePrice = basePriceFactory;
                     FactorySound();
                     passiveCounter += 260;
                     break;
 
-                case "6":
-                    labelPrijs = LblPrijs6;
-                    labelAantKlik = LblAantalKlik6;
-                    basePrice = basisPrijs6;
+                case "Btn_Bank":
+                    labelPrice = LblPriceBank;
+                    labelClick = LblClickBank;
+                    basePrice = basePriceBank;
                     BankSound();
                     passiveCounter += 1400;
                     break;
 
-                case "7":
-                    labelPrijs = LblPrijs7;
-                    labelAantKlik = LblAantalKlik7;
-                    basePrice = basisPrijs7;
+                case "Btn_Temple":
+                    labelPrice = LblPriceTemple;
+                    labelClick = LblClickTemple;
+                    basePrice = basePriceTemple;
                     TempleSound();
                     passiveCounter += 7800;
                     break;
             }
+        }
+
+        private void AddGrandmaInvestment()
+        {
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Grandma.png", UriKind.RelativeOrAbsolute));
+            imageBrush.TileMode = TileMode.Tile;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Fill = imageBrush;
+            rectangle.Width = 50;
+            rectangle.Height = 50;
+
+            StckGrandma.Visibility = Visibility.Visible; 
+            // Voeg de Rectangle toe aan de bestaande StackPanel
+            StckGrandma.Children.Add(rectangle);
+        }
+        private void AddFarmInvestment()
+        {
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Farm.png", UriKind.RelativeOrAbsolute));
+            imageBrush.TileMode = TileMode.Tile;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Fill = imageBrush;
+            rectangle.Width = 50;
+            rectangle.Height = 50;
+
+            StckFarm.Visibility = Visibility.Visible;
+            // Voeg de Rectangle toe aan de bestaande StackPanel
+            StckFarm.Children.Add(rectangle);
         }
 
         /// <summary>
@@ -264,13 +348,13 @@ namespace CookieCliker
         /// </summary>
         private void ShopButtonEnable()
         {
-            BtnStore1.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs1.Content));
-            BtnStore2.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs2.Content));
-            BtnStore3.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs3.Content));
-            BtnStore4.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs4.Content));
-            BtnStore5.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs5.Content));
-            BtnStore6.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs6.Content));
-            BtnStore7.IsEnabled = (cookieCounter >= Convert.ToDouble(LblPrijs7.Content));
+            Btn_Cursor.IsEnabled = (cookieCounter >= _cursorPrice);
+            Btn_Grandma.IsEnabled = (cookieCounter >= _grandmaPrice);
+            Btn_Farm.IsEnabled = (cookieCounter >= _farmPrice);
+            Btn_Mine.IsEnabled = (cookieCounter >= _minePrice);
+            Btn_Factory.IsEnabled = (cookieCounter >= _factoryPrice);
+            Btn_Bank.IsEnabled = (cookieCounter >= _bankPrice);
+            Btn_Temple.IsEnabled = (cookieCounter >= _templePrice);
         }
 
         /// <summary>
@@ -280,40 +364,40 @@ namespace CookieCliker
         /// <param name="e"></param>
         private void PassiveIncome(object sender, EventArgs e)
         {
-            if (Convert.ToDouble(LblAantalKlik1.Content) >= 1)
+            if (Convert.ToDouble(LblClickCursor.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik1.Content) * 0.001;
-                cookieTotal += Convert.ToDouble(LblAantalKlik1.Content) * 0.001;
+                cookieCounter += Convert.ToDouble(LblClickCursor.Content) * 0.001;
+                cookieTotal += Convert.ToDouble(LblClickCursor.Content) * 0.001;
             }
-            if (Convert.ToDouble(LblAantalKlik2.Content) >= 1)
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik2.Content) * 0.01;
-                cookieTotal += Convert.ToDouble(LblAantalKlik2.Content) * 0.01;
+                cookieCounter += Convert.ToDouble(LblClickGrandma.Content) * 0.01;
+                cookieTotal += Convert.ToDouble(LblClickGrandma.Content) * 0.01;
             }
-            if (Convert.ToDouble(LblAantalKlik3.Content) >= 1)
+            if (Convert.ToDouble(LblClickFarm.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik3.Content) * 0.08;
-                cookieTotal += Convert.ToDouble(LblAantalKlik3.Content) * 0.08;
+                cookieCounter += Convert.ToDouble(LblClickFarm.Content) * 0.08;
+                cookieTotal += Convert.ToDouble(LblClickFarm.Content) * 0.08;
             }
-            if (Convert.ToDouble(LblAantalKlik4.Content) >= 1)
+            if (Convert.ToDouble(LblClickMine.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik4.Content) * 0.47;
-                cookieTotal += Convert.ToDouble(LblAantalKlik4.Content) * 0.47;
+                cookieCounter += Convert.ToDouble(LblClickMine.Content) * 0.47;
+                cookieTotal += Convert.ToDouble(LblClickMine.Content) * 0.47;
             }
-            if (Convert.ToDouble(LblAantalKlik5.Content) >= 1)
+            if (Convert.ToDouble(LblClickFactory.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik5.Content) * 2.60;
-                cookieTotal += Convert.ToDouble(LblAantalKlik5.Content) * 2.60;
+                cookieCounter += Convert.ToDouble(LblClickFactory.Content) * 2.60;
+                cookieTotal += Convert.ToDouble(LblClickFactory.Content) * 2.60;
             }
-            if (Convert.ToDouble(LblAantalKlik6.Content) >= 1)
+            if (Convert.ToDouble(LblClickBank.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik6.Content) * 14;
-                cookieTotal += Convert.ToDouble(LblAantalKlik6.Content) * 14;
+                cookieCounter += Convert.ToDouble(LblClickBank.Content) * 14;
+                cookieTotal += Convert.ToDouble(LblClickBank.Content) * 14;
             }
-            if (Convert.ToDouble(LblAantalKlik7.Content) >= 1)
+            if (Convert.ToDouble(LblClickTemple.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblAantalKlik7.Content) * 78;
-                cookieTotal += Convert.ToDouble(LblAantalKlik7.Content) * 78;
+                cookieCounter += Convert.ToDouble(LblClickTemple.Content) * 78;
+                cookieTotal += Convert.ToDouble(LblClickTemple.Content) * 78;
             }
 
             UpdateScore();
@@ -324,7 +408,7 @@ namespace CookieCliker
         private void PassiveCounter()
         {
             LblPassive.Visibility = Visibility.Visible;
-            LblPassive.Content = $"+{passiveCounter}";
+            LblPassive.Content = $"+{Math.Round(passiveCounter, 2)}";
         }
 
         // Players die specifieke geluiden afspelen bij bepaalde acties
@@ -336,13 +420,24 @@ namespace CookieCliker
         private void PopSound()
         {
             popPlayer.Open(pop);
-            //popPlayer.Volume = 0.2;
             popPlayer.Play();
         }
 
         private void PingSound()
         {
             soundPlayer.Open(ping);
+            soundPlayer.Play();
+        }
+
+        private void BonusSound()
+        {
+            soundPlayer.Open(bonus);
+            soundPlayer.Play();
+        }
+
+        private void SuccesSound()
+        {
+            soundPlayer.Open(succes);
             soundPlayer.Play();
         }
 
@@ -484,7 +579,7 @@ namespace CookieCliker
                     soundPlayer.Volume = 1;
                     SoundOnImage(soundOnMediaPath);
                     ImgSound.Tag = "On";
-                    popPlayer.Volume = 0.2;
+                    popPlayer.Volume = 1;
                     ImgCookie.Tag = "On";
                 }
             }
@@ -599,47 +694,42 @@ namespace CookieCliker
 
         private void ButtonVisibility()
         {
-            BtnStore1.Visibility = Visibility.Collapsed;
-            BtnStore2.Visibility = Visibility.Collapsed;
-            BtnStore3.Visibility = Visibility.Collapsed;
-            BtnStore4.Visibility = Visibility.Collapsed;
-            BtnStore5.Visibility = Visibility.Collapsed;
-            BtnStore6.Visibility = Visibility.Collapsed;
-            BtnStore7.Visibility = Visibility.Collapsed;
+            Btn_Cursor.Visibility = Visibility.Collapsed;
+            Btn_Grandma.Visibility = Visibility.Collapsed;
+            Btn_Farm.Visibility = Visibility.Collapsed;
+            Btn_Mine.Visibility = Visibility.Collapsed;
+            Btn_Factory.Visibility = Visibility.Collapsed;
+            Btn_Bank.Visibility = Visibility.Collapsed;
+            Btn_Temple.Visibility = Visibility.Collapsed;
 
             if (cookieTotal >= 15)
             {
-                BtnStore1.Visibility = Visibility.Visible;
+                Btn_Cursor.Visibility = Visibility.Visible;
             }
             if (cookieTotal >= 100)
             {
-                BtnStore2.Visibility = Visibility.Visible;
+                Btn_Grandma.Visibility = Visibility.Visible;
             }
             if (cookieTotal >= 1100)
             {
-                BtnStore3.Visibility = Visibility.Visible;
+                Btn_Farm.Visibility = Visibility.Visible;
             }
             if (cookieTotal >= 12000)
             {
-                BtnStore4.Visibility = Visibility.Visible;
+                Btn_Mine.Visibility = Visibility.Visible;
             }
             if (cookieTotal >= 130000)
             {
-                BtnStore5.Visibility = Visibility.Visible;
+                Btn_Factory.Visibility = Visibility.Visible;
             }
             if (cookieTotal >= 1400000)
             {
-                BtnStore6.Visibility = Visibility.Visible;
+                Btn_Bank.Visibility = Visibility.Visible;
             }
             if (cookieTotal >= 20000000)
             {
-                BtnStore7.Visibility = Visibility.Visible;
+                Btn_Temple.Visibility = Visibility.Visible;
             }
-        }
-
-        private void Stackpanel()
-        {
-            imageStack.Width = 270;
         }
     }
 }

@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/ping1.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/pop2.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/succes1.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/temple.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/bank.mp3")]
