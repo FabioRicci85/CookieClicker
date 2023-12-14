@@ -15,8 +15,8 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 10000000;
-        private double cookieTotal = 10000000;
+        private double cookieCounter = 100000000;
+        private double cookieTotal = 100000000;
         private double clicker = 0;
         private double passiveCounter = 0;
         private Label labelPrice = new Label();
@@ -182,6 +182,11 @@ namespace CookieCliker
             labelPrice.Content = InvestmentWordAmount(price);
         }
 
+
+        /// <summary>
+        /// Methode die het aankoop bedrag omzet van numerieke waarde naar woord. 
+        /// Maakt gebruik van InvestmentWordAmount methode.
+        /// </summary>
         private void PriceLabelWord()
         {
             LblPriceCursor.Content = InvestmentWordAmount(Convert.ToDouble(LblPriceCursor.Content));
@@ -284,6 +289,7 @@ namespace CookieCliker
                     basePrice = basePriceMine;
                     MineSound();
                     passiveCounter += 47;
+                    AddMineInvestment();
                     break;
 
                 case "Btn_Factory":
@@ -292,6 +298,7 @@ namespace CookieCliker
                     basePrice = basePriceFactory;
                     FactorySound();
                     passiveCounter += 260;
+                    AddFactoryInvestment();
                     break;
 
                 case "Btn_Bank":
@@ -300,6 +307,7 @@ namespace CookieCliker
                     basePrice = basePriceBank;
                     BankSound();
                     passiveCounter += 1400;
+                    AddBankInvestment();
                     break;
 
                 case "Btn_Temple":
@@ -308,6 +316,7 @@ namespace CookieCliker
                     basePrice = basePriceTemple;
                     TempleSound();
                     passiveCounter += 7800;
+                    AddTempleInvestment();
                     break;
             }
         }
@@ -323,10 +332,11 @@ namespace CookieCliker
             rectangle.Width = 50;
             rectangle.Height = 50;
 
-            StckGrandma.Visibility = Visibility.Visible; 
-            // Voeg de Rectangle toe aan de bestaande StackPanel
+            StckGrandma.Visibility = Visibility.Visible;
+
             StckGrandma.Children.Add(rectangle);
         }
+
         private void AddFarmInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
@@ -339,8 +349,72 @@ namespace CookieCliker
             rectangle.Height = 50;
 
             StckFarm.Visibility = Visibility.Visible;
-            // Voeg de Rectangle toe aan de bestaande StackPanel
+
             StckFarm.Children.Add(rectangle);
+        }
+
+        private void AddMineInvestment()
+        {
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Mine.png", UriKind.RelativeOrAbsolute));
+            imageBrush.TileMode = TileMode.Tile;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Fill = imageBrush;
+            rectangle.Width = 50;
+            rectangle.Height = 50;
+
+            StckMine.Visibility = Visibility.Visible;
+
+            StckMine.Children.Add(rectangle);
+        }
+
+        private void AddFactoryInvestment()
+        {
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Factory.png", UriKind.RelativeOrAbsolute));
+            imageBrush.TileMode = TileMode.Tile;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Fill = imageBrush;
+            rectangle.Width = 50;
+            rectangle.Height = 50;
+
+            StckFactory.Visibility = Visibility.Visible;
+
+            StckFactory.Children.Add(rectangle);
+        }
+
+        private void AddBankInvestment()
+        {
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/bank.png", UriKind.RelativeOrAbsolute));
+            imageBrush.TileMode = TileMode.Tile;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Fill = imageBrush;
+            rectangle.Width = 50;
+            rectangle.Height = 50;
+
+            StckBank.Visibility = Visibility.Visible;
+
+            StckBank.Children.Add(rectangle);
+        }
+
+        private void AddTempleInvestment()
+        {
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/temple.png", UriKind.RelativeOrAbsolute));
+            imageBrush.TileMode = TileMode.Tile;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Fill = imageBrush;
+            rectangle.Width = 50;
+            rectangle.Height = 50;
+
+            StckTemple.Visibility = Visibility.Visible;
+
+            StckTemple.Children.Add(rectangle);
         }
 
         /// <summary>
@@ -405,6 +479,9 @@ namespace CookieCliker
             ButtonVisibility();
         }
 
+        /// <summary>
+        /// Een label dat het passieve inkomen weergeeft. De passiveCounter wordt opgehaald uit StoreButton (Switch Case).
+        /// </summary>
         private void PassiveCounter()
         {
             LblPassive.Visibility = Visibility.Visible;
@@ -417,11 +494,40 @@ namespace CookieCliker
         private readonly MediaPlayer soundPlayer = new MediaPlayer();
         private readonly MediaPlayer popPlayer = new MediaPlayer();
 
+        /// <summary>
+        /// Geluid dat afgespeeld wordt als er op het koekje geklikt wordt.
+        /// </summary>
         private void PopSound()
         {
             popPlayer.Open(pop);
             popPlayer.Play();
         }
+
+        /// <summary>
+        /// Achtergrond muziek dat wordt afgespeeld, het moment dat de applicatie wordt opgestart.
+        /// Als het liedje is afgelopen wordt het geloopt door de methode OnMediaEnded
+        /// </summary>
+        private void MotivationSound()
+        {
+            backgroundPlayer.Open(motivation);
+            backgroundPlayer.Volume = 0.2;
+            backgroundPlayer.Play();
+            backgroundPlayer.MediaEnded += OnMediaEnded;
+        }
+
+        /// <summary>
+        /// een methode die de backgroundPlayer's positie terug naar nul (begin) zet en opnieuw de achtergrond muziek afspeelt.
+        /// Deze methode wordt gebruikt binnen de methode Motivation Sound
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMediaEnded(object sender, EventArgs e)
+        {
+            backgroundPlayer.Position = TimeSpan.Zero;
+            backgroundPlayer.Play();
+        }
+
+        // Soundeffects voor cookie, buttons, powerupsen quests.
 
         private void PingSound()
         {
@@ -439,20 +545,6 @@ namespace CookieCliker
         {
             soundPlayer.Open(succes);
             soundPlayer.Play();
-        }
-
-        private void MotivationSound()
-        {
-            backgroundPlayer.Open(motivation);
-            backgroundPlayer.Volume = 0.2;
-            backgroundPlayer.Play();
-            backgroundPlayer.MediaEnded += OnMediaEnded;
-        }
-
-        private void OnMediaEnded(object sender, EventArgs e)
-        {
-            backgroundPlayer.Position = TimeSpan.Zero;
-            backgroundPlayer.Play();
         }
 
         private void ClickSound()
@@ -497,6 +589,10 @@ namespace CookieCliker
             soundPlayer.Play();
         }
 
+        /// <summary>
+        /// Afbeelding Music OFF
+        /// </summary>
+        /// <param name="newImagePath"></param>
         private void MusicOffImage(string newImagePath)
         {
             BitmapImage bitmapImage = new BitmapImage();
@@ -507,6 +603,10 @@ namespace CookieCliker
             ImgMusic.Source = bitmapImage;
         }
 
+        /// <summary>
+        /// Afbeelding Music ON
+        /// </summary>
+        /// <param name="newImagePath"></param>
         private void MusicOnImage(string newImagePath)
         {
             BitmapImage bitmapImage = new BitmapImage();
@@ -517,6 +617,10 @@ namespace CookieCliker
             ImgMusic.Source = bitmapImage;
         }
 
+        /// <summary>
+        /// Afbeelding Sound OFF
+        /// </summary>
+        /// <param name="newImagePath"></param>
         private void SoundOffImage(string newImagePath)
         {
             BitmapImage bitmapImage = new BitmapImage();
@@ -527,6 +631,10 @@ namespace CookieCliker
             ImgSound.Source = bitmapImage;
         }
 
+        /// <summary>
+        /// Afbeelding Sound ON
+        /// </summary>
+        /// <param name="newImagePath"></param>
         private void SoundOnImage(string newImagePath)
         {
             BitmapImage bitmapImage = new BitmapImage();
@@ -537,6 +645,11 @@ namespace CookieCliker
             ImgSound.Source = bitmapImage;
         }
 
+        /// <summary>
+        /// Een Mouse Up event om het icoontje Music ON te wisselen naar Music OFF, en om het achtergrond geluid in en uit te schakelen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImgMusic_MouseUp(object sender, MouseButtonEventArgs e)
         {
             string musicOnMediaPath = "./Media/MusicOn1.png";
@@ -559,6 +672,12 @@ namespace CookieCliker
             }
         }
 
+        /// <summary>
+        /// Een Mouse Up event om het icoontje Sound ON te wisselen naar Sound OFF, en om de soundeffects in en uit te schakelen.
+        /// Zowel de button geluiden als het geluidje op de cookie.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImgSound_MouseUp(object sender, MouseButtonEventArgs e)
         {
             string soundOnMediaPath = "./Media/SoundOn1.png";
@@ -585,6 +704,9 @@ namespace CookieCliker
             }
         }
 
+        /// <summary>
+        /// Label om bakkerij naam weer te geven.
+        /// </summary>
         private void LabelBakery()
         {
             labelBakeryName.Content = "PXL's Bakery";
@@ -602,6 +724,11 @@ namespace CookieCliker
             labelBakeryName.MouseUp += LabelBakeryName_MouseUp;
         }
 
+        /// <summary>
+        /// Een mouseUp event dat nakijkt of de ingegeven waarde niet leeg is, of enkel uit spaties bestaat. Als deze correct zijn wordt de nieuwe ingegeven naam weergegeven.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LabelBakeryName_MouseUp(object sender, MouseButtonEventArgs e)
         {
             string newBakeryName = Interaction.InputBox("Geef je eigen naam voor je bakerij in :)", "Bakerij Naam", "PXL");
@@ -618,6 +745,11 @@ namespace CookieCliker
             labelBakeryName.Content = $"{newBakeryName}'s Bakery";
         }
 
+        /// <summary>
+        /// Zorgt voor het verwoorden van de numerieke waarde van het aantal cookies.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private string DoubleToWordAmount(double value)
         {
             double miljoen = 1000000;
@@ -655,6 +787,11 @@ namespace CookieCliker
             return $"{Math.Floor(value)}";
         }
 
+        /// <summary>
+        /// Zorgt voor de verwoording van de numerieke waarde van de aankoopprijs.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private string InvestmentWordAmount(double value)
         {
             double duizend = 1000;
@@ -692,6 +829,10 @@ namespace CookieCliker
             return $"{Math.Ceiling(value)}";
         }
 
+        /// <summary>
+        /// Een methode om alle aankoop knoppen niet zichtbaar te maken, en slechts zichtbaar te maken na dat het totaal verzamelde cookies een bepaald aantal heeft behaald.
+        /// cookieTotal is de variabele die steeds blijft optellen, waar nooit aankoopbedragen van afgetrokken worden.
+        /// </summary>
         private void ButtonVisibility()
         {
             Btn_Cursor.Visibility = Visibility.Collapsed;
