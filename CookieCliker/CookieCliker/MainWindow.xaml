@@ -10,9 +10,9 @@
         <ImageBrush x:Key="ImgBrushGrandma" ImageSource="./Media/achtergrondKeuken.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushFarm" ImageSource="./Media/achtergrondFarm.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushMine" ImageSource="./Media/achtergrondMijn.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
-        <ImageBrush x:Key="ImgBrushFactory" ImageSource="./Media/achtergrondFactory.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
+        <ImageBrush x:Key="ImgBrushFactory" ImageSource="./Media/achtergrondFactory.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,240,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushBank" ImageSource="./Media/achtergrondBank.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
-        <ImageBrush x:Key="ImgBrushTemple" ImageSource="./Media/achtergrondTemple.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
+        <ImageBrush x:Key="ImgBrushTemple" ImageSource="./Media/achtergrondTemple.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,240,150"></ImageBrush>
     </Window.Resources>
     <Grid Name="GrdWindow">
         <Grid.Background>
@@ -26,8 +26,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="5*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
+        <Image Grid.Column="0" Grid.Row="2" Name="ImgGoldenCookie" Source="./Media/goldenCookie.png" Width="50" MouseUp="ImgGoldenCookie_MouseUp" Panel.ZIndex="100"/>
         <Viewbox Grid.Row="1" Stretch="Uniform" MaxHeight="300" MaxWidth="300" Margin="20">
             <Image Source="Media/Cookie.png"
                    Name="ImgCookie" Grid.Row="1"
@@ -50,30 +51,30 @@
             <Image Name="ImgMusic" Source="./Media/MusicOn1.png" Height="35" Width="35" MouseUp="ImgMusic_MouseUp" Tag="On" Margin="0,10,10,0" />
             <Image Name="ImgSound" Source="./Media/SoundOn1.png" Height="35" Width="35" MouseUp="ImgSound_MouseUp" Tag="On" Margin="0,10,10,0" />
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" >
-            <Grid>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        
+        <Grid Grid.Column="1" Grid.Row="2" Width="320" Height="120">
+            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
                 <WrapPanel Width="300" Height="100">
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>
-                    <Button Width="40" Height="40" Margin="5"></Button>                   
+                        <Button Content="Perk1" Name="Perk1" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk2" Name="Perk2" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk3" Name="Perk3" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk4" Name="Perk4" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk5" Name="Perk5" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk6" Name="Perk6" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk7" Name="Perk7" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk8" Name="Perk8" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk9" Name="Perk9" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk10" Name="Perk10" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk11" Name="Perk11" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk12" Name="Perk12" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk13" Name="Perk13" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk14" Name="Perk14" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk15" Name="Perk15" Width="40" Height="40" Margin="5"></Button>
+                        <Button Content="Perk16" Name="Perk16" Width="40" Height="40" Margin="5"></Button>                   
                 </WrapPanel>
             </ScrollViewer>
-            </Grid>
-            <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        </Grid>
+        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
                 <Button x:Name="Btn_Cursor" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
@@ -294,7 +295,7 @@
                 </Button>
             </StackPanel>
         </ScrollViewer>
-        </StackPanel>
+        
 
         <ScrollViewer Grid.Column="1" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <StackPanel>

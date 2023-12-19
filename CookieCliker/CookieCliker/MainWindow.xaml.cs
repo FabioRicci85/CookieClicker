@@ -15,8 +15,8 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 100000000;
-        private double cookieTotal = 100000000;
+        private double cookieCounter = 1000000000;
+        private double cookieTotal = 1000000000;
         private double clicker = 0;
         private double passiveCounter = 0;
         private Label labelPrice = new Label();
@@ -30,6 +30,14 @@ namespace CookieCliker
         private double _factoryPrice = 130000;
         private double _bankPrice = 1400000;
         private double _templePrice = 20000000;
+
+        private double cursorMultiplier = 0.001;
+        private double grandmaMultiplier = 0.01;
+        private double farmMultiplier = 0.08;
+        private double mineMultiplier = 0.47;
+        private double factoryMultiplier = 2.60;
+        private double bankMultiplier = 14;
+        private double templeMultiplier = 78;
 
         private bool isMouseDown = false;
 
@@ -61,12 +69,21 @@ namespace CookieCliker
             InitializeComponent();
             MotivationSound();
 
-            DispatcherTimer timer = new DispatcherTimer
+            //timer die iedere 10 milliseconden de passieve inkomen berekent
+            DispatcherTimer millisecondsTimer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(10)
             };
-            timer.Tick += new EventHandler(PassiveIncome);
-            timer.Start();
+            millisecondsTimer.Tick += new EventHandler(PassiveIncome);
+            millisecondsTimer.Start();
+
+            //timer die iedere minuut de kans voor een gouden koekje berekent
+            DispatcherTimer goldenCookieTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMinutes(1)
+            };
+            goldenCookieTimer.Tick += new EventHandler(GoldenCookie);
+            goldenCookieTimer.Start();
 
             ButtonVisibility();
             LabelBakery();
@@ -182,9 +199,8 @@ namespace CookieCliker
             labelPrice.Content = InvestmentWordAmount(price);
         }
 
-
         /// <summary>
-        /// Methode die het aankoop bedrag omzet van numerieke waarde naar woord. 
+        /// Methode die het aankoop bedrag omzet van numerieke waarde naar woord.
         /// Maakt gebruik van InvestmentWordAmount methode.
         /// </summary>
         private void PriceLabelWord()
@@ -217,6 +233,7 @@ namespace CookieCliker
             PassiveCounter();
             ShopButtonEnable();
             UpdateScore();
+            Quests();
         }
 
         private void BuyStore(string button)
@@ -440,38 +457,38 @@ namespace CookieCliker
         {
             if (Convert.ToDouble(LblClickCursor.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickCursor.Content) * 0.001;
-                cookieTotal += Convert.ToDouble(LblClickCursor.Content) * 0.001;
+                cookieCounter += Convert.ToDouble(LblClickCursor.Content) * cursorMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickCursor.Content) * cursorMultiplier;
             }
             if (Convert.ToDouble(LblClickGrandma.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickGrandma.Content) * 0.01;
-                cookieTotal += Convert.ToDouble(LblClickGrandma.Content) * 0.01;
+                cookieCounter += Convert.ToDouble(LblClickGrandma.Content) * grandmaMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickGrandma.Content) * grandmaMultiplier;
             }
             if (Convert.ToDouble(LblClickFarm.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickFarm.Content) * 0.08;
-                cookieTotal += Convert.ToDouble(LblClickFarm.Content) * 0.08;
+                cookieCounter += Convert.ToDouble(LblClickFarm.Content) * farmMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickFarm.Content) * farmMultiplier;
             }
             if (Convert.ToDouble(LblClickMine.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickMine.Content) * 0.47;
-                cookieTotal += Convert.ToDouble(LblClickMine.Content) * 0.47;
+                cookieCounter += Convert.ToDouble(LblClickMine.Content) * mineMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickMine.Content) * mineMultiplier;
             }
             if (Convert.ToDouble(LblClickFactory.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickFactory.Content) * 2.60;
-                cookieTotal += Convert.ToDouble(LblClickFactory.Content) * 2.60;
+                cookieCounter += Convert.ToDouble(LblClickFactory.Content) * factoryMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickFactory.Content) * factoryMultiplier;
             }
             if (Convert.ToDouble(LblClickBank.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickBank.Content) * 14;
-                cookieTotal += Convert.ToDouble(LblClickBank.Content) * 14;
+                cookieCounter += Convert.ToDouble(LblClickBank.Content) * bankMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickBank.Content) * bankMultiplier;
             }
             if (Convert.ToDouble(LblClickTemple.Content) >= 1)
             {
-                cookieCounter += Convert.ToDouble(LblClickTemple.Content) * 78;
-                cookieTotal += Convert.ToDouble(LblClickTemple.Content) * 78;
+                cookieCounter += Convert.ToDouble(LblClickTemple.Content) * templeMultiplier;
+                cookieTotal += Convert.ToDouble(LblClickTemple.Content) * templeMultiplier;
             }
 
             UpdateScore();
@@ -872,5 +889,38 @@ namespace CookieCliker
                 Btn_Temple.Visibility = Visibility.Visible;
             }
         }
+
+        // Quests en PowerUps die de speler kan aankopen
+
+        private void Quests()
+        {
+            if (LblClickGrandma.Content.ToString() == "20")
+            {
+                MessageBox.Show("20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;)");
+            }
+            
+        }
+        
+        private void GoldenCookie(object sender,EventArgs e)
+        {
+            double random = new Random().NextDouble();
+            double chance = 0.3;
+
+            if (random < chance)
+            {
+                ImgGoldenCookie.Visibility = Visibility.Visible;
+                BonusSound();
+            }
+        }
+
+        private void ImgGoldenCookie_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ImgGoldenCookie.Visibility = Visibility.Collapsed;
+            cookieCounter += (passiveCounter * 900);
+            cookieTotal += (passiveCounter * 900);
+            UpdateScore();
+            SuccesSound();
+        }
+        
     }
 }
