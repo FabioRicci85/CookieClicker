@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="Cookie Clicker" MinHeight="400" MinWidth="1000">
     <Window.Resources>
         <ImageBrush x:Key="ImgBrushGrandma" ImageSource="./Media/achtergrondKeuken.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
@@ -28,7 +29,7 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <Image Grid.Column="0" Grid.Row="2" Name="ImgGoldenCookie" Source="./Media/goldenCookie.png" Width="50" MouseUp="ImgGoldenCookie_MouseUp" Panel.ZIndex="100"/>
+        <Image Visibility="Collapsed" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="ImgGoldenCookie" Source="./Media/goldenCookie.png" Width="50" Height="50" MouseUp="ImgGoldenCookie_MouseUp" Panel.ZIndex="100"/>
         <Viewbox Grid.Row="1" Stretch="Uniform" MaxHeight="300" MaxWidth="300" Margin="20">
             <Image Source="Media/Cookie.png"
                    Name="ImgCookie" Grid.Row="1"
@@ -53,8 +54,8 @@
         </StackPanel>
         
         <Grid Grid.Column="1" Grid.Row="2" Width="320" Height="120">
-            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-                <WrapPanel Width="300" Height="100">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <WrapPanel Width="300">
                         <Button Content="Perk1" Name="Perk1" Width="40" Height="40" Margin="5"></Button>
                         <Button Content="Perk2" Name="Perk2" Width="40" Height="40" Margin="5"></Button>
                         <Button Content="Perk3" Name="Perk3" Width="40" Height="40" Margin="5"></Button>

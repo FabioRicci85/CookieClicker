@@ -77,6 +77,15 @@ namespace CookieCliker
             millisecondsTimer.Tick += new EventHandler(PassiveIncome);
             millisecondsTimer.Start();
 
+           
+
+            ButtonVisibility();
+            LabelBakery();
+            PriceLabelWord();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             //timer die iedere minuut de kans voor een gouden koekje berekent
             DispatcherTimer goldenCookieTimer = new DispatcherTimer
             {
@@ -84,10 +93,6 @@ namespace CookieCliker
             };
             goldenCookieTimer.Tick += new EventHandler(GoldenCookie);
             goldenCookieTimer.Start();
-
-            ButtonVisibility();
-            LabelBakery();
-            PriceLabelWord();
         }
 
         /// <summary>
@@ -898,17 +903,21 @@ namespace CookieCliker
             {
                 MessageBox.Show("20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;)");
             }
-            
+            if (LblClickFarm.Content.ToString() == "20")
+            {
+                MessageBox.Show("20 farms, de koeien zijn blij met hun nieuwe stal");
+            }
+           
         }
-        
-        private void GoldenCookie(object sender,EventArgs e)
+
+        private void GoldenCookie(object sender, EventArgs e)
         {
             double random = new Random().NextDouble();
             double chance = 0.3;
 
             if (random < chance)
             {
-                ImgGoldenCookie.Visibility = Visibility.Visible;
+                ImgGoldenCookieRandomPlace();
                 BonusSound();
             }
         }
@@ -921,6 +930,17 @@ namespace CookieCliker
             UpdateScore();
             SuccesSound();
         }
-        
+
+        // ImgGoldenCookie random op het scherm laten verschijnen
+        private void ImgGoldenCookieRandomPlace()
+        {
+            Random random = new Random();
+            double x = random.Next(0, (int)(ActualWidth - ImgGoldenCookie.Width));
+            double y = random.Next(0, (int)(ActualHeight - ImgGoldenCookie.Height));
+
+            ImgGoldenCookie.Margin = new Thickness(x, y, 0, 0);
+
+            ImgGoldenCookie.Visibility = Visibility.Visible;
+        }
     }
 }
