@@ -1,10 +1,13 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
@@ -39,6 +42,22 @@ namespace CookieCliker
         private double bankMultiplier = 14;
         private double templeMultiplier = 78;
 
+        private double passiveCursor = 0.1;
+        private double passiveGrandma = 1;
+        private double passiveFarm = 8;
+        private double passiveMine = 47;
+        private double passiveFactory = 260;
+        private double passiveBank = 1400;
+        private double passiveTemple = 7800;
+
+        private const double basePriceCursor = 15;
+        private const double basePriceGrandma = 100;
+        private const double basePriceFarm = 1100;
+        private const double basePriceMine = 12000;
+        private const double basePriceFactory = 130000;
+        private const double basePriceBank = 1400000;
+        private const double basePriceTemple = 20000000;
+
         private bool isMouseDown = false;
 
         private readonly Label labelBakeryName = new Label();                                                               //nieuwe labels voor UI
@@ -56,14 +75,6 @@ namespace CookieCliker
         private readonly Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
         private readonly Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
 
-        private const double basePriceCursor = 15;
-        private const double basePriceGrandma = 100;
-        private const double basePriceFarm = 1100;
-        private const double basePriceMine = 12000;
-        private const double basePriceFactory = 130000;
-        private const double basePriceBank = 1400000;
-        private const double basePriceTemple = 20000000;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -77,9 +88,8 @@ namespace CookieCliker
             millisecondsTimer.Tick += new EventHandler(PassiveIncome);
             millisecondsTimer.Start();
 
-           
-
             ButtonVisibility();
+            PerkVisibility();
             LabelBakery();
             PriceLabelWord();
         }
@@ -123,6 +133,7 @@ namespace CookieCliker
             UpdateScore();
             ShopButtonEnable();
             ButtonVisibility();
+            PerkVisibility();
 
             //roep sound effect pop op
             PopSound();
@@ -141,6 +152,7 @@ namespace CookieCliker
                 cookieTotal++;
                 UpdateScore();
                 ButtonVisibility();
+                PerkVisibility();
             }
         }
 
@@ -238,6 +250,7 @@ namespace CookieCliker
             PassiveCounter();
             ShopButtonEnable();
             UpdateScore();
+            PerkVisibility();
             Quests();
         }
 
@@ -284,7 +297,7 @@ namespace CookieCliker
                     labelClick = LblClickCursor;
                     basePrice = basePriceCursor;
                     ClickSound();
-                    passiveCounter += 0.1;
+                    passiveCounter += passiveCursor;
                     break;
 
                 case "Btn_Grandma":
@@ -292,7 +305,7 @@ namespace CookieCliker
                     labelClick = LblClickGrandma;
                     basePrice = basePriceGrandma;
                     GrandmaSound();
-                    passiveCounter += 1;
+                    passiveCounter += passiveGrandma;
                     AddGrandmaInvestment();
                     break;
 
@@ -301,7 +314,7 @@ namespace CookieCliker
                     labelClick = LblClickFarm;
                     basePrice = basePriceFarm;
                     FarmSound();
-                    passiveCounter += 8;
+                    passiveCounter += passiveFarm;
                     AddFarmInvestment();
                     break;
 
@@ -310,7 +323,7 @@ namespace CookieCliker
                     labelClick = LblClickMine;
                     basePrice = basePriceMine;
                     MineSound();
-                    passiveCounter += 47;
+                    passiveCounter += passiveMine;
                     AddMineInvestment();
                     break;
 
@@ -319,7 +332,7 @@ namespace CookieCliker
                     labelClick = LblClickFactory;
                     basePrice = basePriceFactory;
                     FactorySound();
-                    passiveCounter += 260;
+                    passiveCounter += passiveFactory;
                     AddFactoryInvestment();
                     break;
 
@@ -328,7 +341,7 @@ namespace CookieCliker
                     labelClick = LblClickBank;
                     basePrice = basePriceBank;
                     BankSound();
-                    passiveCounter += 1400;
+                    passiveCounter += passiveBank;
                     AddBankInvestment();
                     break;
 
@@ -337,7 +350,7 @@ namespace CookieCliker
                     labelClick = LblClickTemple;
                     basePrice = basePriceTemple;
                     TempleSound();
-                    passiveCounter += 7800;
+                    passiveCounter += passiveTemple;
                     AddTempleInvestment();
                     break;
             }
@@ -346,7 +359,7 @@ namespace CookieCliker
         private void AddGrandmaInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Grandma.png", UriKind.RelativeOrAbsolute));
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"../../Media/Grandma.png", UriKind.RelativeOrAbsolute));
             imageBrush.TileMode = TileMode.Tile;
 
             Rectangle rectangle = new Rectangle();
@@ -362,7 +375,7 @@ namespace CookieCliker
         private void AddFarmInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Farm.png", UriKind.RelativeOrAbsolute));
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"../../Media/Farm.png", UriKind.RelativeOrAbsolute));
             imageBrush.TileMode = TileMode.Tile;
 
             Rectangle rectangle = new Rectangle();
@@ -378,7 +391,7 @@ namespace CookieCliker
         private void AddMineInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Mine.png", UriKind.RelativeOrAbsolute));
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"../../Media/Mine.png", UriKind.RelativeOrAbsolute));
             imageBrush.TileMode = TileMode.Tile;
 
             Rectangle rectangle = new Rectangle();
@@ -394,7 +407,7 @@ namespace CookieCliker
         private void AddFactoryInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/Factory.png", UriKind.RelativeOrAbsolute));
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"../../Media/Factory.png", UriKind.RelativeOrAbsolute));
             imageBrush.TileMode = TileMode.Tile;
 
             Rectangle rectangle = new Rectangle();
@@ -410,7 +423,7 @@ namespace CookieCliker
         private void AddBankInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/bank.png", UriKind.RelativeOrAbsolute));
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"../../Media/bank.png", UriKind.RelativeOrAbsolute));
             imageBrush.TileMode = TileMode.Tile;
 
             Rectangle rectangle = new Rectangle();
@@ -426,7 +439,7 @@ namespace CookieCliker
         private void AddTempleInvestment()
         {
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(@"../../Media/temple.png", UriKind.RelativeOrAbsolute));
+            imageBrush.ImageSource = new BitmapImage(new Uri(@"../../Media/temple.png", UriKind.RelativeOrAbsolute));
             imageBrush.TileMode = TileMode.Tile;
 
             Rectangle rectangle = new Rectangle();
@@ -499,6 +512,7 @@ namespace CookieCliker
             UpdateScore();
             ShopButtonEnable();
             ButtonVisibility();
+            PerkVisibility();
         }
 
         /// <summary>
@@ -907,9 +921,13 @@ namespace CookieCliker
             {
                 MessageBox.Show("20 farms, de koeien zijn blij met hun nieuwe stal");
             }
-           
         }
 
+        /// <summary>
+        /// Kansberekning voor een gouden koekje, 30% kans dat er een gouden koekje verschijnt.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GoldenCookie(object sender, EventArgs e)
         {
             double random = new Random().NextDouble();
@@ -922,6 +940,11 @@ namespace CookieCliker
             }
         }
 
+        /// <summary>
+        /// Actie die uitgevoerd wordt als er op het gouden koekje geklikt wordt.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImgGoldenCookie_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ImgGoldenCookie.Visibility = Visibility.Collapsed;
@@ -931,7 +954,9 @@ namespace CookieCliker
             SuccesSound();
         }
 
-        // ImgGoldenCookie random op het scherm laten verschijnen
+        /// <summary>
+        /// ImgGoldenCookie random op het scherm laten verschijnen
+        /// </summary>
         private void ImgGoldenCookieRandomPlace()
         {
             Random random = new Random();
@@ -941,6 +966,864 @@ namespace CookieCliker
             ImgGoldenCookie.Margin = new Thickness(x, y, 0, 0);
 
             ImgGoldenCookie.Visibility = Visibility.Visible;
+        }
+
+        //Perk Upgrades die de speler kan aankopen om de passieve inkomen te verhogen
+        private void BtnPerk_Click(object sender, EventArgs e)
+        {
+            string buttonName = ((Button)sender).Name;
+            
+            BuyPerk(buttonName);
+        }
+
+        private void BuyPerk(string button)
+        {
+            switch (button)
+            {
+                case "BtnPerkCursor1":
+                    BuyPerk(ref cursorMultiplier, ref passiveCursor);
+                    basePrice = basePriceCursor;
+                    break;
+
+                case "BtnPerkCursor2":
+                    BuyPerk(ref cursorMultiplier, ref passiveCursor);
+                    basePrice = basePriceCursor;
+                    break;
+
+                case "BtnPerkCursor3":
+                    BuyPerk(ref cursorMultiplier, ref passiveCursor);
+                    basePrice = basePriceCursor;
+                    break;
+
+                case "BtnPerkCursor4":
+                    BuyPerk(ref cursorMultiplier, ref passiveCursor);
+                    basePrice = basePriceCursor;
+                    break;
+
+                case "BtnPerkCursor5":
+                    BuyPerk(ref cursorMultiplier, ref passiveCursor);
+                    basePrice = basePriceCursor;
+                    break;
+                case "BtnPerkGrandma1":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    basePrice = basePriceGrandma;
+                    break;
+                case "BtnPerkGrandma2":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    basePrice = basePriceGrandma;
+                    break;
+                case "BtnPerkGrandma3":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    basePrice = basePriceGrandma;
+                    break;
+                case "BtnPerkGrandma4":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    basePrice = basePriceGrandma;
+                    break;
+                case "BtnPerkGrandma5":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    basePrice = basePriceGrandma;
+                    break;
+                case "BtnPerkFarm1":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    basePrice = basePriceFarm;
+                    break;
+                case "BtnPerkFarm2":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    basePrice = basePriceFarm;
+                    break;
+                case "BtnPerkFarm3":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    basePrice = basePriceFarm;
+                    break;
+                case "BtnPerkFarm4":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    basePrice = basePriceFarm;
+                    break;
+                case "BtnPerkFarm5":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    basePrice = basePriceFarm;
+                    break;
+                case "BtnPerkMine1":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    basePrice = basePriceMine;
+                    break;
+                case "BtnPerkMine2":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    basePrice = basePriceMine;
+                    break;
+                case "BtnPerkMine3":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    basePrice = basePriceMine;
+                    break;
+                case "BtnPerkMine4":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    basePrice = basePriceMine;
+                    break;
+                case "BtnPerkMine5":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    basePrice = basePriceMine;
+                    break;
+                case "BtnPerkFactory1":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    basePrice = basePriceFactory;
+                    break;
+                case "BtnPerkFactory2":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    basePrice = basePriceFactory;
+                    break;
+                case "BtnPerkFactory3":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    basePrice = basePriceFactory;
+                    break;
+                case "BtnPerkFactory4":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    basePrice = basePriceFactory;
+                    break;
+                case "BtnPerkFactory5":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    basePrice = basePriceFactory;
+                    break;
+                case "BtnPerkBank1":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    basePrice = basePriceBank;
+                    break;
+                case "BtnPerkBank2":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    basePrice = basePriceBank;
+                    break;
+                case "BtnPerkBank3":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    basePrice = basePriceBank;
+                    break;
+                case "BtnPerkBank4":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    basePrice = basePriceBank;
+                    break;
+                case "BtnPerkBank5":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    basePrice = basePriceBank;
+                    break;
+                case "BtnPerkTemple1":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    basePrice = basePriceTemple;
+                    break;
+                case "BtnPerkTemple2":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    basePrice = basePriceTemple;
+                    break;
+                case "BtnPerkTemple3":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    basePrice = basePriceTemple;
+                    break;
+                case "BtnPerkTemple4":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    basePrice = basePriceTemple;
+                    break;
+                case "BtnPerkTemple5":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    basePrice = basePriceTemple;
+                    break;
+            }
+        }
+        private bool btnPerkCursor1Clicked = false;
+        private bool btnPerkCursor2Clicked = false;
+        private bool btnPerkCursor3Clicked = false;
+        private bool btnPerkCursor4Clicked = false;
+        private bool btnPerkCursor5Clicked = false;
+        private bool btnPerkGrandma1Clicked = false;
+        private bool btnPerkGrandma2Clicked = false;
+        private bool btnPerkGrandma3Clicked = false;
+        private bool btnPerkGrandma4Clicked = false;
+        private bool btnPerkGrandma5Clicked = false;
+        private bool btnPerkFarm1Clicked = false;
+        private bool btnPerkFarm2Clicked = false;
+        private bool btnPerkFarm3Clicked = false;
+        private bool btnPerkFarm4Clicked = false;
+        private bool btnPerkFarm5Clicked = false;
+        private bool btnPerkMine1Clicked = false;
+        private bool btnPerkMine2Clicked = false;
+        private bool btnPerkMine3Clicked = false;
+        private bool btnPerkMine4Clicked = false;
+        private bool btnPerkMine5Clicked = false;
+        private bool btnPerkFactory1Clicked = false;
+        private bool btnPerkFactory2Clicked = false;
+        private bool btnPerkFactory3Clicked = false;
+        private bool btnPerkFactory4Clicked = false;
+        private bool btnPerkFactory5Clicked = false;
+        private bool btnPerkBank1Clicked = false;
+        private bool btnPerkBank2Clicked = false;
+        private bool btnPerkBank3Clicked = false;
+        private bool btnPerkBank4Clicked = false;
+        private bool btnPerkBank5Clicked = false;
+        private bool btnPerkTemple1Clicked = false;
+        private bool btnPerkTemple2Clicked = false;
+        private bool btnPerkTemple3Clicked = false;
+        private bool btnPerkTemple4Clicked = false;
+        private bool btnPerkTemple5Clicked = false;
+
+        private void BuyPerk(ref double multiplier, ref double passive)
+        {
+            if (Convert.ToDouble(LblClickCursor.Content) >= 1 && !btnPerkCursor1Clicked)
+            {
+                if (BtnPerkCursor1.IsEnabled = cookieCounter >= basePrice * 100)
+                {
+                    cookieCounter -= basePrice * 100;
+                    UpdateScore();
+
+                    passiveCounter += passive;
+                    PassiveCounter();
+
+                    multiplier *= 2;
+                    passive *= 2;
+
+                    BtnPerkCursor1.Visibility = Visibility.Collapsed;
+                    BonusSound();
+
+                    btnPerkCursor1Clicked = true;
+                }
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 5 && !btnPerkCursor2Clicked)
+            {
+                if (BtnPerkCursor2.IsEnabled = cookieCounter >= basePrice * 500)
+                {
+                    cookieCounter -= basePrice * 500;
+                    UpdateScore();
+
+                    PassiveCalculate(ref multiplier, ref passive);
+
+                    BtnPerkCursor2.Visibility = Visibility.Collapsed;
+                    BonusSound();
+
+                    btnPerkCursor2Clicked = true;
+                }
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 25 && !btnPerkCursor3Clicked)
+            {
+                if (BtnPerkCursor3.IsEnabled = cookieCounter >= basePrice * 5000)
+                {
+                    cookieCounter -= basePrice * 5000;
+                    UpdateScore();
+
+                    PassiveCalculate(ref multiplier, ref passive);
+
+                    BtnPerkCursor3.Visibility = Visibility.Collapsed;
+                    BonusSound();
+
+                    btnPerkCursor3Clicked = true;
+                }               
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 50 && !btnPerkCursor4Clicked)
+            {
+                if (BtnPerkCursor4.IsEnabled = cookieCounter >= basePrice * 50000)
+                {
+                    cookieCounter -= basePrice * 50000;
+                    UpdateScore();
+
+                    PassiveCalculate(ref multiplier, ref passive);
+
+                    BtnPerkCursor3.Visibility = Visibility.Collapsed;
+                    BonusSound();
+
+                    btnPerkCursor4Clicked = true;
+                }                
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 75 && !btnPerkCursor5Clicked)
+            {
+                if (BtnPerkCursor5.IsEnabled = cookieCounter >= basePrice * 500000)
+                {
+                    cookieCounter -= basePrice * 500000;
+                    UpdateScore();
+
+                    PassiveCalculate(ref multiplier, ref passive);
+
+                    BtnPerkCursor3.Visibility = Visibility.Collapsed;
+                    BonusSound();
+
+                    btnPerkCursor5Clicked = true;
+                }
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 1 && !btnPerkGrandma1Clicked)
+            {
+                cookieCounter -= basePrice * 100;
+                UpdateScore();
+
+                passiveCounter += passive;
+                PassiveCounter();
+
+                multiplier *= 2;
+                passive *= 2;
+
+                BtnPerkGrandma1.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkGrandma1Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 5 && !btnPerkGrandma2Clicked)
+            {
+                cookieCounter -= basePrice * 500;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkGrandma2.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkGrandma2Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 25 && !btnPerkGrandma3Clicked)
+            {
+                cookieCounter -= basePrice * 5000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkGrandma3.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkGrandma3Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 50 && !btnPerkGrandma4Clicked)
+            {
+                cookieCounter -= basePrice * 50000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkGrandma4.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkGrandma4Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 75 && !btnPerkGrandma5Clicked)
+            {
+                cookieCounter -= basePrice * 500000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkGrandma5.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkGrandma5Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 1 && !btnPerkFarm1Clicked)
+            {
+                cookieCounter -= basePrice * 100;
+                UpdateScore();
+
+                passiveCounter += passive;
+                PassiveCounter();
+
+                multiplier *= 2;
+                passive *= 2;
+
+                BtnPerkFarm1.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFarm1Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 5 && !btnPerkFarm2Clicked)
+            {
+                cookieCounter -= basePrice * 500;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFarm2.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFarm2Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 25 && !btnPerkFarm3Clicked)
+            {
+                cookieCounter -= basePrice * 5000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFarm3.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFarm3Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 50 && !btnPerkFarm4Clicked)
+            {
+                cookieCounter -= basePrice * 50000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFarm4.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFarm4Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 75 && !btnPerkFarm5Clicked)
+            {
+                cookieCounter -= basePrice * 500000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFarm5.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFarm5Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 1 && !btnPerkMine1Clicked)
+            {
+                cookieCounter -= basePrice * 100;
+                UpdateScore();
+
+                passiveCounter += passive;
+                PassiveCounter();
+
+                multiplier *= 2;
+                passive *= 2;
+
+                BtnPerkMine1.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkMine1Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 5 && !btnPerkMine2Clicked)
+            {
+                cookieCounter -= basePrice * 500;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkMine2.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkMine2Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 25 && !btnPerkMine3Clicked)
+            {
+                cookieCounter -= basePrice * 5000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkMine3.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkMine3Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 50 && !btnPerkMine4Clicked)
+            {
+                cookieCounter -= basePrice * 50000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkMine4.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkMine4Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 75 && !btnPerkMine5Clicked)
+            {
+                cookieCounter -= basePrice * 500000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkMine5.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkMine5Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 1 && !btnPerkFactory1Clicked)
+            {
+                cookieCounter -= basePrice * 100;
+                UpdateScore();
+
+                passiveCounter += passive;
+                PassiveCounter();
+
+                multiplier *= 2;
+                passive *= 2;
+
+                BtnPerkFactory1.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFactory1Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 5 && !btnPerkFactory2Clicked)
+            {
+                cookieCounter -= basePrice * 500;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFactory2.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFactory2Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 25 && !btnPerkFactory3Clicked)
+            {
+                cookieCounter -= basePrice * 5000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFactory3.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFactory3Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 50 && !btnPerkFactory4Clicked)
+            {
+                cookieCounter -= basePrice * 50000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFactory4.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFactory4Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 75 && !btnPerkFactory5Clicked)
+            {
+                cookieCounter -= basePrice * 500000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkFactory5.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkFactory5Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 1 && !btnPerkBank1Clicked)
+            {
+                cookieCounter -= basePrice * 100;
+                UpdateScore();
+
+                passiveCounter += passive;
+                PassiveCounter();
+
+                multiplier *= 2;
+                passive *= 2;
+
+                BtnPerkBank1.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkBank1Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 5 && !btnPerkBank2Clicked)
+            {
+                cookieCounter -= basePrice * 500;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkBank2.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkBank2Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 25 && !btnPerkBank3Clicked)
+            {
+                cookieCounter -= basePrice * 5000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkBank3.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkBank3Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 50 && !btnPerkBank4Clicked)
+            {
+                cookieCounter -= basePrice * 50000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkBank4.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkBank4Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 75 && !btnPerkBank5Clicked)
+            {
+                cookieCounter -= basePrice * 500000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkBank5.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkBank5Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 1 && !btnPerkTemple1Clicked)
+            {
+                cookieCounter -= basePrice * 100;
+                UpdateScore();
+
+                passiveCounter += passive;
+                PassiveCounter();
+
+                multiplier *= 2;
+                passive *= 2;
+
+                BtnPerkTemple1.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkTemple1Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 5 && !btnPerkTemple2Clicked)
+            {
+                cookieCounter -= basePrice * 500;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkTemple2.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkTemple2Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 25 && !btnPerkTemple3Clicked)
+            {
+                cookieCounter -= basePrice * 5000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkTemple3.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkTemple3Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 50 && !btnPerkTemple4Clicked)
+            {
+                cookieCounter -= basePrice * 50000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkTemple4.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkTemple4Clicked = true;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 75 && !btnPerkTemple5Clicked)
+            {
+                cookieCounter -= basePrice * 500000;
+                UpdateScore();
+
+                PassiveCalculate(ref multiplier, ref passive);
+
+                BtnPerkTemple5.Visibility = Visibility.Collapsed;
+                BonusSound();
+
+                btnPerkTemple5Clicked = true;
+            }
+
+        }
+
+        private void BtnPerk_Click(object sender, RoutedEventArgs e)
+        {
+            string buttonName = ((Button)sender).Name;
+
+            BuyPerk(buttonName);
+        }
+
+        private void PassiveCalculate(ref double multiplier, ref double passive)
+        {
+            passiveCounter += passive * 2;
+            PassiveCounter();
+
+            multiplier *= 2;
+            passive *= 2;
+        }
+
+        private void PerkVisibility()
+        {
+            BtnPerkCursor1.Visibility = Visibility.Collapsed;
+            BtnPerkCursor2.Visibility = Visibility.Collapsed;
+            BtnPerkCursor3.Visibility = Visibility.Collapsed;
+            BtnPerkCursor4.Visibility = Visibility.Collapsed;
+            BtnPerkCursor5.Visibility = Visibility.Collapsed;
+            BtnPerkGrandma1.Visibility = Visibility.Collapsed;
+            BtnPerkGrandma2.Visibility = Visibility.Collapsed;
+            BtnPerkGrandma3.Visibility = Visibility.Collapsed;
+            BtnPerkGrandma4.Visibility = Visibility.Collapsed;
+            BtnPerkGrandma5.Visibility = Visibility.Collapsed;
+            BtnPerkFarm1.Visibility = Visibility.Collapsed;
+            BtnPerkFarm2.Visibility = Visibility.Collapsed;
+            BtnPerkFarm3.Visibility = Visibility.Collapsed;
+            BtnPerkFarm4.Visibility = Visibility.Collapsed;
+            BtnPerkFarm5.Visibility = Visibility.Collapsed;
+            BtnPerkMine1.Visibility = Visibility.Collapsed;
+            BtnPerkMine2.Visibility = Visibility.Collapsed;
+            BtnPerkMine3.Visibility = Visibility.Collapsed;
+            BtnPerkMine4.Visibility = Visibility.Collapsed;
+            BtnPerkMine5.Visibility = Visibility.Collapsed;
+            BtnPerkFactory1.Visibility = Visibility.Collapsed;
+            BtnPerkFactory2.Visibility = Visibility.Collapsed;
+            BtnPerkFactory3.Visibility = Visibility.Collapsed;
+            BtnPerkFactory4.Visibility = Visibility.Collapsed;
+            BtnPerkFactory5.Visibility = Visibility.Collapsed;
+            BtnPerkBank1.Visibility = Visibility.Collapsed;
+            BtnPerkBank2.Visibility = Visibility.Collapsed;
+            BtnPerkBank3.Visibility = Visibility.Collapsed;
+            BtnPerkBank4.Visibility = Visibility.Collapsed;
+            BtnPerkBank5.Visibility = Visibility.Collapsed;
+            BtnPerkTemple1.Visibility = Visibility.Collapsed;
+            BtnPerkTemple2.Visibility = Visibility.Collapsed;
+            BtnPerkTemple3.Visibility = Visibility.Collapsed;
+            BtnPerkTemple4.Visibility = Visibility.Collapsed;
+            BtnPerkTemple5.Visibility = Visibility.Collapsed;
+
+            if (Convert.ToDouble(LblClickCursor.Content) >= 1 && !btnPerkCursor1Clicked)
+            {
+                BtnPerkCursor1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 5 && !btnPerkCursor2Clicked)
+            {
+                BtnPerkCursor2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 25 && !btnPerkCursor3Clicked)
+            {
+                BtnPerkCursor3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 50 && !btnPerkCursor4Clicked)
+            {
+                BtnPerkCursor4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickCursor.Content) >= 75 && !btnPerkCursor5Clicked)
+            {
+                BtnPerkCursor5.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 1 && !btnPerkGrandma1Clicked)
+            {
+                BtnPerkGrandma1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 5 && !btnPerkGrandma2Clicked)
+            {
+                BtnPerkGrandma2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 25 && !btnPerkGrandma3Clicked)
+            {
+                BtnPerkGrandma3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 50 && !btnPerkGrandma4Clicked)
+            {
+                BtnPerkGrandma4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickGrandma.Content) >= 75 && !btnPerkGrandma5Clicked)
+            {
+                BtnPerkGrandma5.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 1 && !btnPerkFarm1Clicked)
+            {
+                BtnPerkFarm1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 5 && !btnPerkFarm2Clicked)
+            {
+                BtnPerkFarm2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 25 && !btnPerkFarm3Clicked)
+            {
+                BtnPerkFarm3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 50 && !btnPerkFarm4Clicked)
+            {
+                BtnPerkFarm4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFarm.Content) >= 75 && !btnPerkFarm5Clicked)
+            {
+                BtnPerkFarm5.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 1 && !btnPerkMine1Clicked)
+            {
+                BtnPerkMine1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 5 && !btnPerkMine2Clicked)
+            {
+                BtnPerkMine2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 25 && !btnPerkMine3Clicked)
+            {
+                BtnPerkMine3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 50 && !btnPerkMine4Clicked)
+            {
+                BtnPerkMine4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickMine.Content) >= 75 && !btnPerkMine5Clicked)
+            {
+                BtnPerkMine5.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 1 && !btnPerkFactory1Clicked)
+            {
+                BtnPerkFactory1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 5 && !btnPerkFactory2Clicked)
+            {
+                BtnPerkFactory2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 25 && !btnPerkFactory3Clicked)
+            {
+                BtnPerkFactory3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 50 && !btnPerkFactory4Clicked)
+            {
+                BtnPerkFactory4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickFactory.Content) >= 75 && !btnPerkFactory5Clicked)
+            {
+                BtnPerkFactory5.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 1 && !btnPerkBank1Clicked)
+            {
+                BtnPerkBank1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 5 && !btnPerkBank2Clicked)
+            {
+                BtnPerkBank2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 25 && !btnPerkBank3Clicked)
+            {
+                BtnPerkBank3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 50 && !btnPerkBank4Clicked)
+            {
+                BtnPerkBank4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickBank.Content) >= 75 && !btnPerkBank5Clicked)
+            {
+                BtnPerkBank5.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 1 && !btnPerkTemple1Clicked)
+            {
+                BtnPerkTemple1.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 5 && !btnPerkTemple2Clicked)
+            {
+                BtnPerkTemple2.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 25 && !btnPerkTemple3Clicked)
+            {
+                BtnPerkTemple3.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 50 && !btnPerkTemple4Clicked)
+            {
+                BtnPerkTemple4.Visibility = Visibility.Visible;
+            }
+            if (Convert.ToDouble(LblClickTemple.Content) >= 75 && !btnPerkTemple5Clicked)
+            {
+                BtnPerkTemple5.Visibility = Visibility.Visible;
+            }
         }
     }
 }
