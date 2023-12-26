@@ -53,44 +53,44 @@
             <Image Name="ImgSound" Source="./Media/SoundOn1.png" Height="35" Width="35" MouseUp="ImgSound_MouseUp" Tag="On" Margin="0,10,10,0" />
         </StackPanel>
         
-        <Grid Grid.Column="1" Grid.Row="2" Width="320" Height="120">
+        <Grid Grid.Column="1" Grid.Row="2" >
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <WrapPanel Width="300">
-                    <Button x:Name="BtnPerkCursor1" Content="BtnPerk1" Margin="5" Width="60" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkCursor2" Content="BtnPerk2" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
-                    <Button x:Name="BtnPerkCursor3" Content="BtnPerk3" Margin="5" Width="60" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkCursor4" Content="BtnPerk4" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkCursor5" Content="BtnPerk5" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkGrandma1" Content="BtnPerk6" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkGrandma2" Content="BtnPerk7" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkGrandma3" Content="BtnPerk8" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkGrandma4" Content="BtnPerk9" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkGrandma5" Content="BtnPerk10" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFarm1" Content="BtnPerk11" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFarm2" Content="BtnPerk12" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFarm3" Content="BtnPerk13" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFarm4" Content="BtnPerk14" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFarm5" Content="BtnPerk15" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkMine1" Content="BtnPerk16" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkMine2" Content="BtnPerk17" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkMine3" Content="BtnPerk18" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkMine4" Content="BtnPerk19" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkMine5" Content="BtnPerk20" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFactory1" Content="BtnPerk21" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFactory2" Content="BtnPerk22" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFactory3" Content="BtnPerk23" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFactory4" Content="BtnPerk24" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkFactory5" Content="BtnPerk25" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkBank1" Content="BtnPerk26" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkBank2" Content="BtnPerk27" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkBank3" Content="BtnPerk28" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkBank4" Content="BtnPerk29" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkBank5" Content="BtnPerk30" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkTemple1" Content="BtnPerk31" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkTemple2" Content="BtnPerk32" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkTemple3" Content="BtnPerk33" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkTemple4" Content="BtnPerk34" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
-                    <Button x:Name="BtnPerkTemple5" Content="BtnPerk35" Margin="5" Width="40" Height="40" Click="BtnPerk_Click"/>
+                <WrapPanel >
+                    <Button x:Name="BtnPerkCursor1" Content="BtnPerk1" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="True" Visibility="Collapsed"/>
+                    <Button x:Name="BtnPerkCursor2" Content="BtnPerk2" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
+                    <Button x:Name="BtnPerkCursor3" Content="BtnPerk3" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
+                    <Button x:Name="BtnPerkCursor4" Content="BtnPerk4" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
+                    <Button x:Name="BtnPerkCursor5" Content="BtnPerk5" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
+                    <Button x:Name="BtnPerkGrandma1" Content="BtnPerk6" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkGrandma2" Content="BtnPerk7" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkGrandma3" Content="BtnPerk8" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkGrandma4" Content="BtnPerk9" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkGrandma5" Content="BtnPerk10" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFarm1" Content="BtnPerk11" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFarm2" Content="BtnPerk12" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFarm3" Content="BtnPerk13" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFarm4" Content="BtnPerk14" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFarm5" Content="BtnPerk15" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkMine1" Content="BtnPerk16" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkMine2" Content="BtnPerk17" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkMine3" Content="BtnPerk18" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkMine4" Content="BtnPerk19" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkMine5" Content="BtnPerk20" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFactory1" Content="BtnPerk21" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFactory2" Content="BtnPerk22" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFactory3" Content="BtnPerk23" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFactory4" Content="BtnPerk24" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkFactory5" Content="BtnPerk25" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkBank1" Content="BtnPerk26" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkBank2" Content="BtnPerk27" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkBank3" Content="BtnPerk28" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkBank4" Content="BtnPerk29" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkBank5" Content="BtnPerk30" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkTemple1" Content="BtnPerk31" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkTemple2" Content="BtnPerk32" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkTemple3" Content="BtnPerk33" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkTemple4" Content="BtnPerk34" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
+                    <Button x:Name="BtnPerkTemple5" Content="BtnPerk35" Margin="5" Width="40" Height="40" Click="BtnPerk_Click" IsEnabled="False"/>
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
