@@ -84,9 +84,7 @@ namespace CookieCliker
         private readonly Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
         private readonly Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
 
-        private BitmapImage image = new BitmapImage();                                                                       //Afbleedingen voor UI Investeringen
-        private StackPanel stackPanel = new StackPanel();
-        private readonly BitmapImage grandmaImage = new BitmapImage(new Uri(@"../../Media/Grandma.png", UriKind.RelativeOrAbsolute));                                                         //nieuwe imagebrush voor UI
+        private readonly BitmapImage grandmaImage = new BitmapImage(new Uri(@"../../Media/Grandma.png", UriKind.RelativeOrAbsolute));    //Afbleedingen voor UI Investeringen                                                //nieuwe imagebrush voor UI
         private readonly BitmapImage farmImage = new BitmapImage(new Uri(@"../../Media/Farm.png", UriKind.RelativeOrAbsolute));
         private readonly BitmapImage mineImage = new BitmapImage(new Uri(@"../../Media/Mine.png", UriKind.RelativeOrAbsolute));
         private readonly BitmapImage factoryImage = new BitmapImage(new Uri(@"../../Media/Factory.png", UriKind.RelativeOrAbsolute));
@@ -271,7 +269,6 @@ namespace CookieCliker
             StoreButton(buttonName);
             BuyStore(buttonName);
 
-            AddInvestment(image, stackPanel);
             PassiveCounter();
             ShopButtonEnable();
             UpdateScore();
@@ -324,6 +321,7 @@ namespace CookieCliker
                     basePrice = basePriceCursor;
                     PlaySound(clickCursor);
                     passiveCounter += passiveCursor;
+
                     break;
 
                 case "Btn_Grandma":
@@ -332,8 +330,7 @@ namespace CookieCliker
                     basePrice = basePriceGrandma;
                     PlaySound(grandma);
                     passiveCounter += passiveGrandma;
-                    image = grandmaImage;
-                    stackPanel = StckGrandma;
+                    AddInvestment(grandmaImage, StckGrandma);
                     break;
 
                 case "Btn_Farm":
@@ -342,8 +339,7 @@ namespace CookieCliker
                     basePrice = basePriceFarm;
                     PlaySound(farm);
                     passiveCounter += passiveFarm;
-                    image = farmImage;
-                    stackPanel = StckFarm;
+                    AddInvestment(farmImage, StckFarm);
                     break;
 
                 case "Btn_Mine":
@@ -352,8 +348,7 @@ namespace CookieCliker
                     basePrice = basePriceMine;
                     PlaySound(mine);
                     passiveCounter += passiveMine;
-                    image = mineImage;
-                    stackPanel = StckMine;
+                    AddInvestment(mineImage, StckMine);
                     break;
 
                 case "Btn_Factory":
@@ -362,8 +357,7 @@ namespace CookieCliker
                     basePrice = basePriceFactory;
                     PlaySound(factory);
                     passiveCounter += passiveFactory;
-                    image = factoryImage;
-                    stackPanel = StckFactory;
+                    AddInvestment(factoryImage, StckFactory);
                     break;
 
                 case "Btn_Bank":
@@ -372,8 +366,7 @@ namespace CookieCliker
                     basePrice = basePriceBank;
                     PlaySound(bank);
                     passiveCounter += passiveBank;
-                    image = bankImage;
-                    stackPanel = StckBank;
+                    AddInvestment(bankImage, StckBank);
                     break;
 
                 case "Btn_Temple":
@@ -382,8 +375,7 @@ namespace CookieCliker
                     basePrice = basePriceTemple;
                     PlaySound(temple);
                     passiveCounter += passiveTemple;
-                    image = templeImage;
-                    stackPanel = StckTemple;
+                    AddInvestment(templeImage, StckTemple);
                     break;
             }
         }
@@ -782,11 +774,11 @@ namespace CookieCliker
 
         private void Quests()
         {
-            if (LblClickGrandma.Content.ToString() == "20")
+            if (investmentGrandmaAmount == 20)
             {
                 MessageBox.Show("20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;)");
             }
-            if (LblClickFarm.Content.ToString() == "20")
+            if (LblClickFarm.Content.ToString() == "10")
             {
                 MessageBox.Show("20 farms, de koeien zijn blij met hun nieuwe stal");
             }
@@ -840,12 +832,48 @@ namespace CookieCliker
             ImgGoldenCookie.Visibility = Visibility.Visible;
         }
 
-        private double tierValue = new double();
+        private double tierValue = new double();                // Variabele die aangeeft welke tier het is en de waarde van de tier
         private const double tierValue1 = 100;
         private const double tierValue2 = 500;
         private const double tierValue3 = 5000;
         private const double tierValue4 = 50000;
         private const double tierValue5 = 500000;
+
+        private bool clickedOnCursorPerk1 = false;  // Boolean die aangeeft of er op de knop geklikt is, deze wordt gebruikt om de knoppen te enabelen of visibility te geven of niet
+        private bool clickedOnCursorPerk2 = false;
+        private bool clickedOnCursorPerk3 = false;
+        private bool clickedOnCursorPerk4 = false;
+        private bool clickedOnCursorPerk5 = false;
+        private bool clickedOnGrandmaPerk1 = false;
+        private bool clickedOnGrandmaPerk2 = false;
+        private bool clickedOnGrandmaPerk3 = false;
+        private bool clickedOnGrandmaPerk4 = false;
+        private bool clickedOnGrandmaPerk5 = false;
+        private bool clickedOnFarmPerk1 = false;
+        private bool clickedOnFarmPerk2 = false;
+        private bool clickedOnFarmPerk3 = false;
+        private bool clickedOnFarmPerk4 = false;
+        private bool clickedOnFarmPerk5 = false;
+        private bool clickedOnMinePerk1 = false;
+        private bool clickedOnMinePerk2 = false;
+        private bool clickedOnMinePerk3 = false;
+        private bool clickedOnMinePerk4 = false;
+        private bool clickedOnMinePerk5 = false;
+        private bool clickedOnFactoryPerk1 = false;
+        private bool clickedOnFactoryPerk2 = false;
+        private bool clickedOnFactoryPerk3 = false;
+        private bool clickedOnFactoryPerk4 = false;
+        private bool clickedOnFactoryPerk5 = false;
+        private bool clickedOnBankPerk1 = false;
+        private bool clickedOnBankPerk2 = false;
+        private bool clickedOnBankPerk3 = false;
+        private bool clickedOnBankPerk4 = false;
+        private bool clickedOnBankPerk5 = false;
+        private bool clickedOnTemplePerk1 = false;
+        private bool clickedOnTemplePerk2 = false;
+        private bool clickedOnTemplePerk3 = false;
+        private bool clickedOnTemplePerk4 = false;
+        private bool clickedOnTemplePerk5 = false;
 
         private void BuyPerk(ref double multiplier, ref double passive)
         {
@@ -856,13 +884,9 @@ namespace CookieCliker
 
             passiveCounter += passive * investmentAmount;
             PassiveCounter();
-            
+
             multiplier *= 2;
             passive *= 2;
-
-            clickedOnPerk = true;
-
-            
 
             PlaySound(ping);
         }
@@ -890,6 +914,126 @@ namespace CookieCliker
                 case "BtnPerkCursor5":
                     BuyPerk(ref cursorMultiplier, ref passiveCursor);
                     break;
+
+                case "BtnPerkGrandma1":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    break;
+
+                case "BtnPerkGrandma2":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    break;
+
+                case "BtnPerkGrandma3":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    break;
+
+                case "BtnPerkGrandma4":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    break;
+
+                case "BtnPerkGrandma5":
+                    BuyPerk(ref grandmaMultiplier, ref passiveGrandma);
+                    break;
+
+                case "BtnPerkFarm1":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    break;
+
+                case "BtnPerkFarm2":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    break;
+
+                case "BtnPerkFarm3":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    break;
+
+                case "BtnPerkFarm4":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    break;
+
+                case "BtnPerkFarm5":
+                    BuyPerk(ref farmMultiplier, ref passiveFarm);
+                    break;
+
+                case "BtnPerkMine1":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    break;
+
+                case "BtnPerkMine2":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    break;
+
+                case "BtnPerkMine3":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    break;
+
+                case "BtnPerkMine4":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    break;
+
+                case "BtnPerkMine5":
+                    BuyPerk(ref mineMultiplier, ref passiveMine);
+                    break;
+
+                case "BtnPerkFactory1":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    break;
+
+                case "BtnPerkFactory2":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    break;
+
+                case "BtnPerkFactory3":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    break;
+
+                case "BtnPerkFactory4":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    break;
+
+                case "BtnPerkFactory5":
+                    BuyPerk(ref factoryMultiplier, ref passiveFactory);
+                    break;
+
+                case "BtnPerkBank1":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    break;
+
+                case "BtnPerkBank2":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    break;
+
+                case "BtnPerkBank3":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    break;
+
+                case "BtnPerkBank4":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    break;
+
+                case "BtnPerkBank5":
+                    BuyPerk(ref bankMultiplier, ref passiveBank);
+                    break;
+
+                case "BtnPerkTemple1":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    break;
+
+                case "BtnPerkTemple2":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    break;
+
+                case "BtnPerkTemple3":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    break;
+
+                case "BtnPerkTemple4":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    break;
+
+                case "BtnPerkTemple5":
+                    BuyPerk(ref templeMultiplier, ref passiveTemple);
+                    break;
             }
         }
 
@@ -902,7 +1046,7 @@ namespace CookieCliker
                     btnPerk = BtnPerkCursor1;
                     tierValue = tierValue1;
                     investmentAmount = investmentCursorAmount;
-                    clickedOnPerk = clickedOnCursorPerk1;
+                    clickedOnCursorPerk1 = true;
                     break;
 
                 case "BtnPerkCursor2":
@@ -910,7 +1054,7 @@ namespace CookieCliker
                     btnPerk = BtnPerkCursor2;
                     tierValue = tierValue2;
                     investmentAmount = investmentCursorAmount;
-                    clickedOnPerk = clickedOnCursorPerk2;
+                    clickedOnCursorPerk2 = true;
                     break;
 
                 case "BtnPerkCursor3":
@@ -918,7 +1062,7 @@ namespace CookieCliker
                     btnPerk = BtnPerkCursor3;
                     tierValue = tierValue3;
                     investmentAmount = investmentCursorAmount;
-                    clickedOnPerk = clickedOnCursorPerk3;
+                    clickedOnCursorPerk3 = true;
                     break;
 
                 case "BtnPerkCursor4":
@@ -926,7 +1070,7 @@ namespace CookieCliker
                     btnPerk = BtnPerkCursor4;
                     tierValue = tierValue4;
                     investmentAmount = investmentCursorAmount;
-                    clickedOnPerk = clickedOnCursorPerk4;
+                    clickedOnCursorPerk4 = true;
                     break;
 
                 case "BtnPerkCursor5":
@@ -934,11 +1078,250 @@ namespace CookieCliker
                     btnPerk = BtnPerkCursor5;
                     tierValue = tierValue5;
                     investmentAmount = investmentCursorAmount;
-                    clickedOnPerk = clickedOnCursorPerk5;
+                    clickedOnCursorPerk5 = true;
+                    break;
+
+                case "BtnPerkGrandma1":
+                    basePrice = basePriceGrandma;
+                    btnPerk = BtnPerkGrandma1;
+                    tierValue = tierValue1;
+                    investmentAmount = investmentGrandmaAmount;
+                    clickedOnGrandmaPerk1 = true;
+                    break;
+
+                case "BtnPerkGrandma2":
+                    basePrice = basePriceGrandma;
+                    btnPerk = BtnPerkGrandma2;
+                    tierValue = tierValue2;
+                    investmentAmount = investmentGrandmaAmount;
+                    clickedOnGrandmaPerk2 = true;
+                    break;
+
+                case "BtnPerkGrandma3":
+                    basePrice = basePriceGrandma;
+                    btnPerk = BtnPerkGrandma3;
+                    tierValue = tierValue3;
+                    investmentAmount = investmentGrandmaAmount;
+                    clickedOnGrandmaPerk3 = true;
+                    break;
+
+                case "BtnPerkGrandma4":
+                    basePrice = basePriceGrandma;
+                    btnPerk = BtnPerkGrandma4;
+                    tierValue = tierValue4;
+                    investmentAmount = investmentGrandmaAmount;
+                    clickedOnGrandmaPerk4 = true;
+                    break;
+
+                case "BtnPerkGrandma5":
+                    basePrice = basePriceGrandma;
+                    btnPerk = BtnPerkGrandma5;
+                    tierValue = tierValue5;
+                    investmentAmount = investmentGrandmaAmount;
+                    clickedOnGrandmaPerk5 = true;
+                    break;
+
+                case "BtnPerkFarm1":
+                    basePrice = basePriceFarm;
+                    btnPerk = BtnPerkFarm1;
+                    tierValue = tierValue1;
+                    investmentAmount = investmentFarmAmount;
+                    clickedOnFarmPerk1 = true;
+                    break;
+
+                case "BtnPerkFarm2":
+                    basePrice = basePriceFarm;
+                    btnPerk = BtnPerkFarm2;
+                    tierValue = tierValue2;
+                    investmentAmount = investmentFarmAmount;
+                    clickedOnFarmPerk2 = true;
+                    break;
+
+                case "BtnPerkFarm3":
+                    basePrice = basePriceFarm;
+                    btnPerk = BtnPerkFarm3;
+                    tierValue = tierValue3;
+                    investmentAmount = investmentFarmAmount;
+                    clickedOnFarmPerk3 = true;
+                    break;
+
+                case "BtnPerkFarm4":
+                    basePrice = basePriceFarm;
+                    btnPerk = BtnPerkFarm4;
+                    tierValue = tierValue4;
+                    investmentAmount = investmentFarmAmount;
+                    clickedOnFarmPerk4 = true;
+                    break;
+
+                case "BtnPerkFarm5":
+                    basePrice = basePriceFarm;
+                    btnPerk = BtnPerkFarm5;
+                    tierValue = tierValue5;
+                    investmentAmount = investmentFarmAmount;
+                    clickedOnFarmPerk5 = true;
+                    break;
+
+                case "BtnPerkMine1":
+                    basePrice = basePriceMine;
+                    btnPerk = BtnPerkMine1;
+                    tierValue = tierValue1;
+                    investmentAmount = investmentMineAmount;
+                    clickedOnMinePerk1 = true;
+                    break;
+
+                case "BtnPerkMine2":
+                    basePrice = basePriceMine;
+                    btnPerk = BtnPerkMine2;
+                    tierValue = tierValue2;
+                    investmentAmount = investmentMineAmount;
+                    clickedOnMinePerk2 = true;
+                    break;
+
+                case "BtnPerkMine3":
+                    basePrice = basePriceMine;
+                    btnPerk = BtnPerkMine3;
+                    tierValue = tierValue3;
+                    investmentAmount = investmentMineAmount;
+                    clickedOnMinePerk3 = true;
+                    break;
+
+                case "BtnPerkMine4":
+                    basePrice = basePriceMine;
+                    btnPerk = BtnPerkMine4;
+                    tierValue = tierValue4;
+                    investmentAmount = investmentMineAmount;
+                    clickedOnMinePerk4 = true;
+                    break;
+
+                case "BtnPerkMine5":
+                    basePrice = basePriceMine;
+                    btnPerk = BtnPerkMine5;
+                    tierValue = tierValue5;
+                    investmentAmount = investmentMineAmount;
+                    clickedOnMinePerk5 = true;
+                    break;
+
+                case "BtnPerkFactory1":
+                    basePrice = basePriceFactory;
+                    btnPerk = BtnPerkFactory1;
+                    tierValue = tierValue1;
+                    investmentAmount = investmentFactoryAmount;
+                    clickedOnFactoryPerk1 = true;
+                    break;
+
+                case "BtnPerkFactory2":
+                    basePrice = basePriceFactory;
+                    btnPerk = BtnPerkFactory2;
+                    tierValue = tierValue2;
+                    investmentAmount = investmentFactoryAmount;
+                    clickedOnFactoryPerk2 = true;
+                    break;
+
+                case "BtnPerkFactory3":
+                    basePrice = basePriceFactory;
+                    btnPerk = BtnPerkFactory3;
+                    tierValue = tierValue3;
+                    investmentAmount = investmentFactoryAmount;
+                    clickedOnFactoryPerk3 = true;
+                    break;
+
+                case "BtnPerkFactory4":
+                    basePrice = basePriceFactory;
+                    btnPerk = BtnPerkFactory4;
+                    tierValue = tierValue4;
+                    investmentAmount = investmentFactoryAmount;
+                    clickedOnFactoryPerk4 = true;
+                    break;
+
+                case "BtnPerkFactory5":
+                    basePrice = basePriceFactory;
+                    btnPerk = BtnPerkFactory5;
+                    tierValue = tierValue5;
+                    investmentAmount = investmentFactoryAmount;
+                    clickedOnFactoryPerk5 = true;
+                    break;
+
+                case "BtnPerkBank1":
+                    basePrice = basePriceBank;
+                    btnPerk = BtnPerkBank1;
+                    tierValue = tierValue1;
+                    investmentAmount = investmentBankAmount;
+                    clickedOnBankPerk1 = true;
+                    break;
+
+                case "BtnPerkBank2":
+                    basePrice = basePriceBank;
+                    btnPerk = BtnPerkBank2;
+                    tierValue = tierValue2;
+                    investmentAmount = investmentBankAmount;
+                    clickedOnBankPerk2 = true;
+                    break;
+
+                case "BtnPerkBank3":
+                    basePrice = basePriceBank;
+                    btnPerk = BtnPerkBank3;
+                    tierValue = tierValue3;
+                    investmentAmount = investmentBankAmount;
+                    clickedOnBankPerk3 = true;
+                    break;
+
+                case "BtnPerkBank4":
+                    basePrice = basePriceBank;
+                    btnPerk = BtnPerkBank4;
+                    tierValue = tierValue4;
+                    investmentAmount = investmentBankAmount;
+                    clickedOnBankPerk4 = true;
+                    break;
+
+                case "BtnPerkBank5":
+                    basePrice = basePriceBank;
+                    btnPerk = BtnPerkBank5;
+                    tierValue = tierValue5;
+                    investmentAmount = investmentBankAmount;
+                    clickedOnBankPerk5 = true;
+                    break;
+
+                case "BtnPerkTemple1":
+                    basePrice = basePriceTemple;
+                    btnPerk = BtnPerkTemple1;
+                    tierValue = tierValue1;
+                    investmentAmount = investmentTempleAmount;
+                    clickedOnTemplePerk1 = true;
+                    break;
+
+                case "BtnPerkTemple2":
+                    basePrice = basePriceTemple;
+                    btnPerk = BtnPerkTemple2;
+                    tierValue = tierValue2;
+                    investmentAmount = investmentTempleAmount;
+                    clickedOnTemplePerk2 = true;
+                    break;
+
+                case "BtnPerkTemple3":
+                    basePrice = basePriceTemple;
+                    btnPerk = BtnPerkTemple3;
+                    tierValue = tierValue3;
+                    investmentAmount = investmentTempleAmount;
+                    clickedOnTemplePerk3 = true;
+                    break;
+
+                case "BtnPerkTemple4":
+                    basePrice = basePriceTemple;
+                    btnPerk = BtnPerkTemple4;
+                    tierValue = tierValue4;
+                    investmentAmount = investmentTempleAmount;
+                    clickedOnTemplePerk4 = true;
+                    break;
+
+                case "BtnPerkTemple5":
+                    basePrice = basePriceTemple;
+                    btnPerk = BtnPerkTemple5;
+                    tierValue = tierValue5;
+                    investmentAmount = investmentTempleAmount;
+                    clickedOnTemplePerk5 = true;
                     break;
             }
         }
-
 
         /// <summary>
         /// Click handler om Perk Upgrades aan te kopen door speler om de passieve inkomen te verhogen
@@ -959,30 +1342,15 @@ namespace CookieCliker
         private readonly int tier4 = 50;
         private readonly int tier5 = 100;
 
-        bool clickedOnPerk = new bool();
-        bool clickedOnCursorPerk1 = false;
-        bool clickedOnCursorPerk2 = false;
-        bool clickedOnCursorPerk3 = false;
-        bool clickedOnCursorPerk4 = false;
-        bool clickedOnCursorPerk5 = false;
-
         private void PerkVisibility()
         {
             if (investmentCursorAmount >= tier1 && !clickedOnCursorPerk1)
             {
                 BtnPerkCursor1.Visibility = Visibility.Visible;
             }
-            else
-            {
-                BtnPerkCursor1.Visibility = Visibility.Collapsed;
-            }
             if (investmentCursorAmount >= tier2 && !clickedOnCursorPerk2)
             {
                 BtnPerkCursor2.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BtnPerkCursor2.Visibility = Visibility.Collapsed;
             }
             if (investmentCursorAmount >= tier3 && !clickedOnCursorPerk3)
             {
@@ -996,6 +1364,126 @@ namespace CookieCliker
             {
                 BtnPerkCursor5.Visibility = Visibility.Visible;
             }
+            if (investmentGrandmaAmount >= tier1 && !clickedOnGrandmaPerk1)
+            {
+                BtnPerkGrandma1.Visibility = Visibility.Visible;
+            }
+            if (investmentGrandmaAmount >= tier2 && !clickedOnGrandmaPerk2)
+            {
+                BtnPerkGrandma2.Visibility = Visibility.Visible;
+            }
+            if (investmentGrandmaAmount >= tier3 && !clickedOnGrandmaPerk3)
+            {
+                BtnPerkGrandma3.Visibility = Visibility.Visible;
+            }
+            if (investmentGrandmaAmount >= tier4 && !clickedOnGrandmaPerk4)
+            {
+                BtnPerkGrandma4.Visibility = Visibility.Visible;
+            }
+            if (investmentGrandmaAmount >= tier5 && !clickedOnGrandmaPerk5)
+            {
+                BtnPerkGrandma5.Visibility = Visibility.Visible;
+            }
+            if (investmentFarmAmount >= tier1 && !clickedOnFarmPerk1)
+            {
+                BtnPerkFarm1.Visibility = Visibility.Visible;
+            }
+            if (investmentFarmAmount >= tier2 && !clickedOnFarmPerk2)
+            {
+                BtnPerkFarm2.Visibility = Visibility.Visible;
+            }
+            if (investmentFarmAmount >= tier3 && !clickedOnFarmPerk3)
+            {
+                BtnPerkFarm3.Visibility = Visibility.Visible;
+            }
+            if (investmentFarmAmount >= tier4 && !clickedOnFarmPerk4)
+            {
+                BtnPerkFarm4.Visibility = Visibility.Visible;
+            }
+            if (investmentFarmAmount >= tier5 && !clickedOnFarmPerk5)
+            {
+                BtnPerkFarm5.Visibility = Visibility.Visible;
+            }
+            if (investmentMineAmount >= tier1 && !clickedOnMinePerk1)
+            {
+                BtnPerkMine1.Visibility = Visibility.Visible;
+            }
+            if (investmentMineAmount >= tier2 && !clickedOnMinePerk2)
+            {
+                BtnPerkMine2.Visibility = Visibility.Visible;
+            }
+            if (investmentMineAmount >= tier3 && !clickedOnMinePerk3)
+            {
+                BtnPerkMine3.Visibility = Visibility.Visible;
+            }
+            if (investmentMineAmount >= tier4 && !clickedOnMinePerk4)
+            {
+                BtnPerkMine4.Visibility = Visibility.Visible;
+            }
+            if (investmentMineAmount >= tier5 && !clickedOnMinePerk5)
+            {
+                BtnPerkMine5.Visibility = Visibility.Visible;
+            }
+            if (investmentFactoryAmount >= tier1 && !clickedOnFactoryPerk1)
+            {
+                BtnPerkFactory1.Visibility = Visibility.Visible;
+            }
+            if (investmentFactoryAmount >= tier2 && !clickedOnFactoryPerk2)
+            {
+                BtnPerkFactory2.Visibility = Visibility.Visible;
+            }
+            if (investmentFactoryAmount >= tier3 && !clickedOnFactoryPerk3)
+            {
+                BtnPerkFactory3.Visibility = Visibility.Visible;
+            }
+            if (investmentFactoryAmount >= tier4 && !clickedOnFactoryPerk4)
+            {
+                BtnPerkFactory4.Visibility = Visibility.Visible;
+            }
+            if (investmentFactoryAmount >= tier5 && !clickedOnFactoryPerk5)
+            {
+                BtnPerkFactory5.Visibility = Visibility.Visible;
+            }
+            if (investmentBankAmount >= tier1 && !clickedOnBankPerk1)
+            {
+                BtnPerkBank1.Visibility = Visibility.Visible;
+            }
+            if (investmentBankAmount >= tier2 && !clickedOnBankPerk2)
+            {
+                BtnPerkBank2.Visibility = Visibility.Visible;
+            }
+            if (investmentBankAmount >= tier3 && !clickedOnBankPerk3)
+            {
+                BtnPerkBank3.Visibility = Visibility.Visible;
+            }
+            if (investmentBankAmount >= tier4 && !clickedOnBankPerk4)
+            {
+                BtnPerkBank4.Visibility = Visibility.Visible;
+            }
+            if (investmentBankAmount >= tier5 && !clickedOnBankPerk5)
+            {
+                BtnPerkBank5.Visibility = Visibility.Visible;
+            }
+            if (investmentTempleAmount >= tier1 && !clickedOnTemplePerk1)
+            {
+                BtnPerkTemple1.Visibility = Visibility.Visible;
+            }
+            if (investmentTempleAmount >= tier2 && !clickedOnTemplePerk2)
+            {
+                BtnPerkTemple2.Visibility = Visibility.Visible;
+            }
+            if (investmentTempleAmount >= tier3 && !clickedOnTemplePerk3)
+            {
+                BtnPerkTemple3.Visibility = Visibility.Visible;
+            }
+            if (investmentTempleAmount >= tier4 && !clickedOnTemplePerk4)
+            {
+                BtnPerkTemple4.Visibility = Visibility.Visible;
+            }
+            if (investmentTempleAmount >= tier5 && !clickedOnTemplePerk5)
+            {
+                BtnPerkTemple5.Visibility = Visibility.Visible;
+            }
         }
 
         private void PerkButtonEnabled()
@@ -1005,6 +1493,36 @@ namespace CookieCliker
             BtnPerkCursor3.IsEnabled = (cookieCounter >= basePriceCursor * tierValue3);
             BtnPerkCursor4.IsEnabled = (cookieCounter >= basePriceCursor * tierValue4);
             BtnPerkCursor5.IsEnabled = (cookieCounter >= basePriceCursor * tierValue5);
+            BtnPerkGrandma1.IsEnabled = (cookieCounter >= basePriceGrandma * tierValue1);
+            BtnPerkGrandma2.IsEnabled = (cookieCounter >= basePriceGrandma * tierValue2);
+            BtnPerkGrandma3.IsEnabled = (cookieCounter >= basePriceGrandma * tierValue3);
+            BtnPerkGrandma4.IsEnabled = (cookieCounter >= basePriceGrandma * tierValue4);
+            BtnPerkGrandma5.IsEnabled = (cookieCounter >= basePriceGrandma * tierValue5);
+            BtnPerkFarm1.IsEnabled = (cookieCounter >= basePriceFarm * tierValue1);
+            BtnPerkFarm2.IsEnabled = (cookieCounter >= basePriceFarm * tierValue2);
+            BtnPerkFarm3.IsEnabled = (cookieCounter >= basePriceFarm * tierValue3);
+            BtnPerkFarm4.IsEnabled = (cookieCounter >= basePriceFarm * tierValue4);
+            BtnPerkFarm5.IsEnabled = (cookieCounter >= basePriceFarm * tierValue5);
+            BtnPerkMine1.IsEnabled = (cookieCounter >= basePriceMine * tierValue1);
+            BtnPerkMine2.IsEnabled = (cookieCounter >= basePriceMine * tierValue2);
+            BtnPerkMine3.IsEnabled = (cookieCounter >= basePriceMine * tierValue3);
+            BtnPerkMine4.IsEnabled = (cookieCounter >= basePriceMine * tierValue4);
+            BtnPerkMine5.IsEnabled = (cookieCounter >= basePriceMine * tierValue5);
+            BtnPerkFactory1.IsEnabled = (cookieCounter >= basePriceFactory * tierValue1);
+            BtnPerkFactory2.IsEnabled = (cookieCounter >= basePriceFactory * tierValue2);
+            BtnPerkFactory3.IsEnabled = (cookieCounter >= basePriceFactory * tierValue3);
+            BtnPerkFactory4.IsEnabled = (cookieCounter >= basePriceFactory * tierValue4);
+            BtnPerkFactory5.IsEnabled = (cookieCounter >= basePriceFactory * tierValue5);
+            BtnPerkBank1.IsEnabled = (cookieCounter >= basePriceBank * tierValue1);
+            BtnPerkBank2.IsEnabled = (cookieCounter >= basePriceBank * tierValue2);
+            BtnPerkBank3.IsEnabled = (cookieCounter >= basePriceBank * tierValue3);
+            BtnPerkBank4.IsEnabled = (cookieCounter >= basePriceBank * tierValue4);
+            BtnPerkBank5.IsEnabled = (cookieCounter >= basePriceBank * tierValue5);
+            BtnPerkTemple1.IsEnabled = (cookieCounter >= basePriceTemple * tierValue1);
+            BtnPerkTemple2.IsEnabled = (cookieCounter >= basePriceTemple * tierValue2);
+            BtnPerkTemple3.IsEnabled = (cookieCounter >= basePriceTemple * tierValue3);
+            BtnPerkTemple4.IsEnabled = (cookieCounter >= basePriceTemple * tierValue4);
+            BtnPerkTemple5.IsEnabled = (cookieCounter >= basePriceTemple * tierValue5);
         }
     }
 }
