@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="Cookie Clicker" Width="800" Height="400" MinHeight="400" MinWidth="1000">
+        Title="Cookie Clicker" Width="800" Height="500" MinHeight="400" MinWidth="1000">
     <Window.Resources>
         <ImageBrush x:Key="ImgBrushGrandma" ImageSource="./Media/achtergrondKeuken.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
-        <ImageBrush x:Key="ImgBrushFarm" ImageSource="./Media/achtergrondFarm.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
+        <ImageBrush x:Key="ImgBrushFarm" ImageSource="./Media/achtergrondFarm.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,135"></ImageBrush>
         <ImageBrush x:Key="ImgBrushMine" ImageSource="./Media/achtergrondMijn.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushFactory" ImageSource="./Media/achtergrondFactory.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,240,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushBank" ImageSource="./Media/achtergrondBank.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
@@ -344,6 +344,15 @@
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>
+        </ScrollViewer>
+        <Image Grid.Column="0" Grid.Row="2" Name="ImgScrollAndQuill" Source="./Media/ScrollAndQuill.png"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom">
+        <StackPanel Grid.Column="0" Grid.Row="2" >
+        <ScrollViewer Grid.Column="0" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ListBox Height="150" Grid.Row="2" Grid.Column="0" x:Name="LstBoxQuests" Background="SkyBlue" BorderBrush="AliceBlue" BorderThickness="2" Opacity="0.7" SelectionChanged="LstBoxQuests_SelectionChanged" Visibility="Collapsed"/>
+        </ScrollViewer>
+                <TextBox x:Name="TxtBoxQuests" IsReadOnly="True" Height="40" Grid.Row="2" Grid.Column="0" Background="SkyBlue" Opacity="0.7" BorderBrush="AliceBlue" BorderThickness="2" TextWrapping="Wrap" Text="Questlog" Visibility="Collapsed"/>
+        </StackPanel>
         </ScrollViewer>
     </Grid>
 </Window>

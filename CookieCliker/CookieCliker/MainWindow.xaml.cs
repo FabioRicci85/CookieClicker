@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,8 +17,8 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 100000;
-        private double cookieTotal = 100000;
+        private double cookieCounter = 100000000;
+        private double cookieTotal = 100000000;
 
         private double passiveCounter = 0;
         private Label labelPrice = new Label();
@@ -124,6 +125,8 @@ namespace CookieCliker
             };
             goldenCookieTimer.Tick += new EventHandler(GoldenCookie);
             goldenCookieTimer.Start();
+
+            AddQuests();
         }
 
         /// <summary>
@@ -274,7 +277,7 @@ namespace CookieCliker
             UpdateScore();
             PerkVisibility();
             PerkButtonEnabled();
-            //Quests();
+            Quests();
         }
 
         private void BuyStore(string button)
@@ -697,6 +700,7 @@ namespace CookieCliker
             double biljoen = 1000000000000;
             double biljard = 1000000000000000;
             double triljoen = 1000000000000000000;
+            
 
             if (value >= triljoen)
             {
@@ -771,19 +775,170 @@ namespace CookieCliker
         }
 
         // Quests en PowerUps die de speler kan aankopen
+        Dictionary<string, string> quests = new Dictionary<string, string>();
+
+        readonly string behaaldeQuest1 = "1 cursor";
+        readonly string behaaldeQuest2 = "5 farms";
+        readonly string behaaldeQuest3 = "5 temples";
+        readonly string behaaldeQuest4 = "10 cursors";
+        readonly string behaaldeQuest5 = "10 mines";
+        readonly string behaaldeQuest6 = "10 banks";
+        readonly string behaaldeQuest7 = "20 grandmas";
+        readonly string behaaldeQuest8 = "20 farms";
+        readonly string behaaldeQuest9 = "25 factories";
+        readonly string behaaldeQuest10 = "30 tempels";
+        readonly string behaaldeQuest11 = "50 farms";
+        readonly string behaaldeQuest12 = "100 cursors";
+        readonly string behaaldeQuest13 = "100 grandmas";
+        readonly string behaaldeQuest14 = "100 banks";
+        readonly string behaaldeQuest15 = "1000 cookies";
+        readonly string behaaldeQuest16 = "1.000.000 cookies";
+        readonly string behaaldeQuest17 = "10.000.000 cookies";
+        readonly string behaaldeQuest18 = "Golden Cookie";
+        readonly string behaaldeQuest19 = "1 Perk";
+        readonly string behaaldeQuest20 = "10 Perks";
+        readonly string behaaldeQuest21 = "Quest Collector";
 
         private void Quests()
-        {
-            if (investmentGrandmaAmount == 20)
+        {     
+            if (investmentCursorAmount == 1 && !LstBoxQuests.Items.Contains(behaaldeQuest1))
             {
-                MessageBox.Show("20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;)");
+                MessageBox.Show(quests["1 cursor"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest1);
             }
-            if (LblClickFarm.Content.ToString() == "10")
+            if (investmentFarmAmount == 5 && !LstBoxQuests.Items.Contains(behaaldeQuest2))
             {
-                MessageBox.Show("20 farms, de koeien zijn blij met hun nieuwe stal");
+                MessageBox.Show(quests["5 farms"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest2);
+            }
+            if (investmentTempleAmount == 5 && !LstBoxQuests.Items.Contains(behaaldeQuest3))
+            {
+                MessageBox.Show(quests["5 temples"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest3);
+            }
+            if (investmentCursorAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest4))
+            {
+                MessageBox.Show(quests["10 cursors"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest4);
+            }
+            if (investmentMineAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest5))
+            {
+                MessageBox.Show(quests["10 mines"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest5);
+            }
+            if (investmentBankAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest6))
+            {
+                MessageBox.Show(quests["10 banks"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest6);
+            }
+            if (investmentGrandmaAmount == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest7))
+            {
+                MessageBox.Show(quests["20 grandmas"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest7);
+            }
+            if (investmentFarmAmount == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest8))
+            {
+                MessageBox.Show(quests["20 farms"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest8);
+            }
+            if (investmentFactoryAmount == 25 && !LstBoxQuests.Items.Contains(behaaldeQuest9))
+            {
+                MessageBox.Show(quests["25 factories"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest9);
+            }
+            if (investmentTempleAmount == 30 && !LstBoxQuests.Items.Contains(behaaldeQuest10))
+            {
+                MessageBox.Show(quests["30 tempels"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest10);
+            }
+            if (investmentFarmAmount == 50 && !LstBoxQuests.Items.Contains(behaaldeQuest11))
+            {
+                MessageBox.Show(quests["50 farms"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest11);
+            }
+            if (investmentCursorAmount == 100 && !LstBoxQuests.Items.Contains(behaaldeQuest12))
+            {
+                MessageBox.Show(quests["100 cursors"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest12);
+            }
+            if (investmentGrandmaAmount == 100 && !LstBoxQuests.Items.Contains(behaaldeQuest13))
+            {
+                MessageBox.Show(quests["100 grandmas"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest13);
+            }
+            if (investmentBankAmount == 100 && !LstBoxQuests.Items.Contains(behaaldeQuest14))
+            {
+                MessageBox.Show(quests["100 banks"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest14);
+            }
+            if (cookieCounter >= 1000 && !LstBoxQuests.Items.Contains(behaaldeQuest15))
+            {
+                MessageBox.Show(quests["1000 cookies"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest15);
+            }
+            if (cookieCounter >= 1000000 && !LstBoxQuests.Items.Contains(behaaldeQuest16))
+            {
+                MessageBox.Show(quests["1.000.000 cookies"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest16);
+            }
+            if (cookieCounter >= 10000000 && !LstBoxQuests.Items.Contains(behaaldeQuest17))
+            {
+                MessageBox.Show(quests["10.000.000 cookies"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest17);
+            }
+            if (goldenCookieClicked == true && !LstBoxQuests.Items.Contains(behaaldeQuest18))
+            {
+                MessageBox.Show(quests["Golden Cookie"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest18);
+            }
+            if (perkAmount == 1 && !LstBoxQuests.Items.Contains(behaaldeQuest19))
+            {
+                MessageBox.Show(quests["1 Perk"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest19);
+            }
+            if (perkAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest20))
+            {
+                MessageBox.Show(quests["10 Perks"], "Quest Completed"); 
+                LstBoxQuests.Items.Add(behaaldeQuest20);
+            }
+            if (LstBoxQuests.Items.Count == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest21))
+            {
+                MessageBox.Show(quests["Quest Collector"], "Quest Completed");
+                LstBoxQuests.Items.Add(behaaldeQuest21);
             }
         }
 
+        private void AddQuests()
+        {
+            quests.Add("1 cursor", "WOOOOO je eerste investering!");
+            quests.Add("5 farms", "Al 5 boerderijen! Je koopt deze toch niet voor de boerendochter hé ;) ");
+            quests.Add("5 temples", "5 temples, de goden krijgen niet genoeg van je speciale recept!");
+            quests.Add("10 cursors", "Klik er maar op los cursors! KLIK ER MAAR OP LOS!");
+            quests.Add("10 mines", "10 mines, tijd om sneeuwitje te bellen en de dwergen een part time job aan te bieden");
+            quests.Add("10 banks", "10 banks, bringing in that dough!");
+            quests.Add("20 grandmas", "20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;) ");
+            quests.Add("20 farms", "20 farms, de koeien zijn blij met hun nieuwe stal");
+            quests.Add("25 factories", "Wat een aankopen! 25 factories, daar is Wonka niks tegen!");
+            quests.Add("30 tempels", "That's the Teen Spirit!");
+            quests.Add("50 farms", "Old McDonald had A farm, niet 50!!");
+            quests.Add("100 cursors", "LAN PARTY");
+            quests.Add("100 grandmas", "Het rusthuis heeft gebeld, ze willen hun oma's terug!");
+            quests.Add("100 banks", "The real Wolf of Sesamestreet");
+            quests.Add("1000 cookies", "je eerste 1000 cookies zijn binnen, tijd om te investeren en je cookie emporium op te zetten!");
+            quests.Add("1.000.000 cookies", "1.000.000 cookies, je bent een echte cookie monster!");
+            quests.Add("10.000.000 cookies", "10.000.000 cookies :o keep going! Maar let wel op voor diabetes");
+            quests.Add("Golden Cookie", "Een Golden Cookie, laat het smaken!");
+            quests.Add("1 Perk", "Time to get Perkaholic!");
+            quests.Add("10 Perks", "PERKAHOLIC BABY!!");
+            quests.Add("Quest Collector", "Alle Quests behaald!");
+        }
+
+        private void LstBoxQuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedItems = LstBoxQuests.SelectedItem.ToString();
+
+            TxtBoxQuests.Text = quests[selectedItems];
+        }
         /// <summary>
         /// Kansberekning voor een gouden koekje, 30% kans dat er een gouden koekje verschijnt.
         /// </summary>
@@ -801,6 +956,8 @@ namespace CookieCliker
             }
         }
 
+        bool goldenCookieClicked = false;
+
         /// <summary>
         /// Actie die uitgevoerd wordt als er op het gouden koekje geklikt wordt.
         /// </summary>
@@ -816,6 +973,9 @@ namespace CookieCliker
             PerkButtonEnabled();
             ShopButtonEnable();
             PlaySound(succes);
+
+            goldenCookieClicked = true;
+            Quests();
         }
 
         /// <summary>
@@ -831,6 +991,8 @@ namespace CookieCliker
 
             ImgGoldenCookie.Visibility = Visibility.Visible;
         }
+
+        private double perkAmount = 0;                            // Variabele die aangeeft hoeveel perks er zijn aangekocht
 
         private double tierValue = new double();                // Variabele die aangeeft welke tier het is en de waarde van de tier
         private const double tierValue1 = 100;
@@ -887,6 +1049,9 @@ namespace CookieCliker
 
             multiplier *= 2;
             passive *= 2;
+
+            perkAmount++;
+            Quests();
 
             PlaySound(ping);
         }
@@ -1524,5 +1689,7 @@ namespace CookieCliker
             BtnPerkTemple4.IsEnabled = (cookieCounter >= basePriceTemple * tierValue4);
             BtnPerkTemple5.IsEnabled = (cookieCounter >= basePriceTemple * tierValue5);
         }
+
+       
     }
 }
