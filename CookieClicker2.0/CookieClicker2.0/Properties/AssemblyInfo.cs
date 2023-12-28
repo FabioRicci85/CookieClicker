@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CookieCliker")]
+[assembly: AssemblyTitle("CookieClicker2.0")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PXL")]
-[assembly: AssemblyProduct("CookieCliker")]
-[assembly: AssemblyCopyright("Copyright © PXL 2023")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("CookieClicker2.0")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

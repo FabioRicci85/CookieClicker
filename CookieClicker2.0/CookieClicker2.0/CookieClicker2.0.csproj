@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{86E4F6CE-61D1-4D85-8F8D-67802B5FE677}</ProjectGuid>
+    <ProjectGuid>{FF0DC8C3-A001-4E8B-9998-95B94B4BD102}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CookieCliker</RootNamespace>
-    <AssemblyName>CookieCliker</AssemblyName>
+    <RootNamespace>CookieClicker2._0</RootNamespace>
+    <AssemblyName>CookieClicker2.0</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,10 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Reference Include="Microsoft.VisualBasic" />
-=======
->>>>>>> 49b7db0 (innitiele push)
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -98,37 +95,37 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="Media\achtergrond.jpg" />
-    <Resource Include="Media\Cookie.png" />
-    <Resource Include="Media\Cursor.png" />
-    <Resource Include="Media\Factory.png" />
-    <Resource Include="Media\Grandma.png" />
-    <Resource Include="Media\Mine.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Media\Achtergrond2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Media\achtergrond3.jpg" />
     <Resource Include="Media\achtergrondBakerij.jpg" />
+    <Resource Include="Media\achtergrondBank.jpg" />
     <Resource Include="Media\achtergrondFactory.jpg" />
     <Resource Include="Media\achtergrondFarm.jpg" />
     <Resource Include="Media\achtergrondKeuken.jpg" />
+    <Resource Include="Media\AchtergrondKeuken1.jpg" />
     <Resource Include="Media\achtergrondMijn.jpg" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Media\achtergrondTemple.jpg" />
+    <Resource Include="Media\bank.png" />
+    <Resource Include="Media\Cookie.png" />
+    <Resource Include="Media\Cursor.png" />
+    <Resource Include="Media\Factory.png" />
     <Resource Include="Media\Farm.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Media\goldenCookie.png" />
+    <Resource Include="Media\Grandma.png" />
+    <Resource Include="Media\Mine.png" />
     <Resource Include="Media\MusicOff1.png" />
     <Resource Include="Media\MusicOn1.png" />
+    <Resource Include="Media\ScrollAndQuill.png" />
+    <Resource Include="Media\ScrollAndQuill2.png" />
+    <Resource Include="Media\ScrollAndQuill3.png" />
     <Resource Include="Media\SoundOff1.png" />
     <Resource Include="Media\SoundOn1.png" />
-    <Resource Include="Media\AchtergrondKeuken1.jpg" />
-    <Resource Include="Media\goldenCookie.png" />
-    <Resource Include="Media\ScrollAndQuill.png" />
+    <Resource Include="Media\temple.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <Resource Include="Media\PerkIcons\PerkBank1.png" />
     <Resource Include="Media\PerkIcons\PerkBank2.png" />
     <Resource Include="Media\PerkIcons\PerkBank3.png" />
@@ -164,27 +161,19 @@
     <Resource Include="Media\PerkIcons\PerkTemple3.png" />
     <Resource Include="Media\PerkIcons\PerkTemple4.png" />
     <Resource Include="Media\PerkIcons\PerkTemple5.png" />
-    <Resource Include="Media\ScrollAndQuill2.png" />
-    <Resource Include="Media\ScrollAndQuill3.png" />
-    <Content Include="Sound\ping1.MP3" />
-    <Content Include="Sound\pop2.MP3" />
-    <Content Include="Sound\succes1.MP3" />
-    <Content Include="Sound\temple.MP3" />
-    <Resource Include="Media\achtergrondBank.jpg" />
-    <Resource Include="Media\achtergrondTemple.jpg" />
-    <Resource Include="Media\bank.png" />
-    <Resource Include="Media\temple.png" />
     <Content Include="Sound\bank.MP3" />
     <Content Include="Sound\bonus1.mp3" />
-    <Content Include="Sound\click1.MP3" />
+    <Content Include="Sound\click1.mp3" />
     <Content Include="Sound\factory1.MP3" />
     <Content Include="Sound\grandma1.MP3" />
     <Content Include="Sound\mine1.MP3" />
-    <Content Include="Sound\moo1.MP3" />
+    <Content Include="Sound\moo1.mp3" />
     <Content Include="Sound\motivation1.mp3" />
+    <Content Include="Sound\ping1.mp3" />
     <Content Include="Sound\pop1.mp3" />
+    <Content Include="Sound\pop2.MP3" />
+    <Content Include="Sound\succes1.mp3" />
+    <Content Include="Sound\temple.MP3" />
   </ItemGroup>
-=======
->>>>>>> 49b7db0 (innitiele push)
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
