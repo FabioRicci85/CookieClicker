@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+>>>>>>> 49b7db0 (innitiele push)
 
 namespace CookieCliker
 {
@@ -17,6 +34,7 @@ namespace CookieCliker
     /// </summary>
     public partial class MainWindow : Window
     {
+<<<<<<< HEAD
         private double cookieCounter = 100000000;
         private double cookieTotal = 100000000;
 
@@ -700,7 +718,6 @@ namespace CookieCliker
             double biljoen = 1000000000000;
             double biljard = 1000000000000000;
             double triljoen = 1000000000000000000;
-            
 
             if (value >= triljoen)
             {
@@ -775,32 +792,32 @@ namespace CookieCliker
         }
 
         // Quests en PowerUps die de speler kan aankopen
-        Dictionary<string, string> quests = new Dictionary<string, string>();
+        private Dictionary<string, string> quests = new Dictionary<string, string>();
 
-        readonly string behaaldeQuest1 = "1 cursor";
-        readonly string behaaldeQuest2 = "5 farms";
-        readonly string behaaldeQuest3 = "5 temples";
-        readonly string behaaldeQuest4 = "10 cursors";
-        readonly string behaaldeQuest5 = "10 mines";
-        readonly string behaaldeQuest6 = "10 banks";
-        readonly string behaaldeQuest7 = "20 grandmas";
-        readonly string behaaldeQuest8 = "20 farms";
-        readonly string behaaldeQuest9 = "25 factories";
-        readonly string behaaldeQuest10 = "30 tempels";
-        readonly string behaaldeQuest11 = "50 farms";
-        readonly string behaaldeQuest12 = "100 cursors";
-        readonly string behaaldeQuest13 = "100 grandmas";
-        readonly string behaaldeQuest14 = "100 banks";
-        readonly string behaaldeQuest15 = "1000 cookies";
-        readonly string behaaldeQuest16 = "1.000.000 cookies";
-        readonly string behaaldeQuest17 = "10.000.000 cookies";
-        readonly string behaaldeQuest18 = "Golden Cookie";
-        readonly string behaaldeQuest19 = "1 Perk";
-        readonly string behaaldeQuest20 = "10 Perks";
-        readonly string behaaldeQuest21 = "Quest Collector";
+        private readonly string behaaldeQuest1 = "1 cursor";
+        private readonly string behaaldeQuest2 = "5 farms";
+        private readonly string behaaldeQuest3 = "5 temples";
+        private readonly string behaaldeQuest4 = "10 cursors";
+        private readonly string behaaldeQuest5 = "10 mines";
+        private readonly string behaaldeQuest6 = "10 banks";
+        private readonly string behaaldeQuest7 = "20 grandmas";
+        private readonly string behaaldeQuest8 = "20 farms";
+        private readonly string behaaldeQuest9 = "25 factories";
+        private readonly string behaaldeQuest10 = "30 tempels";
+        private readonly string behaaldeQuest11 = "50 farms";
+        private readonly string behaaldeQuest12 = "100 cursors";
+        private readonly string behaaldeQuest13 = "100 grandmas";
+        private readonly string behaaldeQuest14 = "100 banks";
+        private readonly string behaaldeQuest15 = "1000 cookies";
+        private readonly string behaaldeQuest16 = "1.000.000 cookies";
+        private readonly string behaaldeQuest17 = "10.000.000 cookies";
+        private readonly string behaaldeQuest18 = "Golden Cookie";
+        private readonly string behaaldeQuest19 = "1 Perk";
+        private readonly string behaaldeQuest20 = "10 Perks";
+        private readonly string behaaldeQuest21 = "Quest Collector";
 
         private void Quests()
-        {     
+        {
             if (investmentCursorAmount == 1 && !LstBoxQuests.Items.Contains(behaaldeQuest1))
             {
                 MessageBox.Show(quests["1 cursor"], "Quest Completed");
@@ -898,7 +915,7 @@ namespace CookieCliker
             }
             if (perkAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest20))
             {
-                MessageBox.Show(quests["10 Perks"], "Quest Completed"); 
+                MessageBox.Show(quests["10 Perks"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest20);
             }
             if (LstBoxQuests.Items.Count == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest21))
@@ -939,6 +956,21 @@ namespace CookieCliker
 
             TxtBoxQuests.Text = quests[selectedItems];
         }
+
+        private void ImgScrollAndQuill_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ImgScrollAndQuill.Visibility = Visibility.Collapsed;
+            LstBoxQuests.Visibility = Visibility.Visible;
+            TxtBoxQuests.Visibility = Visibility.Visible;
+        }
+
+        private void LstBoxQuests_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ImgScrollAndQuill.Visibility = Visibility.Visible;
+            LstBoxQuests.Visibility = Visibility.Collapsed;
+            TxtBoxQuests.Visibility = Visibility.Collapsed;
+        }
+
         /// <summary>
         /// Kansberekning voor een gouden koekje, 30% kans dat er een gouden koekje verschijnt.
         /// </summary>
@@ -956,7 +988,7 @@ namespace CookieCliker
             }
         }
 
-        bool goldenCookieClicked = false;
+        private bool goldenCookieClicked = false;
 
         /// <summary>
         /// Actie die uitgevoerd wordt als er op het gouden koekje geklikt wordt.
@@ -1512,142 +1544,177 @@ namespace CookieCliker
             if (investmentCursorAmount >= tier1 && !clickedOnCursorPerk1)
             {
                 BtnPerkCursor1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentCursorAmount >= tier2 && !clickedOnCursorPerk2)
             {
                 BtnPerkCursor2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentCursorAmount >= tier3 && !clickedOnCursorPerk3)
             {
                 BtnPerkCursor3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentCursorAmount >= tier4 && !clickedOnCursorPerk4)
             {
                 BtnPerkCursor4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentCursorAmount >= tier5 && !clickedOnCursorPerk5)
             {
                 BtnPerkCursor5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentGrandmaAmount >= tier1 && !clickedOnGrandmaPerk1)
             {
                 BtnPerkGrandma1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentGrandmaAmount >= tier2 && !clickedOnGrandmaPerk2)
             {
                 BtnPerkGrandma2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentGrandmaAmount >= tier3 && !clickedOnGrandmaPerk3)
             {
                 BtnPerkGrandma3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentGrandmaAmount >= tier4 && !clickedOnGrandmaPerk4)
             {
                 BtnPerkGrandma4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentGrandmaAmount >= tier5 && !clickedOnGrandmaPerk5)
             {
                 BtnPerkGrandma5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFarmAmount >= tier1 && !clickedOnFarmPerk1)
             {
                 BtnPerkFarm1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFarmAmount >= tier2 && !clickedOnFarmPerk2)
             {
                 BtnPerkFarm2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFarmAmount >= tier3 && !clickedOnFarmPerk3)
             {
                 BtnPerkFarm3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFarmAmount >= tier4 && !clickedOnFarmPerk4)
             {
                 BtnPerkFarm4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFarmAmount >= tier5 && !clickedOnFarmPerk5)
             {
                 BtnPerkFarm5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentMineAmount >= tier1 && !clickedOnMinePerk1)
             {
                 BtnPerkMine1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentMineAmount >= tier2 && !clickedOnMinePerk2)
             {
                 BtnPerkMine2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentMineAmount >= tier3 && !clickedOnMinePerk3)
             {
                 BtnPerkMine3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentMineAmount >= tier4 && !clickedOnMinePerk4)
             {
                 BtnPerkMine4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentMineAmount >= tier5 && !clickedOnMinePerk5)
             {
                 BtnPerkMine5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFactoryAmount >= tier1 && !clickedOnFactoryPerk1)
             {
                 BtnPerkFactory1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFactoryAmount >= tier2 && !clickedOnFactoryPerk2)
             {
                 BtnPerkFactory2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFactoryAmount >= tier3 && !clickedOnFactoryPerk3)
             {
                 BtnPerkFactory3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFactoryAmount >= tier4 && !clickedOnFactoryPerk4)
             {
                 BtnPerkFactory4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentFactoryAmount >= tier5 && !clickedOnFactoryPerk5)
             {
                 BtnPerkFactory5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentBankAmount >= tier1 && !clickedOnBankPerk1)
             {
                 BtnPerkBank1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentBankAmount >= tier2 && !clickedOnBankPerk2)
             {
                 BtnPerkBank2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentBankAmount >= tier3 && !clickedOnBankPerk3)
             {
                 BtnPerkBank3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentBankAmount >= tier4 && !clickedOnBankPerk4)
             {
                 BtnPerkBank4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentBankAmount >= tier5 && !clickedOnBankPerk5)
             {
                 BtnPerkBank5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentTempleAmount >= tier1 && !clickedOnTemplePerk1)
             {
                 BtnPerkTemple1.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentTempleAmount >= tier2 && !clickedOnTemplePerk2)
             {
                 BtnPerkTemple2.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentTempleAmount >= tier3 && !clickedOnTemplePerk3)
             {
                 BtnPerkTemple3.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentTempleAmount >= tier4 && !clickedOnTemplePerk4)
             {
                 BtnPerkTemple4.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
             if (investmentTempleAmount >= tier5 && !clickedOnTemplePerk5)
             {
                 BtnPerkTemple5.Visibility = Visibility.Visible;
+                LblPerks.Visibility = Visibility.Visible;
             }
         }
 
@@ -1689,7 +1756,13 @@ namespace CookieCliker
             BtnPerkTemple4.IsEnabled = (cookieCounter >= basePriceTemple * tierValue4);
             BtnPerkTemple5.IsEnabled = (cookieCounter >= basePriceTemple * tierValue5);
         }
-
-       
     }
 }
+=======
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+    }
+}
+>>>>>>> 49b7db0 (innitiele push)

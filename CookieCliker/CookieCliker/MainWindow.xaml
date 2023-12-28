@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieCliker"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Loaded="Window_Loaded"
         Title="Cookie Clicker" Width="800" Height="500" MinHeight="400" MinWidth="1000">
     <Window.Resources>
@@ -28,18 +29,19 @@
             <RowDefinition Height="70" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Image Visibility="Collapsed" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="ImgGoldenCookie" Source="./Media/goldenCookie.png" Width="50" Height="50" MouseUp="ImgGoldenCookie_MouseUp" Panel.ZIndex="100"/>
-        <Viewbox Grid.Row="1" Stretch="Uniform" MaxHeight="300" MaxWidth="300" Margin="20">
+        <Viewbox Grid.Row="1" Stretch="Uniform" MaxHeight="300" MaxWidth="300">
             <Image Source="Media/Cookie.png"
                    Name="ImgCookie" Grid.Row="1"
                    MouseDown="ImgCookie_MouseDown"
                    MouseUp="ImgCookie_MouseUp"
                    MouseEnter="ImgCookie_MouseEnter"
                    MouseLeave="ImgCookie_MouseLeave"
-                   Width="180"
-                   Height="180"
-                   Tag="On" />
+                   Width="170"
+                   Height="170"
+                   Tag="On" Margin="0, 30, 0, 0"/>
         </Viewbox>
         <Label Content="" Grid.Row="2" Grid.Column="0" Foreground="LightCyan" FontSize="35" Name="LblTijd" />
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  Margin="0,10,0,0">
@@ -53,50 +55,541 @@
             <Image Name="ImgSound" Source="./Media/SoundOn1.png" Height="35" Width="35" MouseUp="ImgSound_MouseUp" Tag="On" Margin="0,10,10,0" />
         </StackPanel>
         
-        <Grid Grid.Column="1" Grid.Row="2" >
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <WrapPanel >
-                    <Button x:Name="BtnPerkCursor1" Content="BtnPerk1" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkCursor2" Content="BtnPerk2" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkCursor3" Content="BtnPerk3" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkCursor4" Content="BtnPerk4" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkCursor5" Content="BtnPerk5" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkGrandma1" Content="BtnPerk6" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkGrandma2" Content="BtnPerk7" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkGrandma3" Content="BtnPerk8" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkGrandma4" Content="BtnPerk9" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkGrandma5" Content="BtnPerk10" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFarm1" Content="BtnPerk11" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFarm2" Content="BtnPerk12" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFarm3" Content="BtnPerk13" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFarm4" Content="BtnPerk14" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFarm5" Content="BtnPerk15" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkMine1" Content="BtnPerk16" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkMine2" Content="BtnPerk17" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkMine3" Content="BtnPerk18" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkMine4" Content="BtnPerk19" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkMine5" Content="BtnPerk20" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFactory1" Content="BtnPerk21" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFactory2" Content="BtnPerk22" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFactory3" Content="BtnPerk23" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFactory4" Content="BtnPerk24" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkFactory5" Content="BtnPerk25" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkBank1" Content="BtnPerk26" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkBank2" Content="BtnPerk27" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkBank3" Content="BtnPerk28" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkBank4" Content="BtnPerk29" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkBank5" Content="BtnPerk30" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkTemple1" Content="BtnPerk31" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkTemple2" Content="BtnPerk32" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkTemple3" Content="BtnPerk33" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkTemple4" Content="BtnPerk34" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
-                    <Button x:Name="BtnPerkTemple5" Content="BtnPerk35" Margin="5" Width="60" Height="40" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed"/>
+        <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom">
+            <Label Name="LblPerks" Content="Perks" FontSize="40" Foreground="LightCyan" HorizontalAlignment="Center" Visibility="Collapsed" />
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0, 60, 0, 0">
+                <WrapPanel HorizontalAlignment="Center" >
+                    <Button x:Name="BtnPerkCursor1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkCursor1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkCursor2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkCursor2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkCursor3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkCursor3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkCursor4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkCursor4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkCursor5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkCursor5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkGrandma1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkGrandma1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkGrandma2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkGrandma2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkGrandma3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkGrandma3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkGrandma4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkGrandma4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkGrandma5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkGrandma5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFarm1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFarm1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFarm2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFarm2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFarm3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFarm3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFarm4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFarm4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFarm5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFarm5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkMine1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkMine1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkMine2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkMine2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkMine3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkMine3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkMine4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkMine4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkMine5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkMine5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFactory1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFactory1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFactory2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFactory2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFactory3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFactory3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFactory4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFactory4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkFactory5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkFactory5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkBank1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkBank1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkBank2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkBank2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkBank3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkBank3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkBank4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkBank4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkBank5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkBank5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkTemple1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkTemple1.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkTemple2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkTemple2.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkTemple3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkTemple3.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkTemple4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkTemple4.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="BtnPerkTemple5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Media/PerkIcons/PerkTemple5.png"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
-        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
-                <Button x:Name="Btn_Cursor" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Cursor" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -127,7 +620,7 @@
                         <Label Name="LblClickCursor" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Grandma" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Grandma" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -158,7 +651,7 @@
                         <Label Name="LblClickGrandma" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Farm" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="8 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Farm" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="8 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -189,7 +682,7 @@
                         <Label Name="LblClickFarm" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Mine" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="47 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Mine" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="47 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -220,7 +713,7 @@
                         <Label Name="LblClickMine" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Factory" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="260 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Factory" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="260 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -251,7 +744,7 @@
                         <Label Name="LblClickFactory" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Bank" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1400 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Bank" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1400 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -282,7 +775,7 @@
                         <Label Name="LblClickBank" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Temple" Height="50" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="7800 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Temple" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="7800 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -315,8 +808,6 @@
                 </Button>
             </StackPanel>
         </ScrollViewer>
-        
-
         <ScrollViewer Grid.Column="1" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
@@ -345,14 +836,21 @@
                 </ScrollViewer>
             </StackPanel>
         </ScrollViewer>
-        <Image Grid.Column="0" Grid.Row="2" Name="ImgScrollAndQuill" Source="./Media/ScrollAndQuill.png"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom">
-        <StackPanel Grid.Column="0" Grid.Row="2" >
-        <ScrollViewer Grid.Column="0" Grid.Row="2" VerticalScrollBarVisibility="Auto">
-            <ListBox Height="150" Grid.Row="2" Grid.Column="0" x:Name="LstBoxQuests" Background="SkyBlue" BorderBrush="AliceBlue" BorderThickness="2" Opacity="0.7" SelectionChanged="LstBoxQuests_SelectionChanged" Visibility="Collapsed"/>
+        <Image Width="160" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Name="ImgScrollAndQuill" Source="./Media/ScrollAndQuill3.png" Margin="0,0,0,10" MouseEnter="ImgScrollAndQuill_MouseEnter" VerticalAlignment="Bottom"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom">
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.RowSpan="2">
+                <ScrollViewer Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
+            <ListBox Height="70" FontSize="16" FontWeight="DemiBold" x:Name="LstBoxQuests" Background="SkyBlue" BorderBrush="AliceBlue" BorderThickness="2" Opacity="0.8" SelectionChanged="LstBoxQuests_SelectionChanged" Visibility="Collapsed" MouseLeave="LstBoxQuests_MouseLeave"/>
         </ScrollViewer>
-                <TextBox x:Name="TxtBoxQuests" IsReadOnly="True" Height="40" Grid.Row="2" Grid.Column="0" Background="SkyBlue" Opacity="0.7" BorderBrush="AliceBlue" BorderThickness="2" TextWrapping="Wrap" Text="Questlog" Visibility="Collapsed"/>
+                <TextBox x:Name="TxtBoxQuests" FontSize="14" IsReadOnly="True" Height="50" Background="SkyBlue" Opacity="0.8" BorderBrush="AliceBlue" BorderThickness="2" TextWrapping="Wrap" Text="Questlog" Visibility="Collapsed" MouseLeave="LstBoxQuests_MouseLeave"/>
         </StackPanel>
         </ScrollViewer>
     </Grid>
 </Window>
+=======
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        
+    </Grid>
+</Window>
+>>>>>>> 49b7db0 (innitiele push)

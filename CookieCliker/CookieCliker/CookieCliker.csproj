@@ -35,7 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="Microsoft.VisualBasic" />
+=======
+>>>>>>> 49b7db0 (innitiele push)
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -95,6 +98,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="Media\achtergrond.jpg" />
     <Resource Include="Media\Cookie.png" />
@@ -125,6 +129,43 @@
     <Resource Include="Media\AchtergrondKeuken1.jpg" />
     <Resource Include="Media\goldenCookie.png" />
     <Resource Include="Media\ScrollAndQuill.png" />
+    <Resource Include="Media\PerkIcons\PerkBank1.png" />
+    <Resource Include="Media\PerkIcons\PerkBank2.png" />
+    <Resource Include="Media\PerkIcons\PerkBank3.png" />
+    <Resource Include="Media\PerkIcons\PerkBank4.png" />
+    <Resource Include="Media\PerkIcons\PerkBank5.png" />
+    <Resource Include="Media\PerkIcons\PerkCursor1.png" />
+    <Resource Include="Media\PerkIcons\PerkCursor2.png" />
+    <Resource Include="Media\PerkIcons\PerkCursor3.png" />
+    <Resource Include="Media\PerkIcons\PerkCursor4.png" />
+    <Resource Include="Media\PerkIcons\PerkCursor5.png" />
+    <Resource Include="Media\PerkIcons\PerkFactory1.png" />
+    <Resource Include="Media\PerkIcons\PerkFactory2.png" />
+    <Resource Include="Media\PerkIcons\PerkFactory3.png" />
+    <Resource Include="Media\PerkIcons\PerkFactory4.png" />
+    <Resource Include="Media\PerkIcons\PerkFactory5.png" />
+    <Resource Include="Media\PerkIcons\PerkFarm1.png" />
+    <Resource Include="Media\PerkIcons\PerkFarm2.png" />
+    <Resource Include="Media\PerkIcons\PerkFarm3.png" />
+    <Resource Include="Media\PerkIcons\PerkFarm4.png" />
+    <Resource Include="Media\PerkIcons\PerkFarm5.png" />
+    <Resource Include="Media\PerkIcons\PerkGrandma1.png" />
+    <Resource Include="Media\PerkIcons\PerkGrandma2.png" />
+    <Resource Include="Media\PerkIcons\PerkGrandma3.png" />
+    <Resource Include="Media\PerkIcons\PerkGrandma4.png" />
+    <Resource Include="Media\PerkIcons\PerkGrandma5.png" />
+    <Resource Include="Media\PerkIcons\PerkMine1.png" />
+    <Resource Include="Media\PerkIcons\PerkMine2.png" />
+    <Resource Include="Media\PerkIcons\PerkMine3.png" />
+    <Resource Include="Media\PerkIcons\PerkMine4.png" />
+    <Resource Include="Media\PerkIcons\PerkMine5.png" />
+    <Resource Include="Media\PerkIcons\PerkTemple1.png" />
+    <Resource Include="Media\PerkIcons\PerkTemple2.png" />
+    <Resource Include="Media\PerkIcons\PerkTemple3.png" />
+    <Resource Include="Media\PerkIcons\PerkTemple4.png" />
+    <Resource Include="Media\PerkIcons\PerkTemple5.png" />
+    <Resource Include="Media\ScrollAndQuill2.png" />
+    <Resource Include="Media\ScrollAndQuill3.png" />
     <Content Include="Sound\ping1.MP3" />
     <Content Include="Sound\pop2.MP3" />
     <Content Include="Sound\succes1.MP3" />
@@ -143,5 +184,7 @@
     <Content Include="Sound\motivation1.mp3" />
     <Content Include="Sound\pop1.mp3" />
   </ItemGroup>
+=======
+>>>>>>> 49b7db0 (innitiele push)
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
