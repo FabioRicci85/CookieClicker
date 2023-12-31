@@ -1,19 +1,14 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Microsoft.VisualBasic;
 
 namespace CookieClicker2._0
 {
@@ -89,6 +84,7 @@ namespace CookieClicker2._0
         private readonly Uri mine = new Uri(@"../../Sound/mine1.MP3", UriKind.RelativeOrAbsolute);
         private readonly Uri bank = new Uri(@"../../Sound/bank.MP3", UriKind.RelativeOrAbsolute);
         private readonly Uri temple = new Uri(@"../../Sound/temple.MP3", UriKind.RelativeOrAbsolute);
+        private readonly Uri upgrade = new Uri(@"../../Sound/upgrade.MP3", UriKind.RelativeOrAbsolute);
 
         private readonly BitmapImage grandmaImage = new BitmapImage(new Uri(@"../../Media/Grandma.png", UriKind.RelativeOrAbsolute));    //Afbleedingen voor UI Investeringen                                                //nieuwe imagebrush voor UI
         private readonly BitmapImage farmImage = new BitmapImage(new Uri(@"../../Media/Farm.png", UriKind.RelativeOrAbsolute));
@@ -114,6 +110,8 @@ namespace CookieClicker2._0
             PerkVisibility();
             LabelBakery();
             PriceLabelWord();
+
+            StartMovingBarAnimation();
         }
 
         /// <summary>
@@ -474,6 +472,32 @@ namespace CookieClicker2._0
         {
             LblPassive.Visibility = Visibility.Visible;
             LblPassive.Content = $"+{Math.Round(passiveCounter, 2)}";
+            Cnvs.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Animatie voor het passieve inkomen.
+        /// </summary>
+        private void StartMovingBarAnimation()
+        {
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                To = Cnvs.ActualWidth,
+                Duration = TimeSpan.FromSeconds(1),
+                AutoReverse = true,
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+
+            Storyboard.SetTargetName(animation, "loadingBar");
+            Storyboard.SetTargetProperty(animation, new PropertyPath(Rectangle.WidthProperty));
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(animation);
+
+            loadingBar.Loaded += (sender, e) =>
+            {
+                storyboard.Begin(this);
+            };
         }
 
         // Players die specifieke geluiden afspelen bij bepaalde acties
@@ -1070,7 +1094,7 @@ namespace CookieClicker2._0
             passive *= 2;
 
             perkAmount++;
-            PlaySound(ping);
+            PlaySound(upgrade);
 
             Quests();
         }

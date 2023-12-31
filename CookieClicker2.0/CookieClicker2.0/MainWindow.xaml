@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookieClicker2._0"
+        xmlns:ToolTipService="http://schemas.microsoft.com/winfx/2006/xaml/presentation/tooltipservice"
         mc:Ignorable="d"
           Loaded="Window_Loaded"
         Title="Cookie Clicker" Width="1000" Height="500" MinHeight="400" MinWidth="1000">
@@ -14,6 +15,13 @@
         <ImageBrush x:Key="ImgBrushFactory" ImageSource="./Media/achtergrondFactory.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,240,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushBank" ImageSource="./Media/achtergrondBank.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,265,150"></ImageBrush>
         <ImageBrush x:Key="ImgBrushTemple" ImageSource="./Media/achtergrondTemple.jpg" Opacity="0.7" TileMode="Tile" Stretch="Uniform" ViewportUnits="Absolute" Viewport="0,0,240,150"></ImageBrush>
+        <ToolTip x:Key="CursorToolTip" Content="Verdubbel je passieve inkomst voor de Cursor"/>
+        <ToolTip x:Key="GrandmaToolTip" Content="Verdubbel je passieve inkomst voor Grandma"/>
+        <ToolTip x:Key="FarmToolTip" Content="Verdubbel je passieve inkomst voor de Farm"/>
+        <ToolTip x:Key="MineToolTip" Content="Verdubbel je passieve inkomst voor de Mine"/>
+        <ToolTip x:Key="FactoryToolTip" Content="Verdubbel je passieve inkomst voor de Factory"/>
+        <ToolTip x:Key="BankToolTip" Content="Verdubbel je passieve inkomst voor de Bank"/>
+        <ToolTip x:Key="TempleToolTip" Content="Verdubbel je passieve inkomst voor de Temple"/>
     </Window.Resources>
     <Grid Name="GrdWindow">
         <Grid.Background>
@@ -49,16 +57,17 @@
         </WrapPanel>
         <Label Content="Store" HorizontalAlignment="Center" FontSize="40" Foreground="LightCyan" Grid.Column="2" Grid.Row="0" />
         <Label Name="LblPassive" Content="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="0" FontSize="20" Foreground="LightCyan" Visibility="Collapsed" />
+        
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image Name="ImgMusic" Source="./Media/MusicOn1.png" Height="35" Width="35" MouseUp="ImgMusic_MouseUp" Tag="On" Margin="0,10,10,0" />
             <Image Name="ImgSound" Source="./Media/SoundOn1.png" Height="35" Width="35" MouseUp="ImgSound_MouseUp" Tag="On" Margin="0,10,10,0" />
         </StackPanel>
-
         <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom">
             <Label Name="LblPerks" Content="Perks" FontSize="40" Foreground="LightCyan" HorizontalAlignment="Center" Visibility="Collapsed" />
             <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0, 60, 0, 0">
                 <WrapPanel HorizontalAlignment="Center" >
-                    <Button x:Name="BtnPerkCursor1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkCursor1" ToolTip="{StaticResource CursorToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkCursor1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -73,7 +82,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkCursor2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkCursor2" ToolTip="{StaticResource CursorToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkCursor2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -88,7 +98,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkCursor3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkCursor3" ToolTip="{StaticResource CursorToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkCursor3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -103,7 +114,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkCursor4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkCursor4" ToolTip="{StaticResource CursorToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkCursor4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -118,7 +130,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkCursor5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkCursor5" ToolTip="{StaticResource CursorToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkCursor5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -133,7 +146,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkGrandma1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkGrandma1" ToolTip="{StaticResource GrandmaToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkGrandma1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -148,7 +162,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkGrandma2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkGrandma2" ToolTip="{StaticResource GrandmaToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkGrandma2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -163,7 +178,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkGrandma3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkGrandma3" ToolTip="{StaticResource GrandmaToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkGrandma3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -178,7 +194,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkGrandma4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkGrandma4" ToolTip="{StaticResource GrandmaToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkGrandma4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -193,7 +210,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkGrandma5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkGrandma5" ToolTip="{StaticResource GrandmaToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkGrandma5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -208,7 +226,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFarm1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFarm1" ToolTip="{StaticResource FarmToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFarm1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -223,7 +242,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFarm2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFarm2" ToolTip="{StaticResource FarmToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFarm2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -238,7 +258,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFarm3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFarm3" ToolTip="{StaticResource FarmToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFarm3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -253,7 +274,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFarm4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFarm4" ToolTip="{StaticResource FarmToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFarm4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -268,7 +290,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFarm5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFarm5" ToolTip="{StaticResource FarmToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFarm5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -283,7 +306,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkMine1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkMine1" ToolTip="{StaticResource MineToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkMine1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -298,7 +322,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkMine2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkMine2" ToolTip="{StaticResource MineToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkMine2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -313,7 +338,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkMine3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkMine3" ToolTip="{StaticResource MineToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkMine3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -328,7 +354,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkMine4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkMine4" ToolTip="{StaticResource MineToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkMine4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -343,7 +370,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkMine5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkMine5" ToolTip="{StaticResource MineToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkMine5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -358,7 +386,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFactory1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFactory1" ToolTip="{StaticResource FactoryToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFactory1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -373,7 +402,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFactory2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFactory2" ToolTip="{StaticResource FactoryToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFactory2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -388,7 +418,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFactory3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFactory3" ToolTip="{StaticResource FactoryToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFactory3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -403,7 +434,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFactory4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFactory4" ToolTip="{StaticResource FactoryToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFactory4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -418,7 +450,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkFactory5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkFactory5" ToolTip="{StaticResource FactoryToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkFactory5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -433,7 +466,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkBank1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkBank1" ToolTip="{StaticResource BankToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkBank1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -448,7 +482,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkBank2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkBank2" ToolTip="{StaticResource BankToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkBank2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -463,7 +498,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkBank3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkBank3" ToolTip="{StaticResource BankToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkBank3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -478,7 +514,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkBank4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkBank4" ToolTip="{StaticResource BankToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkBank4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -493,7 +530,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkBank5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkBank5" ToolTip="{StaticResource BankToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkBank5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -508,7 +546,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkTemple1" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkTemple1" ToolTip="{StaticResource TempleToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkTemple1.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -523,7 +562,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkTemple2" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkTemple2" ToolTip="{StaticResource TempleToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkTemple2.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -538,7 +578,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkTemple3" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkTemple3" ToolTip="{StaticResource TempleToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkTemple3.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -553,7 +594,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkTemple4" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkTemple4" ToolTip="{StaticResource TempleToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkTemple4.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -568,7 +610,8 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="BtnPerkTemple5" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                    <Button x:Name="BtnPerkTemple5" ToolTip="{StaticResource TempleToolTip}" Margin="5" Width="60" Height="60" Click="BtnPerk_Click" IsEnabled="False" Visibility="Collapsed" Background="Transparent" BorderThickness="0">
+                        <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                         <Image Source="./Media/PerkIcons/PerkTemple5.png"/>
                         <Button.Style>
                             <Style TargetType="Button">
@@ -588,7 +631,18 @@
         </Grid>
         <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+                <Canvas x:Name="Cnvs" Width="300" Height="10" Visibility="Collapsed">
+                    <Rectangle x:Name="loadingBar" Width="300" Height="10" Fill="LightBlue">
+                        <Rectangle.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="Gray" BlurRadius="10"/>
+                        </Rectangle.Effect>
+                        <Rectangle.RenderTransform>
+                            <TranslateTransform x:Name="barTransform" X="0" Y="0"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                </Canvas>
                 <Button x:Name="Btn_Cursor" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -612,7 +666,7 @@
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                             <Image Source="./Media/Cursor.png" Margin="4" Width="60" />
                             <StackPanel Width="100">
-                                <Label FontWeight="DemiBold" Content="Cursor" Margin="4,0,0,-5" FontSize="16" />
+                                <Label FontWeight="DemiBold" Content="Cursor" Margin="4,0,0,-5" FontSize="16"/>
                                 <Label Name="LblPriceCursor" Content="15" Margin="4,-5" />
                             </StackPanel>
                         </StackPanel>
@@ -620,6 +674,7 @@
                     </DockPanel>
                 </Button>
                 <Button x:Name="Btn_Grandma" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -651,6 +706,7 @@
                     </DockPanel>
                 </Button>
                 <Button x:Name="Btn_Farm" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="8 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -682,6 +738,7 @@
                     </DockPanel>
                 </Button>
                 <Button x:Name="Btn_Mine" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="47 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -713,6 +770,7 @@
                     </DockPanel>
                 </Button>
                 <Button x:Name="Btn_Factory" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="260 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -744,6 +802,7 @@
                     </DockPanel>
                 </Button>
                 <Button x:Name="Btn_Bank" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1400 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
@@ -775,6 +834,7 @@
                     </DockPanel>
                 </Button>
                 <Button x:Name="Btn_Temple" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="7800 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">

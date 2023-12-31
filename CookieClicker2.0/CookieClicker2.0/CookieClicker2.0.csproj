@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Sound\upgrade.MP3" />
     <Resource Include="Media\PerkIcons\PerkBank1.png" />
     <Resource Include="Media\PerkIcons\PerkBank2.png" />
     <Resource Include="Media\PerkIcons\PerkBank3.png" />
