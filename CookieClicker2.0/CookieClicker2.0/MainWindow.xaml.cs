@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
 
-
 namespace CookieClicker2._0
 {
     /// <summary>
@@ -23,9 +22,8 @@ namespace CookieClicker2._0
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private double cookieCounter = 100000000;
-        private double cookieTotal = 100000000;
+        private double cookieCounter = 0;
+        private double cookieTotal = 0;
 
         private double passiveCounter = 0;
         private Label labelPrice = new Label();
@@ -1072,9 +1070,9 @@ namespace CookieClicker2._0
             passive *= 2;
 
             perkAmount++;
-            Quests();
-
             PlaySound(ping);
+
+            Quests();
         }
 
         private void BuyPerk(string button)
@@ -1747,4 +1745,3 @@ namespace CookieClicker2._0
         }
     }
 }
-
