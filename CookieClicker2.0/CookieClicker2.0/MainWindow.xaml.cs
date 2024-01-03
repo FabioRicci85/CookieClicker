@@ -17,15 +17,16 @@ namespace CookieClicker2._0
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 0;
-        private double cookieTotal = 0;
+        private double cookieCounter = 1000000;               //Counter voor het aantal koekjes dat de speler heeft
+        private double cookieTotal = 1000000;                 //Counter voor het totaal aantal koekjes dat de speler heeft verzameld
 
         private double passiveCounter = 0;
-        private Label labelPrice = new Label();
+
+        private Label labelPrice = new Label();                             // variabelen voor switch case van de BuyStore methode en de StoreButton methode
         private Label labelClick = new Label();
         private double basePrice = new double();
 
-        private Button btnPerk = new Button();
+        private Button btnPerk = new Button();                              //button die gebruikt wordt in de Switch Case van de PerkStore en BuytPerk methode.
 
         private double investmentAmount = new double();
         private double investmentCursorAmount = 0;                          // aantal aankopen van investeringen, dit veranderd uiteindelijk het LblClick.Content
@@ -36,7 +37,7 @@ namespace CookieClicker2._0
         private double investmentBankAmount = 0;
         private double investmentTempleAmount = 0;
 
-        private double _cursorPrice = 15;
+        private double _cursorPrice = 15;                                   // prijzen van de investeringen die by ref worden meegegeven aan de BuyStore methode
         private double _grandmaPrice = 100;
         private double _farmPrice = 1100;
         private double _minePrice = 12000;
@@ -44,7 +45,7 @@ namespace CookieClicker2._0
         private double _bankPrice = 1400000;
         private double _templePrice = 20000000;
 
-        private double cursorMultiplier = 0.001;
+        private double cursorMultiplier = 0.001;                            // passieve inkomen van de investeringen per 10 milliseconden
         private double grandmaMultiplier = 0.01;
         private double farmMultiplier = 0.08;
         private double mineMultiplier = 0.47;
@@ -52,7 +53,7 @@ namespace CookieClicker2._0
         private double bankMultiplier = 14;
         private double templeMultiplier = 78;
 
-        private double passiveCursor = 0.1;
+        private double passiveCursor = 0.1;                                 // passieve inkomen van de investeringen per 1 seconde
         private double passiveGrandma = 1;
         private double passiveFarm = 8;
         private double passiveMine = 47;
@@ -60,7 +61,7 @@ namespace CookieClicker2._0
         private double passiveBank = 1400;
         private double passiveTemple = 7800;
 
-        private const double basePriceCursor = 15;
+        private const double basePriceCursor = 15;                          // basis prijzen van de investeringen die niet veranderen
         private const double basePriceGrandma = 100;
         private const double basePriceFarm = 1100;
         private const double basePriceMine = 12000;
@@ -96,9 +97,9 @@ namespace CookieClicker2._0
         public MainWindow()
         {
             InitializeComponent();
-            MotivationSound();
+            MotivationSound();      //Achtergrond muziek
 
-            //timer die iedere 10 milliseconden de passieve inkomen berekent
+            //timer die iedere 10 milliseconden het passieve inkomen berekent
             DispatcherTimer millisecondsTimer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(10)
@@ -116,6 +117,7 @@ namespace CookieClicker2._0
 
         /// <summary>
         /// Als het spel geladen is, wordt er een timer gestart die iedere minuut de kans berekent voor een gouden koekje.
+        /// Ook wordt er een dictionary gevuld met de quests die de speler kan behalen door de methode AddQuests.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -168,7 +170,7 @@ namespace CookieClicker2._0
         }
 
         /// <summary>
-        /// Als de linkermuisknop ingedrukt is en de cursor op het koekje komt, registreert het een mouse down event en update het de score naar boven.
+        /// Als de linkermuisknop ingedrukt is buiten het veld van het koekje en de cursor op het koekje komt, registreert het een mouse down event en update het de score naar boven.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -210,6 +212,131 @@ namespace CookieClicker2._0
         }
 
         /// <summary>
+        /// Methode die het aankoopbedrag omzet van numerieke waarde naar woord.
+        /// Maakt gebruik van InvestmentWordAmount methode.
+        /// <para>Wordt gebruikt om vanaf de start van het spel alle prijzen van investeringen meteen om te zetten naar woord bedragen.</para>
+        /// </summary>
+        private void PriceLabelWord()
+        {
+            LblPriceCursor.Content = InvestmentWordAmount(_cursorPrice);
+            LblPriceGrandma.Content = InvestmentWordAmount(_grandmaPrice);
+            LblPriceFarm.Content = InvestmentWordAmount(_farmPrice);
+            LblPriceMine.Content = InvestmentWordAmount(_minePrice);
+            LblPriceFactory.Content = InvestmentWordAmount(_factoryPrice);
+            LblPriceBank.Content = InvestmentWordAmount(_bankPrice);
+            LblPriceTemple.Content = InvestmentWordAmount(_templePrice);
+        }
+
+        /// <summary>
+        /// Zorgt voor het verwoorden van de numerieke waarde van het aantal cookies.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private string DoubleToWordAmount(double value)
+        {
+            double miljoen = 1000000;
+            double miljard = 1000000000;
+            double biljoen = 1000000000000;
+            double biljard = 1000000000000000;
+            double triljoen = 1000000000000000000;
+
+            if (value >= triljoen)
+            {
+                return $"{Math.Round(value / triljoen, 3)} triljoen";
+            }
+            if (value >= biljard)
+            {
+                return $"{Math.Round(value / biljard, 3)} biljard";
+            }
+            if (value >= biljoen)
+            {
+                return $"{Math.Round(value / biljoen, 3)} biljoen";
+            }
+            if (value >= miljard)
+            {
+                return $"{Math.Round(value / miljard, 3)} miljard";
+            }
+            if (value >= miljoen)
+            {
+                return $"{Math.Round(value / miljoen, 3)} miljoen";
+            }
+
+            if (value >= 1000)
+            {
+                return $"{value:#,0}".Replace(".", " ");
+            }
+
+            return $"{Math.Floor(value)}";
+        }
+
+        /// <summary>
+        /// Zorgt voor de verwoording van de numerieke waarde van de aankoopprijs.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private string InvestmentWordAmount(double value)
+        {
+            double duizend = 1000;
+            double miljoen = 1000000;
+            double miljard = 1000000000;
+            double biljoen = 1000000000000;
+            double biljard = 1000000000000000;
+            double triljoen = 1000000000000000000;
+
+            if (value >= triljoen)
+            {
+                return $"{Math.Round(value / triljoen, 3)} triljoen";
+            }
+            if (value >= biljard)
+            {
+                return $"{Math.Round(value / biljard, 3)} biljard";
+            }
+            if (value >= biljoen)
+            {
+                return $"{Math.Round(value / biljoen, 3)} biljoen";
+            }
+            if (value >= miljard)
+            {
+                return $"{Math.Round(value / miljard, 3)} miljard";
+            }
+            if (value >= miljoen)
+            {
+                return $"{Math.Round(value / miljoen, 3)} miljoen";
+            }
+            if (value >= duizend)
+            {
+                return $"{Math.Round(value / duizend, 1)} duizend";
+            }
+
+            return $"{Math.Ceiling(value)}";
+        }
+
+        /// <summary>
+        /// Click eventhandler om te bepalen op welke knop er in de winkel geklikt is geweest en voert dan een aankoopactie uit.
+        /// <para>
+        /// Verhoogt het label met de aantal kliks, kijkt na als er voldoende cookies zijn om te knoppen te enabelen en update de score, kijkt na als er een perk zichtbaar moet worden
+        /// en kan aangekocht worden.
+        /// Als een Quest behaald is, wordt deze toegevoegd aan de lijst met behaalde quests en wordt er een melding getoond.
+        /// </para>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            string buttonName = ((Button)sender).Name;
+
+            StoreButton(buttonName);
+            BuyStore(buttonName);
+
+            PassiveCounter();
+            ShopButtonEnable();
+            UpdateScore();
+            PerkVisibility();
+            PerkButtonEnabled();
+            Quests();
+        }
+
+        /// <summary>
         /// Per aankoop wordt gekeken hoeveel maal het al aangekocht is geweest.
         /// Indien aankopen 0 zijn, wordt eerst de basisprijs gehanteerd die hard coded staat.
         /// Zijn er al aankopen gebeurd, wordt de basisprijs (hardcoded) vermedigvuldigd met 1.15 tot de macht van aantal aankopen.
@@ -248,41 +375,10 @@ namespace CookieClicker2._0
         }
 
         /// <summary>
-        /// Methode die het aankoopbedrag omzet van numerieke waarde naar woord.
-        /// Maakt gebruik van InvestmentWordAmount methode.
+        /// Method overload om referentie mee te geven aan de methode BuyStore.
+        /// <para>prijzen en investeringsaantallen kunnen hierdoor veranderen en als het een nieuwe waarde heeft, wordt bij de volgende click de nieuwe waarde mee gegeven.</para>
         /// </summary>
-        private void PriceLabelWord()
-        {
-            LblPriceCursor.Content = InvestmentWordAmount(_cursorPrice);
-            LblPriceGrandma.Content = InvestmentWordAmount(_grandmaPrice);
-            LblPriceFarm.Content = InvestmentWordAmount(_farmPrice);
-            LblPriceMine.Content = InvestmentWordAmount(_minePrice);
-            LblPriceFactory.Content = InvestmentWordAmount(_factoryPrice);
-            LblPriceBank.Content = InvestmentWordAmount(_bankPrice);
-            LblPriceTemple.Content = InvestmentWordAmount(_templePrice);
-        }
-
-        /// <summary>
-        /// Click eventhandler om te bepalen op welke knop er in de winkel geklikt is geweest en voert dan een aankoopactie uit.
-        /// Verhoogt het label met de aantal kliks, kijkt na als er voldoende cookies zijn om te knoppen te enabelen en update de score.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Btn_Click(object sender, EventArgs e)
-        {
-            string buttonName = ((Button)sender).Name;
-
-            StoreButton(buttonName);
-            BuyStore(buttonName);
-
-            PassiveCounter();
-            ShopButtonEnable();
-            UpdateScore();
-            PerkVisibility();
-            PerkButtonEnabled();
-            Quests();
-        }
-
+        /// <param name="button"></param>
         private void BuyStore(string button)
         {
             switch (button)
@@ -467,6 +563,7 @@ namespace CookieClicker2._0
 
         /// <summary>
         /// Een label dat het passieve inkomen weergeeft. De passiveCounter wordt opgehaald uit StoreButton (Switch Case).
+        /// Ook zorgt deze methode dat de animatie van de loadingbar zichtbaar wordt.
         /// </summary>
         private void PassiveCounter()
         {
@@ -476,7 +573,7 @@ namespace CookieClicker2._0
         }
 
         /// <summary>
-        /// Animatie voor het passieve inkomen.
+        /// Animatie voor het passieve inkomen in de vorm van een loading balk.
         /// </summary>
         private void StartMovingBarAnimation()
         {
@@ -530,7 +627,7 @@ namespace CookieClicker2._0
             backgroundPlayer.Play();
         }
 
-        // Soundeffects voor cookie, buttons en dergelijke.
+        // Soundeffects player voor cookie, buttons, golden cookie en perks.
         private void PlaySound(Uri sound)
         {
             soundPlayer.Open(sound);
@@ -675,92 +772,8 @@ namespace CookieClicker2._0
         }
 
         /// <summary>
-        /// Zorgt voor het verwoorden van de numerieke waarde van het aantal cookies.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private string DoubleToWordAmount(double value)
-        {
-            double miljoen = 1000000;
-            double miljard = 1000000000;
-            double biljoen = 1000000000000;
-            double biljard = 1000000000000000;
-            double triljoen = 1000000000000000000;
-
-            if (value >= triljoen)
-            {
-                return $"{Math.Round(value / triljoen, 3)} triljoen";
-            }
-            if (value >= biljard)
-            {
-                return $"{Math.Round(value / biljard, 3)} biljard";
-            }
-            if (value >= biljoen)
-            {
-                return $"{Math.Round(value / biljoen, 3)} biljoen";
-            }
-            if (value >= miljard)
-            {
-                return $"{Math.Round(value / miljard, 3)} miljard";
-            }
-            if (value >= miljoen)
-            {
-                return $"{Math.Round(value / miljoen, 3)} miljoen";
-            }
-
-            if (value >= 1000)
-            {
-                return $"{value:#,0}".Replace(".", " ");
-            }
-
-            return $"{Math.Floor(value)}";
-        }
-
-        /// <summary>
-        /// Zorgt voor de verwoording van de numerieke waarde van de aankoopprijs.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private string InvestmentWordAmount(double value)
-        {
-            double duizend = 1000;
-            double miljoen = 1000000;
-            double miljard = 1000000000;
-            double biljoen = 1000000000000;
-            double biljard = 1000000000000000;
-            double triljoen = 1000000000000000000;
-
-            if (value >= triljoen)
-            {
-                return $"{Math.Round(value / triljoen, 3)} triljoen";
-            }
-            if (value >= biljard)
-            {
-                return $"{Math.Round(value / biljard, 3)} biljard";
-            }
-            if (value >= biljoen)
-            {
-                return $"{Math.Round(value / biljoen, 3)} biljoen";
-            }
-            if (value >= miljard)
-            {
-                return $"{Math.Round(value / miljard, 3)} miljard";
-            }
-            if (value >= miljoen)
-            {
-                return $"{Math.Round(value / miljoen, 3)} miljoen";
-            }
-            if (value >= duizend)
-            {
-                return $"{Math.Round(value / duizend, 1)} duizend";
-            }
-
-            return $"{Math.Ceiling(value)}";
-        }
-
-        /// <summary>
         /// Een methode om alle aankoop knoppen niet zichtbaar te maken, en slechts zichtbaar te maken na dat het totaal verzamelde cookies een bepaald aantal heeft behaald.
-        /// cookieTotal is de variabele die steeds blijft optellen, waar nooit aankoopbedragen van afgetrokken worden.
+        /// <para>cookieTotal is de variabele die steeds blijft optellen, waar nooit aankoopbedragen van afgetrokken worden.</para>
         /// </summary>
         private void ButtonVisibility()
         {
@@ -802,8 +815,36 @@ namespace CookieClicker2._0
             }
         }
 
-        // Quests en PowerUps die de speler kan aankopen
+        // Quests dat de speler kan behalen
         private Dictionary<string, string> quests = new Dictionary<string, string>();
+
+        /// <summary>
+        /// Methode die de quests toevoegt aan de dictionary quests.
+        /// </summary>
+        private void AddQuests()
+        {
+            quests.Add("1 cursor", "WOOOOO je eerste investering!");
+            quests.Add("5 farms", "Al 5 boerderijen! Je koopt deze toch niet voor de boerendochter hé ;) ");
+            quests.Add("5 temples", "5 temples, de goden krijgen niet genoeg van je speciale recept!");
+            quests.Add("10 cursors", "Klik er maar op los cursors! KLIK ER MAAR OP LOS!");
+            quests.Add("10 mines", "10 mines, tijd om sneeuwitje te bellen en de dwergen een part time job aan te bieden");
+            quests.Add("10 banks", "10 banks, bringing in that dough!");
+            quests.Add("20 grandmas", "20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;) ");
+            quests.Add("20 farms", "20 farms, de koeien zijn blij met hun nieuwe stal");
+            quests.Add("25 factories", "Wat een aankopen! 25 factories, daar is Wonka niks tegen!");
+            quests.Add("30 tempels", "That's the Teen Spirit!");
+            quests.Add("50 farms", "Old McDonald had A farm, niet 50!!");
+            quests.Add("100 cursors", "LAN PARTY");
+            quests.Add("100 grandmas", "Het rusthuis heeft gebeld, ze willen hun oma's terug!");
+            quests.Add("100 banks", "The real Wolf of Sesamestreet");
+            quests.Add("1000 cookies", "je eerste 1000 cookies zijn binnen, tijd om te investeren en je cookie emporium op te zetten!");
+            quests.Add("1.000.000 cookies", "1.000.000 cookies, je bent een echte cookie monster!");
+            quests.Add("10.000.000 cookies", "10.000.000 cookies :o keep going! Maar let wel op voor diabetes");
+            quests.Add("Golden Cookie", "Een Golden Cookie, laat het smaken!");
+            quests.Add("1 Perk", "Time to get Perkaholic!");
+            quests.Add("10 Perks", "PERKAHOLIC BABY!!");
+            quests.Add("Quest Collector", "Alle Quests behaald!");
+        }
 
         private readonly string behaaldeQuest1 = "1 cursor";
         private readonly string behaaldeQuest2 = "5 farms";
@@ -827,6 +868,10 @@ namespace CookieClicker2._0
         private readonly string behaaldeQuest20 = "10 Perks";
         private readonly string behaaldeQuest21 = "Quest Collector";
 
+        /// <summary>
+        /// Quests die de speler kan behalen worden eerst nagekeken als een target behaald is EN als de quest nog niet behaald is.
+        /// <para>De quest is enkel behaald als deze zich al in de ListBox bevindt</para>
+        /// </summary>
         private void Quests()
         {
             if (investmentCursorAmount == 1 && !LstBoxQuests.Items.Contains(behaaldeQuest1))
@@ -936,31 +981,11 @@ namespace CookieClicker2._0
             }
         }
 
-        private void AddQuests()
-        {
-            quests.Add("1 cursor", "WOOOOO je eerste investering!");
-            quests.Add("5 farms", "Al 5 boerderijen! Je koopt deze toch niet voor de boerendochter hé ;) ");
-            quests.Add("5 temples", "5 temples, de goden krijgen niet genoeg van je speciale recept!");
-            quests.Add("10 cursors", "Klik er maar op los cursors! KLIK ER MAAR OP LOS!");
-            quests.Add("10 mines", "10 mines, tijd om sneeuwitje te bellen en de dwergen een part time job aan te bieden");
-            quests.Add("10 banks", "10 banks, bringing in that dough!");
-            quests.Add("20 grandmas", "20 grandma's die voor je werken, opa's hebben tijd voor een lemon party ;) ");
-            quests.Add("20 farms", "20 farms, de koeien zijn blij met hun nieuwe stal");
-            quests.Add("25 factories", "Wat een aankopen! 25 factories, daar is Wonka niks tegen!");
-            quests.Add("30 tempels", "That's the Teen Spirit!");
-            quests.Add("50 farms", "Old McDonald had A farm, niet 50!!");
-            quests.Add("100 cursors", "LAN PARTY");
-            quests.Add("100 grandmas", "Het rusthuis heeft gebeld, ze willen hun oma's terug!");
-            quests.Add("100 banks", "The real Wolf of Sesamestreet");
-            quests.Add("1000 cookies", "je eerste 1000 cookies zijn binnen, tijd om te investeren en je cookie emporium op te zetten!");
-            quests.Add("1.000.000 cookies", "1.000.000 cookies, je bent een echte cookie monster!");
-            quests.Add("10.000.000 cookies", "10.000.000 cookies :o keep going! Maar let wel op voor diabetes");
-            quests.Add("Golden Cookie", "Een Golden Cookie, laat het smaken!");
-            quests.Add("1 Perk", "Time to get Perkaholic!");
-            quests.Add("10 Perks", "PERKAHOLIC BABY!!");
-            quests.Add("Quest Collector", "Alle Quests behaald!");
-        }
-
+        /// <summary>
+        /// Een selectionChanged event dat de tekst van de quest weergeeft in de textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LstBoxQuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedItems = LstBoxQuests.SelectedItem.ToString();
@@ -1017,7 +1042,7 @@ namespace CookieClicker2._0
             ShopButtonEnable();
             PlaySound(succes);
 
-            goldenCookieClicked = true;
+            goldenCookieClicked = true;         //bool die aangeeft dat er op het gouden koekje geklikt is, deze wordt gebruikt om de quest te behalen
             Quests();
         }
 
@@ -1035,7 +1060,7 @@ namespace CookieClicker2._0
             ImgGoldenCookie.Visibility = Visibility.Visible;
         }
 
-        private double perkAmount = 0;                            // Variabele die aangeeft hoeveel perks er zijn aangekocht
+        private double perkAmount = 0;                            // Variabele die aangeeft hoeveel perks er zijn aangekocht voor de Quests
 
         private double tierValue = new double();                // Variabele die aangeeft welke tier het is en de waarde van de tier
         private const double tierValue1 = 100;
@@ -1080,6 +1105,11 @@ namespace CookieClicker2._0
         private bool clickedOnTemplePerk4 = false;
         private bool clickedOnTemplePerk5 = false;
 
+        /// <summary>
+        /// Methode die de aankoop van een perk regelt.
+        /// </summary>
+        /// <param name="multiplier"></param>
+        /// <param name="passive"></param>
         private void BuyPerk(ref double multiplier, ref double passive)
         {
             btnPerk.Visibility = Visibility.Collapsed;
@@ -1099,6 +1129,10 @@ namespace CookieClicker2._0
             Quests();
         }
 
+        /// <summary>
+        /// Geeft de juiste waarde mee van de variabelen multiplier en passive, deze veranderen immers na iedere aankoop.
+        /// </summary>
+        /// <param name="button"></param>
         private void BuyPerk(string button)
         {
             switch (button)
@@ -1245,6 +1279,10 @@ namespace CookieClicker2._0
             }
         }
 
+        /// <summary>
+        /// Switch case voor iedere Perk button, deze wordt gebruikt om de juiste perk te kopen.
+        /// </summary>
+        /// <param name="button"></param>
         private void PerkStore(string button)
         {
             switch (button)
@@ -1528,7 +1566,8 @@ namespace CookieClicker2._0
                     investmentAmount = investmentTempleAmount;
                     clickedOnTemplePerk5 = true;
                     break;
-            }
+            }                                                                                // Veel herhaling, maar dit is de enige manier om de juiste perk te kopen
+                                                                                             // die ik ken op dit moment. Als het werkt, kan ik er beter van af blijven :)
         }
 
         /// <summary>
@@ -1542,14 +1581,18 @@ namespace CookieClicker2._0
 
             PerkStore(buttonName);
             BuyPerk(buttonName);
+            PerkVisibility();
         }
 
-        private readonly int tier1 = 1;
+        private readonly int tier1 = 1;                     // Variabelen die aangeven hoeveel investeringen er nodig zijn om de perk te unlocken
         private readonly int tier2 = 5;
         private readonly int tier3 = 25;
         private readonly int tier4 = 50;
         private readonly int tier5 = 100;
 
+        /// <summary>
+        /// Methode die de visibility van de perk knoppen aanpast als de speler genoeg investeringen heeft en als de knop nog niet geklikt is.
+        /// </summary>
         private void PerkVisibility()
         {
             if (investmentCursorAmount >= tier1 && !clickedOnCursorPerk1)
@@ -1727,8 +1770,12 @@ namespace CookieClicker2._0
                 BtnPerkTemple5.Visibility = Visibility.Visible;
                 LblPerks.Visibility = Visibility.Visible;
             }
-        }
+        }                                                                                       // het is inderdaad veel herhaling, maar ik heb geen idee hoe ik dit kan vermijden
+                                                                                                // op dit moment is dit de enige manier die ik ken om dit te doen
 
+        /// <summary>
+        /// Perk knoppen enabelen als de speler genoeg cookies heeft.
+        /// </summary>
         private void PerkButtonEnabled()
         {
             BtnPerkCursor1.IsEnabled = (cookieCounter >= basePriceCursor * tierValue1);
