@@ -770,7 +770,7 @@
         <!-- Aankoop knoppen -->
         
         <ScrollViewer Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" VerticalScrollBarVisibility="Hidden">
-        <Viewbox Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" MaxWidth="400">
+        <Viewbox Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" MaxWidth="400" VerticalAlignment="Top">
             <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
                 <Button x:Name="Btn_Cursor" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
