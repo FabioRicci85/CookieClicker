@@ -14,11 +14,16 @@ namespace CookieClicker2._0
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// --------------------------------------
+    /// Author: Fabio Ricci
+    /// Date: 06/11/2023
+    /// Description: Cookie Clicker 2.0 Documentatie
+    /// --------------------------------------
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 1000000;               //Counter voor het aantal koekjes dat de speler heeft
-        private double cookieTotal = 1000000;                 //Counter voor het totaal aantal koekjes dat de speler heeft verzameld
+        private double cookieCounter = 1000000;                                    //Counter voor het aantal koekjes dat de speler heeft
+        private double cookieTotal = 1000000;                                      //Counter voor het totaal aantal koekjes dat de speler heeft verzameld
 
         private double passiveCounter = 0;
 

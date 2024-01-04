@@ -38,7 +38,7 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <Image Visibility="Collapsed" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="ImgGoldenCookie" Source="./Media/goldenCookie.png" Width="50" Height="50" MouseUp="ImgGoldenCookie_MouseUp" Panel.ZIndex="100"/>
+        <Image Visibility="Collapsed" Grid.ColumnSpan="3" Grid.RowSpan="4" Name="ImgGoldenCookie" Source="./Media/goldenCookie.png" Width="50" Height="50" MouseUp="ImgGoldenCookie_MouseUp" Panel.ZIndex="100"/>
         <Viewbox Grid.Row="1" Stretch="Uniform" MaxHeight="300" MaxWidth="300">
             <Image Source="./Media/Cookie.png"
                    Name="ImgCookie" Grid.Row="1"
@@ -629,9 +629,9 @@
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
-        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="3">
             <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
-                <Canvas x:Name="Cnvs" Width="300" Height="10" Visibility="Collapsed">
+                <Canvas x:Name="Cnvs" Width="300" Height="10" Visibility="Collapsed" Margin="5,0,5,0">
                     <Rectangle x:Name="loadingBar" Width="300" Height="10" Fill="LightBlue">
                         <Rectangle.Effect>
                             <DropShadowEffect ShadowDepth="5" Color="Gray" BlurRadius="10"/>
@@ -866,7 +866,7 @@
                     </DockPanel>
                 </Button>
             </StackPanel>
-        </ScrollViewer>
+        </Viewbox>
         <ScrollViewer Grid.Column="1" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
