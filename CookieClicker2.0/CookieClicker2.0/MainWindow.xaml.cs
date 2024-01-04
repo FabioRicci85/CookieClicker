@@ -14,16 +14,18 @@ namespace CookieClicker2._0
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// <para>
     /// --------------------------------------
     /// Author: Fabio Ricci
     /// Date: 06/11/2023
     /// Description: Cookie Clicker 2.0 Documentatie
     /// --------------------------------------
+    /// </para>
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double cookieCounter = 1000000;                                    //Counter voor het aantal koekjes dat de speler heeft
-        private double cookieTotal = 1000000;                                      //Counter voor het totaal aantal koekjes dat de speler heeft verzameld
+        private double cookieCounter = 0;                                    //Counter voor het aantal koekjes dat de speler heeft
+        private double cookieTotal = 0;                                      //Counter voor het totaal aantal koekjes dat de speler heeft verzameld
 
         private double passiveCounter = 0;
 
@@ -1604,176 +1606,177 @@ namespace CookieClicker2._0
             {
                 BtnPerkCursor1.Visibility = Visibility.Visible;
                 LblPerks.Visibility = Visibility.Visible;
+                LblPerkCursorCost1.Content = InvestmentWordAmount(basePriceCursor * tierValue1);
             }
             if (investmentCursorAmount >= tier2 && !clickedOnCursorPerk2)
             {
                 BtnPerkCursor2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkCursorCost2.Content = InvestmentWordAmount(basePriceCursor * tierValue2);
             }
             if (investmentCursorAmount >= tier3 && !clickedOnCursorPerk3)
             {
                 BtnPerkCursor3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkCursorCost3.Content = InvestmentWordAmount(basePriceCursor * tierValue3);
             }
             if (investmentCursorAmount >= tier4 && !clickedOnCursorPerk4)
             {
                 BtnPerkCursor4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkCursorCost4.Content = InvestmentWordAmount(basePriceCursor * tierValue4);
             }
             if (investmentCursorAmount >= tier5 && !clickedOnCursorPerk5)
             {
                 BtnPerkCursor5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkCursorCost5.Content = InvestmentWordAmount(basePriceCursor * tierValue5);
             }
             if (investmentGrandmaAmount >= tier1 && !clickedOnGrandmaPerk1)
             {
                 BtnPerkGrandma1.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkGrandmaCost1.Content = InvestmentWordAmount(basePriceGrandma * tierValue1);
             }
             if (investmentGrandmaAmount >= tier2 && !clickedOnGrandmaPerk2)
             {
                 BtnPerkGrandma2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkGrandmaCost2.Content = InvestmentWordAmount(basePriceGrandma * tierValue2);
             }
             if (investmentGrandmaAmount >= tier3 && !clickedOnGrandmaPerk3)
             {
                 BtnPerkGrandma3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkGrandmaCost3.Content = InvestmentWordAmount(basePriceGrandma * tierValue3);
             }
             if (investmentGrandmaAmount >= tier4 && !clickedOnGrandmaPerk4)
             {
                 BtnPerkGrandma4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkGrandmaCost4.Content = InvestmentWordAmount(basePriceGrandma * tierValue4);
             }
             if (investmentGrandmaAmount >= tier5 && !clickedOnGrandmaPerk5)
             {
                 BtnPerkGrandma5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkGrandmaCost5.Content = InvestmentWordAmount(basePriceGrandma * tierValue5);
             }
             if (investmentFarmAmount >= tier1 && !clickedOnFarmPerk1)
             {
                 BtnPerkFarm1.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFarmCost1.Content = InvestmentWordAmount(basePriceFarm * tierValue1);
             }
             if (investmentFarmAmount >= tier2 && !clickedOnFarmPerk2)
             {
                 BtnPerkFarm2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFarmCost2.Content = InvestmentWordAmount(basePriceFarm * tierValue2);
             }
             if (investmentFarmAmount >= tier3 && !clickedOnFarmPerk3)
             {
                 BtnPerkFarm3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFarmCost3.Content = InvestmentWordAmount(basePriceFarm * tierValue3);
             }
             if (investmentFarmAmount >= tier4 && !clickedOnFarmPerk4)
             {
                 BtnPerkFarm4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFarmCost4.Content = InvestmentWordAmount(basePriceFarm * tierValue4);
             }
             if (investmentFarmAmount >= tier5 && !clickedOnFarmPerk5)
             {
                 BtnPerkFarm5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFarmCost5.Content = InvestmentWordAmount(basePriceFarm * tierValue5);
             }
             if (investmentMineAmount >= tier1 && !clickedOnMinePerk1)
             {
                 BtnPerkMine1.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkMineCost1.Content = InvestmentWordAmount(basePriceMine * tierValue1);
             }
             if (investmentMineAmount >= tier2 && !clickedOnMinePerk2)
             {
                 BtnPerkMine2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkMineCost2.Content = InvestmentWordAmount(basePriceMine * tierValue2);
             }
             if (investmentMineAmount >= tier3 && !clickedOnMinePerk3)
             {
                 BtnPerkMine3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkMineCost3.Content = InvestmentWordAmount(basePriceMine * tierValue3);
             }
             if (investmentMineAmount >= tier4 && !clickedOnMinePerk4)
             {
                 BtnPerkMine4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkMineCost4.Content = InvestmentWordAmount(basePriceMine * tierValue4);
             }
             if (investmentMineAmount >= tier5 && !clickedOnMinePerk5)
             {
                 BtnPerkMine5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkMineCost5.Content = InvestmentWordAmount(basePriceMine * tierValue5);
             }
             if (investmentFactoryAmount >= tier1 && !clickedOnFactoryPerk1)
             {
                 BtnPerkFactory1.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFactoryCost1.Content = InvestmentWordAmount(basePriceFactory * tierValue1);
             }
             if (investmentFactoryAmount >= tier2 && !clickedOnFactoryPerk2)
             {
                 BtnPerkFactory2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFactoryCost2.Content = InvestmentWordAmount(basePriceFactory * tierValue2);
             }
             if (investmentFactoryAmount >= tier3 && !clickedOnFactoryPerk3)
             {
                 BtnPerkFactory3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFactoryCost3.Content = InvestmentWordAmount(basePriceFactory * tierValue3);
             }
             if (investmentFactoryAmount >= tier4 && !clickedOnFactoryPerk4)
             {
                 BtnPerkFactory4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFactoryCost4.Content = InvestmentWordAmount(basePriceFactory * tierValue4);
             }
             if (investmentFactoryAmount >= tier5 && !clickedOnFactoryPerk5)
             {
                 BtnPerkFactory5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkFactoryCost5.Content = InvestmentWordAmount(basePriceFactory * tierValue5);
             }
             if (investmentBankAmount >= tier1 && !clickedOnBankPerk1)
             {
                 BtnPerkBank1.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkBankCost1.Content = InvestmentWordAmount(basePriceBank * tierValue1);
             }
             if (investmentBankAmount >= tier2 && !clickedOnBankPerk2)
             {
                 BtnPerkBank2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkBankCost2.Content = InvestmentWordAmount(basePriceBank * tierValue2);
             }
             if (investmentBankAmount >= tier3 && !clickedOnBankPerk3)
             {
                 BtnPerkBank3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkBankCost3.Content = InvestmentWordAmount(basePriceBank * tierValue3);
             }
             if (investmentBankAmount >= tier4 && !clickedOnBankPerk4)
             {
                 BtnPerkBank4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkBankCost4.Content = InvestmentWordAmount(basePriceBank * tierValue4);
             }
             if (investmentBankAmount >= tier5 && !clickedOnBankPerk5)
             {
                 BtnPerkBank5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkBankCost5.Content = InvestmentWordAmount(basePriceBank * tierValue5);
             }
             if (investmentTempleAmount >= tier1 && !clickedOnTemplePerk1)
             {
                 BtnPerkTemple1.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkTempleCost1.Content = InvestmentWordAmount(basePriceTemple * tierValue1);
             }
             if (investmentTempleAmount >= tier2 && !clickedOnTemplePerk2)
             {
                 BtnPerkTemple2.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkTempleCost2.Content = InvestmentWordAmount(basePriceTemple * tierValue2);
             }
             if (investmentTempleAmount >= tier3 && !clickedOnTemplePerk3)
             {
                 BtnPerkTemple3.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkTempleCost3.Content = InvestmentWordAmount(basePriceTemple * tierValue3);
             }
             if (investmentTempleAmount >= tier4 && !clickedOnTemplePerk4)
             {
                 BtnPerkTemple4.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkTempleCost4.Content = InvestmentWordAmount(basePriceTemple * tierValue4);
             }
             if (investmentTempleAmount >= tier5 && !clickedOnTemplePerk5)
             {
                 BtnPerkTemple5.Visibility = Visibility.Visible;
-                LblPerks.Visibility = Visibility.Visible;
+                LblPerkTempleCost5.Content = InvestmentWordAmount(basePriceTemple * tierValue5);
             }
         }                                                                                       // het is inderdaad veel herhaling, maar ik heb geen idee hoe ik dit kan vermijden
                                                                                                 // op dit moment is dit de enige manier die ik ken om dit te doen
