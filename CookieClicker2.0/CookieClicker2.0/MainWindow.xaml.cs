@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -101,6 +104,17 @@ namespace CookieClicker2._0
         private readonly BitmapImage bankImage = new BitmapImage(new Uri(@"../../Media/bank.png", UriKind.RelativeOrAbsolute));
         private readonly BitmapImage templeImage = new BitmapImage(new Uri(@"../../Media/temple.png", UriKind.RelativeOrAbsolute));
 
+        private string name;
+        private const string cursorName = "Cursor";
+        private const string grandmaName = "Grandma";
+        private const string farmName = "Farm";
+        private const string mineName = "Mine";
+        private const string factoryName = "Factory";
+        private const string bankName = "Bank";
+        private const string templeName = "Temple";
+
+        private int clickAmount = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -171,7 +185,7 @@ namespace CookieClicker2._0
             ButtonVisibility();
 
             PerkButtonEnabled();
-
+            clickAmount++;
             //roep sound effect pop op
             PopSound();
         }
@@ -189,6 +203,8 @@ namespace CookieClicker2._0
                 cookieTotal++;
                 UpdateScore();
                 ButtonVisibility();
+
+                clickAmount++;
 
                 PerkButtonEnabled();
             }
@@ -430,7 +446,7 @@ namespace CookieClicker2._0
                     basePrice = basePriceCursor;
                     PlaySound(clickCursor);
                     passiveCounter += passiveCursor;
-
+                    name = cursorName;
                     break;
 
                 case "Btn_Grandma":
@@ -440,6 +456,7 @@ namespace CookieClicker2._0
                     PlaySound(grandma);
                     passiveCounter += passiveGrandma;
                     AddInvestment(grandmaImage, StckGrandma);
+                    name = grandmaName;
                     break;
 
                 case "Btn_Farm":
@@ -449,6 +466,7 @@ namespace CookieClicker2._0
                     PlaySound(farm);
                     passiveCounter += passiveFarm;
                     AddInvestment(farmImage, StckFarm);
+                    name = farmName;
                     break;
 
                 case "Btn_Mine":
@@ -458,6 +476,7 @@ namespace CookieClicker2._0
                     PlaySound(mine);
                     passiveCounter += passiveMine;
                     AddInvestment(mineImage, StckMine);
+                    name = mineName;
                     break;
 
                 case "Btn_Factory":
@@ -467,6 +486,7 @@ namespace CookieClicker2._0
                     PlaySound(factory);
                     passiveCounter += passiveFactory;
                     AddInvestment(factoryImage, StckFactory);
+                    name = factoryName;
                     break;
 
                 case "Btn_Bank":
@@ -476,6 +496,7 @@ namespace CookieClicker2._0
                     PlaySound(bank);
                     passiveCounter += passiveBank;
                     AddInvestment(bankImage, StckBank);
+                    name = bankName;
                     break;
 
                 case "Btn_Temple":
@@ -485,6 +506,7 @@ namespace CookieClicker2._0
                     PlaySound(temple);
                     passiveCounter += passiveTemple;
                     AddInvestment(templeImage, StckTemple);
+                    name = templeName;
                     break;
             }
         }
@@ -875,6 +897,8 @@ namespace CookieClicker2._0
         private readonly string behaaldeQuest20 = "10 Perks";
         private readonly string behaaldeQuest21 = "Quest Collector";
 
+        private int questAmount = 0;
+
         /// <summary>
         /// Quests die de speler kan behalen worden eerst nagekeken als een target behaald is EN als de quest nog niet behaald is.
         /// <para>De quest is enkel behaald als deze zich al in de ListBox bevindt</para>
@@ -885,106 +909,127 @@ namespace CookieClicker2._0
             {
                 MessageBox.Show(quests["1 cursor"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest1);
+                questAmount++;
             }
             if (investmentFarmAmount == 5 && !LstBoxQuests.Items.Contains(behaaldeQuest2))
             {
                 MessageBox.Show(quests["5 farms"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest2);
+                questAmount++;
             }
             if (investmentTempleAmount == 5 && !LstBoxQuests.Items.Contains(behaaldeQuest3))
             {
                 MessageBox.Show(quests["5 temples"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest3);
+                questAmount++;
             }
             if (investmentCursorAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest4))
             {
                 MessageBox.Show(quests["10 cursors"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest4);
+                questAmount++;
             }
             if (investmentMineAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest5))
             {
                 MessageBox.Show(quests["10 mines"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest5);
+                questAmount++;
             }
             if (investmentBankAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest6))
             {
                 MessageBox.Show(quests["10 banks"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest6);
+                questAmount++;
             }
             if (investmentGrandmaAmount == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest7))
             {
                 MessageBox.Show(quests["20 grandmas"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest7);
+                questAmount++;
             }
             if (investmentFarmAmount == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest8))
             {
                 MessageBox.Show(quests["20 farms"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest8);
+                questAmount++;
             }
             if (investmentFactoryAmount == 25 && !LstBoxQuests.Items.Contains(behaaldeQuest9))
             {
                 MessageBox.Show(quests["25 factories"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest9);
+                questAmount++;
             }
             if (investmentTempleAmount == 30 && !LstBoxQuests.Items.Contains(behaaldeQuest10))
             {
                 MessageBox.Show(quests["30 tempels"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest10);
+                questAmount++;
             }
             if (investmentFarmAmount == 50 && !LstBoxQuests.Items.Contains(behaaldeQuest11))
             {
                 MessageBox.Show(quests["50 farms"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest11);
+                questAmount++;
             }
             if (investmentCursorAmount == 100 && !LstBoxQuests.Items.Contains(behaaldeQuest12))
             {
                 MessageBox.Show(quests["100 cursors"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest12);
+                questAmount++;
             }
             if (investmentGrandmaAmount == 100 && !LstBoxQuests.Items.Contains(behaaldeQuest13))
             {
                 MessageBox.Show(quests["100 grandmas"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest13);
+                questAmount++;
             }
             if (investmentBankAmount == 100 && !LstBoxQuests.Items.Contains(behaaldeQuest14))
             {
                 MessageBox.Show(quests["100 banks"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest14);
+                questAmount++;
             }
             if (cookieCounter >= 1000 && !LstBoxQuests.Items.Contains(behaaldeQuest15))
             {
                 MessageBox.Show(quests["1000 cookies"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest15);
+                questAmount++;
             }
             if (cookieCounter >= 1000000 && !LstBoxQuests.Items.Contains(behaaldeQuest16))
             {
                 MessageBox.Show(quests["1.000.000 cookies"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest16);
+                questAmount++;
             }
             if (cookieCounter >= 10000000 && !LstBoxQuests.Items.Contains(behaaldeQuest17))
             {
                 MessageBox.Show(quests["10.000.000 cookies"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest17);
+                questAmount++;
             }
             if (goldenCookieClicked == true && !LstBoxQuests.Items.Contains(behaaldeQuest18))
             {
                 MessageBox.Show(quests["Golden Cookie"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest18);
+                questAmount++;
             }
             if (perkAmount == 1 && !LstBoxQuests.Items.Contains(behaaldeQuest19))
             {
                 MessageBox.Show(quests["1 Perk"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest19);
+                questAmount++;
             }
             if (perkAmount == 10 && !LstBoxQuests.Items.Contains(behaaldeQuest20))
             {
                 MessageBox.Show(quests["10 Perks"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest20);
+                questAmount++;
             }
             if (LstBoxQuests.Items.Count == 20 && !LstBoxQuests.Items.Contains(behaaldeQuest21))
             {
                 MessageBox.Show(quests["Quest Collector"], "Quest Completed");
                 LstBoxQuests.Items.Add(behaaldeQuest21);
+                questAmount++;
             }
         }
 
@@ -1032,6 +1077,7 @@ namespace CookieClicker2._0
         }
 
         private bool goldenCookieClicked = false;
+        private int goldenCookieClickAmount = 0;
 
         /// <summary>
         /// Actie die uitgevoerd wordt als er op het gouden koekje geklikt wordt.
@@ -1050,6 +1096,8 @@ namespace CookieClicker2._0
             PlaySound(succes);
 
             goldenCookieClicked = true;         //bool die aangeeft dat er op het gouden koekje geklikt is, deze wordt gebruikt om de quest te behalen
+            goldenCookieClickAmount++;
+
             Quests();
         }
 
@@ -1300,6 +1348,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentCursorAmount;
                     clickedOnCursorPerk1 = true;
+                    perkCount = perkCountCursor;
                     break;
 
                 case "BtnPerkCursor2":
@@ -1308,6 +1357,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentCursorAmount;
                     clickedOnCursorPerk2 = true;
+                    perkCount = perkCountCursor;
                     break;
 
                 case "BtnPerkCursor3":
@@ -1316,6 +1366,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentCursorAmount;
                     clickedOnCursorPerk3 = true;
+                    perkCount = perkCountCursor;
                     break;
 
                 case "BtnPerkCursor4":
@@ -1324,6 +1375,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentCursorAmount;
                     clickedOnCursorPerk4 = true;
+                    perkCount = perkCountCursor;
                     break;
 
                 case "BtnPerkCursor5":
@@ -1332,6 +1384,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentCursorAmount;
                     clickedOnCursorPerk5 = true;
+                    perkCount = perkCountCursor;
                     break;
 
                 case "BtnPerkGrandma1":
@@ -1340,6 +1393,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentGrandmaAmount;
                     clickedOnGrandmaPerk1 = true;
+                    perkCount = perkCountGrandma;
                     break;
 
                 case "BtnPerkGrandma2":
@@ -1348,6 +1402,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentGrandmaAmount;
                     clickedOnGrandmaPerk2 = true;
+                    perkCount = perkCountGrandma;
                     break;
 
                 case "BtnPerkGrandma3":
@@ -1356,6 +1411,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentGrandmaAmount;
                     clickedOnGrandmaPerk3 = true;
+                    perkCount = perkCountGrandma;
                     break;
 
                 case "BtnPerkGrandma4":
@@ -1364,6 +1420,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentGrandmaAmount;
                     clickedOnGrandmaPerk4 = true;
+                    perkCount = perkCountGrandma;
                     break;
 
                 case "BtnPerkGrandma5":
@@ -1372,6 +1429,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentGrandmaAmount;
                     clickedOnGrandmaPerk5 = true;
+                    perkCount = perkCountGrandma;
                     break;
 
                 case "BtnPerkFarm1":
@@ -1380,6 +1438,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentFarmAmount;
                     clickedOnFarmPerk1 = true;
+                    perkCount = perkCountFarm;
                     break;
 
                 case "BtnPerkFarm2":
@@ -1388,6 +1447,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentFarmAmount;
                     clickedOnFarmPerk2 = true;
+                    perkCount = perkCountFarm;
                     break;
 
                 case "BtnPerkFarm3":
@@ -1396,6 +1456,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentFarmAmount;
                     clickedOnFarmPerk3 = true;
+                    perkCount = perkCountFarm;
                     break;
 
                 case "BtnPerkFarm4":
@@ -1404,6 +1465,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentFarmAmount;
                     clickedOnFarmPerk4 = true;
+                    perkCount = perkCountFarm;
                     break;
 
                 case "BtnPerkFarm5":
@@ -1412,6 +1474,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentFarmAmount;
                     clickedOnFarmPerk5 = true;
+                    perkCount = perkCountFarm;
                     break;
 
                 case "BtnPerkMine1":
@@ -1420,6 +1483,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentMineAmount;
                     clickedOnMinePerk1 = true;
+                    perkCount = perkCountMine;
                     break;
 
                 case "BtnPerkMine2":
@@ -1428,6 +1492,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentMineAmount;
                     clickedOnMinePerk2 = true;
+                    perkCount = perkCountMine;
                     break;
 
                 case "BtnPerkMine3":
@@ -1436,6 +1501,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentMineAmount;
                     clickedOnMinePerk3 = true;
+                    perkCount = perkCountMine;
                     break;
 
                 case "BtnPerkMine4":
@@ -1444,6 +1510,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentMineAmount;
                     clickedOnMinePerk4 = true;
+                    perkCount = perkCountMine;
                     break;
 
                 case "BtnPerkMine5":
@@ -1452,6 +1519,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentMineAmount;
                     clickedOnMinePerk5 = true;
+                    perkCount = perkCountMine;
                     break;
 
                 case "BtnPerkFactory1":
@@ -1460,6 +1528,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentFactoryAmount;
                     clickedOnFactoryPerk1 = true;
+                    perkCount = perkCountFactory;
                     break;
 
                 case "BtnPerkFactory2":
@@ -1468,6 +1537,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentFactoryAmount;
                     clickedOnFactoryPerk2 = true;
+                    perkCount = perkCountFactory;
                     break;
 
                 case "BtnPerkFactory3":
@@ -1476,6 +1546,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentFactoryAmount;
                     clickedOnFactoryPerk3 = true;
+                    perkCount = perkCountFactory;
                     break;
 
                 case "BtnPerkFactory4":
@@ -1484,6 +1555,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentFactoryAmount;
                     clickedOnFactoryPerk4 = true;
+                    perkCount = perkCountFactory;
                     break;
 
                 case "BtnPerkFactory5":
@@ -1492,6 +1564,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentFactoryAmount;
                     clickedOnFactoryPerk5 = true;
+                    perkCount = perkCountFactory;
                     break;
 
                 case "BtnPerkBank1":
@@ -1500,6 +1573,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentBankAmount;
                     clickedOnBankPerk1 = true;
+                    perkCount = perkCountBank;
                     break;
 
                 case "BtnPerkBank2":
@@ -1508,6 +1582,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentBankAmount;
                     clickedOnBankPerk2 = true;
+                    perkCount = perkCountBank;
                     break;
 
                 case "BtnPerkBank3":
@@ -1516,6 +1591,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentBankAmount;
                     clickedOnBankPerk3 = true;
+                    perkCount = perkCountBank;
                     break;
 
                 case "BtnPerkBank4":
@@ -1524,6 +1600,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentBankAmount;
                     clickedOnBankPerk4 = true;
+                    perkCount = perkCountBank;
                     break;
 
                 case "BtnPerkBank5":
@@ -1532,6 +1609,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentBankAmount;
                     clickedOnBankPerk5 = true;
+                    perkCount = perkCountBank;
                     break;
 
                 case "BtnPerkTemple1":
@@ -1540,6 +1618,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue1;
                     investmentAmount = investmentTempleAmount;
                     clickedOnTemplePerk1 = true;
+                    perkCount = perkCountTemple;
                     break;
 
                 case "BtnPerkTemple2":
@@ -1548,6 +1627,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue2;
                     investmentAmount = investmentTempleAmount;
                     clickedOnTemplePerk2 = true;
+                    perkCount = perkCountTemple;
                     break;
 
                 case "BtnPerkTemple3":
@@ -1556,6 +1636,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue3;
                     investmentAmount = investmentTempleAmount;
                     clickedOnTemplePerk3 = true;
+                    perkCount = perkCountTemple;
                     break;
 
                 case "BtnPerkTemple4":
@@ -1564,6 +1645,7 @@ namespace CookieClicker2._0
                     tierValue = tierValue4;
                     investmentAmount = investmentTempleAmount;
                     clickedOnTemplePerk4 = true;
+                    perkCount = perkCountTemple;
                     break;
 
                 case "BtnPerkTemple5":
@@ -1572,10 +1654,20 @@ namespace CookieClicker2._0
                     tierValue = tierValue5;
                     investmentAmount = investmentTempleAmount;
                     clickedOnTemplePerk5 = true;
+                    perkCount = perkCountTemple;
                     break;
             }                                                                                // Veel herhaling, maar dit is de enige manier om de juiste perk te kopen
                                                                                              // die ik ken op dit moment. Als het werkt, kan ik er beter van af blijven :)
         }
+
+        private double perkCount = 0;
+        private double perkCountCursor = 0;
+        private double perkCountGrandma = 0;
+        private double perkCountFarm = 0;
+        private double perkCountMine = 0;
+        private double perkCountFactory = 0;
+        private double perkCountBank = 0;
+        private double perkCountTemple = 0;
 
         /// <summary>
         /// Click handler om Perk Upgrades aan te kopen door speler om de passieve inkomen te verhogen
@@ -1589,6 +1681,7 @@ namespace CookieClicker2._0
             PerkStore(buttonName);
             BuyPerk(buttonName);
             PerkVisibility();
+            perkCount++;
         }
 
         private readonly int tier1 = 1;                     // Variabelen die aangeven hoeveel investeringen er nodig zijn om de perk te unlocken
@@ -1779,7 +1872,8 @@ namespace CookieClicker2._0
                 LblPerkTempleCost5.Content = InvestmentWordAmount(basePriceTemple * tierValue5);
             }
         }                                                                                       // het is inderdaad veel herhaling, maar ik heb geen idee hoe ik dit kan vermijden
-                                                                                                // op dit moment is dit de enige manier die ik ken om dit te doen
+
+        // op dit moment is dit de enige manier die ik ken om dit te doen
 
         /// <summary>
         /// Perk knoppen enabelen als de speler genoeg cookies heeft.
@@ -1821,6 +1915,38 @@ namespace CookieClicker2._0
             BtnPerkTemple3.IsEnabled = (cookieCounter >= basePriceTemple * tierValue3);
             BtnPerkTemple4.IsEnabled = (cookieCounter >= basePriceTemple * tierValue4);
             BtnPerkTemple5.IsEnabled = (cookieCounter >= basePriceTemple * tierValue5);
+        }
+
+
+
+
+        // Iteratie 4, geen idee hoe ik een tooltip via code behind moet toevoegen zonder dit op te zoeken, alvast veel plezier met het spel :)
+
+
+        private void ToolTipInformation()
+        {
+            ToolTip tooltip = new ToolTip();
+
+            tooltip.Content = $"{passiveCounter} cookies per seconden \n" +
+                $"{investmentAmount} {name}'s produceren {investmentAmount * passiveCounter} cookie's per seconde \n" +
+                $"{perkCount} bonus verhoogt de productie met +100%";
+        }
+
+        private void ToolTip_MouseEnter(object sender, MouseEventArgs e)
+        {
+            string buttonName = ((Button)sender).Name;
+
+            StoreButton(buttonName);
+            ToolTipInformation();
+        }
+
+        private void BtnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"{InvestmentWordAmount(cookieCounter)} cookies op dit moment \n" +
+                $"{InvestmentWordAmount(cookieTotal)} in totaal ooit verzameld \n" +
+                $"{clickAmount} keer manueel op de cookie geklikt \n" +
+                $"{goldenCookieClickAmount} keer op het gouden cookie geklikt \n" +
+                $"{questAmount} quests behaald");
         }
     }
 }

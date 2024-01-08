@@ -772,7 +772,7 @@
         <ScrollViewer Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" VerticalScrollBarVisibility="Hidden">
         <Viewbox Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" MaxWidth="400" VerticalAlignment="Top">
             <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
-                <Button x:Name="Btn_Cursor" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="0.1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Cursor" MouseEnter="ToolTip_MouseEnter" ToolTip="0.1 Cookies per sec." Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -804,7 +804,7 @@
                         <Label Name="LblClickCursor" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Grandma" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <Button x:Name="Btn_Grandma" MouseEnter="ToolTip_MouseEnter" Height="50" Width="270" Margin="5" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -836,7 +836,7 @@
                         <Label Name="LblClickGrandma" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Farm" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="8 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <Button x:Name="Btn_Farm" Height="50" MouseEnter="ToolTip_MouseEnter" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="8 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -868,7 +868,7 @@
                         <Label Name="LblClickFarm" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Mine" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="47 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <Button x:Name="Btn_Mine" Height="50" MouseEnter="ToolTip_MouseEnter" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="47 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -900,7 +900,7 @@
                         <Label Name="LblClickMine" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Factory" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="260 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <Button x:Name="Btn_Factory" Height="50" MouseEnter="ToolTip_MouseEnter" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="260 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -932,7 +932,7 @@
                         <Label Name="LblClickFactory" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Bank" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1400 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                    <Button x:Name="Btn_Bank" Height="50" MouseEnter="ToolTip_MouseEnter" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="1400 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -964,7 +964,7 @@
                         <Label Name="LblClickBank" FontWeight="DemiBold" Content="0" DockPanel.Dock="Right" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
                     </DockPanel>
                 </Button>
-                <Button x:Name="Btn_Temple" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="7800 Cookies per sec." IsEnabled="False" Click="Btn_Click">
+                <Button x:Name="Btn_Temple" MouseEnter="ToolTip_MouseEnter" Height="50" Margin="5" Width="270" Opacity="0.7" HorizontalContentAlignment="Stretch" ToolTip="7800 Cookies per sec." IsEnabled="False" Click="Btn_Click">
                     <ToolTipService.ShowOnDisabled>True</ToolTipService.ShowOnDisabled>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -1042,5 +1042,8 @@
                 <TextBox x:Name="TxtBoxQuests" FontSize="14" IsReadOnly="True" Height="50" Background="SkyBlue" Opacity="0.8" BorderBrush="AliceBlue" BorderThickness="2" TextWrapping="Wrap" Text="Questlog" Visibility="Collapsed" MouseLeave="LstBoxQuests_MouseLeave"/>
             </StackPanel>
         </ScrollViewer>
+        
+        <!-- Informatie knop -->
+        <Button Name="BtnInfo" Content="stats" Width="30" Height="30" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="BtnInfo_Click"></Button>
     </Grid>
 </Window>
